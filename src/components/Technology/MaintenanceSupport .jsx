@@ -168,7 +168,7 @@ const MaintenanceSupport = () => {
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 overflow-hidden">
+    <section className="relative py-14 lg:py-18 bg-gradient-to-br from-gray-50 via-white to-blue-50 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-10 w-64 h-64 bg-blue-200/30 rounded-full blur-3xl"></div>
@@ -176,23 +176,22 @@ const MaintenanceSupport = () => {
         <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-green-200/25 rounded-full blur-2xl"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl xl:container mx-auto px-4 py-20">
+      <div className="relative z-10 max-w-7xl xl:container mx-auto px-4">
         {/* Header Section */}
-        <div className="text-center mb-16 animate-on-scroll" data-index="0">
-          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-blue-200 rounded-full px-6 py-2 mb-6 shadow-sm">
+        <div className="text-center mb-10 animate-on-scroll" data-index="0">
+          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-blue-200 rounded-full px-5 py-1.5 mb-4 shadow-sm">
             <Wrench className="w-4 h-4 text-blue-600" />
-            <span className="text-blue-700 text-sm font-medium tracking-wider">
+            <span className="text-blue-700 text-xs font-semibold tracking-wider">
               MAINTENANCE & SUPPORT
             </span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Keep Your Website
-            <br />
+          <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4">
+            Keep Your Website{" "}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Running Smoothly
             </span>
           </h2>
-          <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
             Professional website maintenance and support services to ensure your
             online presence stays secure, fast, and always available for your
             customers.
@@ -200,7 +199,7 @@ const MaintenanceSupport = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {maintenanceServices.map((service, index) => (
             <div
               key={index}

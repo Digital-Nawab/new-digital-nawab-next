@@ -244,7 +244,7 @@ const PackagingAndPackagesSection = () => {
   // 4. Marketing Collateral Data
   const marketingCollateral = [
     {
-      type: "Brochure / Catalog",
+      type: "Brochure & Catalog Design",
       tag: "Multi-page",
       price: { inr: "₹6,000", usd: "$75" },
       icon: "📖",
@@ -403,7 +403,7 @@ const PackagingAndPackagesSection = () => {
               <span className="w-2 h-2 rounded-full bg-indigo-400 animate-ping" />
               <Sparkles className="w-4 h-4 text-indigo-400" />
               <span className="text-xs sm:text-sm font-semibold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 via-white to-pink-200 uppercase">
-                Digital Marketing Excellence
+                Packaging Design Services in Lucknow
               </span>
             </div>
           </div>
@@ -411,18 +411,17 @@ const PackagingAndPackagesSection = () => {
           {/* Main Headline */}
           <div className="text-center max-w-4xl mx-auto mb-16">
             <h2 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]">
-              Package Designing{" "}
+              Strategic Packaging Design{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">
-                Redefined
+                Services
               </span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto font-light">
-              Where strategic digital marketing meets innovative packaging design
-              to create brands that don't just sell—they{" "}
+              Where consumer psychology meets innovative structural packaging design to create retail and D2C brands that{" "}
               <span className="text-white font-medium underline decoration-indigo-400 decoration-2 underline-offset-4">
                 captivate, convert, and dominate
               </span>{" "}
-              markets.
+              supermarket shelves and e-commerce feeds.
             </p>
           </div>
 
@@ -436,27 +435,20 @@ const PackagingAndPackagesSection = () => {
                   The Strategic Creative Edge
                 </div>
                 <h3 className="text-2xl sm:text-4xl font-bold text-white leading-snug">
-                  What is Package Designing by a{" "}
+                  Why Invest in Professional{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
-                    Digital Marketing Company?
+                    Packaging Design Services?
                   </span>
                 </h3>
                 <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-                  Package designing in the digital marketing realm goes far beyond
-                  traditional aesthetics. It's a{" "}
+                  Packaging design is your product&apos;s most influential silent salesperson. At Digital Nawab, our packaging design services in Lucknow go far beyond surface graphics. We engineer a{" "}
                   <strong className="text-white font-semibold">
-                    strategic fusion of psychology, branding, and consumer behavior
-                    analysis
+                    strategic fusion of consumer psychology, brand storytelling, and shelf ergonomics
                   </strong>{" "}
-                  that creates packaging solutions designed to perform in both
-                  physical retail and high-converting digital environments.
+                  that commands instant shopper trust and accelerates retail velocity.
                 </p>
                 <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-                  We don't just create beautiful packages—we engineer brand
-                  experiences that drive engagement, boost conversions, and
-                  create viral moments across social media platforms. Every design
-                  decision is backed by market research, consumer insights, and
-                  digital performance metrics.
+                  From custom box packaging and product label design to photogenic unboxing aesthetics engineered for social media virality, our design solutions ensure your products stand out on competitive retail shelves and digital marketplaces like Amazon and Blinkit alike.
                 </p>
               </div>
 
@@ -595,11 +587,11 @@ const PackagingAndPackagesSection = () => {
                 Workflow Precision
               </span>
               <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
-                Package Design Process
+                Our Proven Packaging Design Process
               </h3>
               <p className="text-gray-400 text-sm max-w-xl mx-auto mt-2">
                 A seamless 4-stage engineering roadmap designed to translate
-                ideas into market-dominating physical packaging.
+                ideas into market-dominating physical packaging and high-converting retail displays.
               </p>
             </div>
 
@@ -664,11 +656,10 @@ const PackagingAndPackagesSection = () => {
               Transparent & Scalable Pricing
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white mb-4 tracking-tight">
-              Branding & Graphic Design Packages
+              Branding & Graphic Design Packages in Lucknow
             </h2>
             <p className="text-base sm:text-lg text-gray-300">
-              Define your identity. Build brand recognition. Leave a lasting
-              impression.
+              Transparent, scalable graphic design packages tailored for ambitious startups, local businesses, and established enterprises across Lucknow and India.
             </p>
           </div>
 
@@ -828,10 +819,10 @@ const PackagingAndPackagesSection = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-white">
-                    4. Marketing Collateral Design
+                    4. Brochure Design Services & Marketing Collateral
                   </h3>
                   <p className="text-gray-400 text-xs sm:text-sm">
-                    A la carte high-impact print & digital promotional collateral.
+                    A la carte high-impact print & digital promotional collateral, corporate brochures, and catalogs.
                   </p>
                 </div>
               </div>
@@ -848,7 +839,7 @@ const PackagingAndPackagesSection = () => {
                     </p>
                   </div>
                   <ContactPopup
-                    buttonText="Request Custom Item"
+                    buttonText="Request a Design Quote"
                     buttonClassName="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold transition-all shadow-md cursor-pointer"
                   />
                 </div>
@@ -936,18 +927,16 @@ const PackagingAndPackagesSection = () => {
               </span>
 
               <h3 className="text-3xl sm:text-5xl font-black text-white leading-tight">
-                Ready to Captivate, Convert, and Dominate Your Market?
+                Ready to Captivate Your Market with Strategic Graphic Design?
               </h3>
 
               <p className="text-gray-200 text-base sm:text-lg max-w-2xl mx-auto font-light">
-                Whether you need bespoke packaging engineered to generate organic
-                social virality, or a complete corporate branding kit, our senior
-                creative strategists are ready to bring your vision to life.
+                Whether you need high-impact advertising creatives, packaging design services, or a comprehensive graphic design package in Lucknow, our senior design team is ready to elevate your brand.
               </p>
 
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <ContactPopup
-                  buttonText="Get Free Design Consultation"
+                  buttonText="Get Free Consultation"
                   buttonClassName="w-full sm:w-auto px-8 py-4 rounded-xl bg-white hover:bg-gray-100 text-indigo-900 font-bold text-base shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer"
                 />
                 <a

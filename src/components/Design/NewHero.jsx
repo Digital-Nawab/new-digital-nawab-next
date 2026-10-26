@@ -4,6 +4,7 @@ import { ArrowRight, Play, Eye, Zap, Layers, Sparkles } from "lucide-react";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import Image from "next/image";
 import Link from "next/link";
+import ContactPopup from "../ContactPopup";
 export function NewHero() {
   const images = [
     "/assets/images/creatives/1.webp",
@@ -133,74 +134,76 @@ export function NewHero() {
       <div className="relative z-20 min-h-screen flex flex-col 2xl:grid 2xl:grid-cols-2 xl:grid xl:grid-cols-2 lg:grid lg:grid-cols-2">
         {/* Left Content Panel */}
         <div className="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 2xl:p-16">
-          <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl">
+          <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
             {/* Studio Badge */}
-            {/* <div
-              className={`inline-flex items-center gap-2 px-3 sm:px-4 md:px-5 lg:px-6 xl:px-6 2xl:px-8 py-2 sm:py-2.5 md:py-3 lg:py-3 xl:py-3.5 2xl:py-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white/80 text-xs sm:text-sm md:text-sm lg:text-base xl:text-base 2xl:text-lg mb-4 sm:mb-6 md:mb-6 lg:mb-8 xl:mb-8 2xl:mb-10 transform transition-all duration-300 ${
+            <div
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-xs sm:text-sm text-white border border-white/20 shadow-lg backdrop-blur-md mb-6 transition-all duration-300 ${
                 isLoaded
                   ? "translate-x-0 opacity-100"
                   : "-translate-x-10 opacity-0"
               }`}
             >
-              <div className="w-1.5 sm:w-2 md:w-2 lg:w-2.5 xl:w-2.5 2xl:w-3 h-1.5 sm:h-2 md:h-2 lg:h-2.5 xl:h-2.5 2xl:h-3 rounded-full bg-green-400 animate-pulse" />
-              Design Studio • Available for Projects
-            </div> */}
+              <Zap className="w-4 h-4 text-teal-300 animate-pulse" />
+              <span className="text-white font-medium">
+                Creative Design Studio in Lucknow
+              </span>
+              <Sparkles className="w-4 h-4 text-indigo-200" />
+            </div>
 
-            {/* Main Headline with Word Animation */}
-            <div className="mb-4 sm:mb-5 md:mb-6 lg:mb-6 xl:mb-8 2xl:mb-10">
-              <div
-                className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black text-white leading-none mb-2 sm:mb-3 md:mb-3 lg:mb-4 xl:mb-4 2xl:mb-5 transform transition-all duration-300 delay-200`}
+            {/* Main Headline H1 with Word Animation */}
+            <div className="mb-4 sm:mb-5 md:mb-6">
+              <h1
+                className={`text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-[38px] font-extrabold text-white leading-tight tracking-tight mb-2 sm:mb-3 transform transition-all duration-300 delay-200`}
               >
-                <div className="overflow-hidden">
-                  <div className="transition-transform duration-700 ease-in-out">
-                    <ContainerTextFlip words={creativityWords} /> Meets
-                  </div>
-                </div>
-                <div className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  Communication
-                </div>
-              </div>
+                <span className="block text-white">Graphic Design Services in Lucknow</span>
+                <span className="flex items-center flex-wrap gap-2 text-lime-400 mt-2 text-base sm:text-lg md:text-xl lg:text-2xl">
+                  <ContainerTextFlip
+                    words={creativityWords}
+                    className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold py-1 px-3 text-white dark:text-white"
+                    textClassName="text-white"
+                  />
+                  <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-bold">Meets Strategic Growth</span>
+                </span>
+              </h1>
             </div>
 
             {/* Description */}
             <p
-              className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-gray-300 mb-4 sm:mb-5 md:mb-6 lg:mb-6 xl:mb-8 2xl:mb-10 leading-relaxed transform transition-all duration-300 delay-400 ${
+              className={`text-xs sm:text-sm md:text-sm lg:text-base text-gray-300/90 mb-6 sm:mb-8 max-w-xl leading-relaxed transform transition-all duration-300 delay-400 ${
                 isLoaded
                   ? "translate-x-0 opacity-100"
                   : "-translate-x-10 opacity-0"
               }`}
             >
-              We craft visual experiences that don't just look beautiful—they
-              communicate, engage, and drive results. From brand identity to
-              digital interfaces, every pixel has purpose.
+              Elevate your brand presence with premier graphic design services in Lucknow by Digital Nawab. From custom logo design and brand identity systems to high-converting social media creatives and packaging, we create visuals that captivate audiences and drive measurable business results.
             </p>
 
             {/* Action Buttons */}
             <div
-              className={`flex flex-col sm:flex-row gap-2  sm:gap-3 md:gap-4 lg:gap-4 xl:gap-5 2xl:gap-6 mb-4 sm:mb-6 md:mb-6 lg:mb-8 xl:mb-8 2xl:mb-10 transform transition-all duration-300 delay-600 ${
+              className={`flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-6 sm:mb-8 transform transition-all duration-300 delay-600 ${
                 isLoaded
                   ? "translate-x-0 opacity-100"
                   : "-translate-x-10 opacity-0"
               }`}
             >
               <Link href="/portfolio">
-                <button className="group cursor-pointer relative px-4 sm:px-6 md:px-6 lg:px-7 xl:px-8 2xl:px-10 py-2 sm:py-3 md:py-3 lg:py-3.5 xl:py-4 2xl:py-5 bg-white text-black rounded-none font-bold text-xs sm:text-sm md:text-base lg:text-base xl:text-lg 2xl:text-xl overflow-hidden transition-all duration-300 hover:bg-gray-100">
-                  <span className="relative z-10 flex items-center gap-1 sm:gap-2 md:gap-2 lg:gap-2 xl:gap-3 2xl:gap-4">
-                    Explore Our Work
-                    <ArrowRight className="w-3 sm:w-4 md:w-4 lg:w-4.5 xl:w-5 2xl:w-6 h-3 sm:h-4 md:h-4 lg:h-4.5 xl:h-5 2xl:h-6 group-hover:translate-x-1 transition-transform" />
+                <button className="w-full sm:w-auto group cursor-pointer relative px-6 sm:px-7 py-3 bg-white text-black font-bold text-sm overflow-hidden transition-all duration-300 hover:bg-gray-100 rounded-lg">
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    View Our Portfolio
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
                 </button>
               </Link>
-              {/* <button className="group flex items-center gap-1 sm:gap-2 md:gap-2 lg:gap-2 xl:gap-3 2xl:gap-4 px-4 sm:px-6 md:px-6 lg:px-7 xl:px-8 2xl:px-10 py-2 sm:py-3 md:py-3 lg:py-3.5 xl:py-4 2xl:py-5 border border-white/30 text-white rounded-none font-bold text-xs sm:text-sm md:text-base lg:text-base xl:text-lg 2xl:text-xl hover:bg-white/10 transition-all duration-300">
-                <Play className="w-3 sm:w-4 md:w-4 lg:w-4.5 xl:w-5 2xl:w-6 h-3 sm:h-4 md:h-4 lg:h-4.5 xl:h-5 2xl:h-6" />
-                Watch Our Process
-              </button> */}
+              <ContactPopup
+                buttonText="Get Free Consultation"
+                buttonClassName="w-full sm:w-auto px-6 sm:px-7 py-3 bg-lime-400 hover:bg-lime-500 text-black font-bold text-sm transition-all duration-300 shadow-[0_0_20px_rgba(163,230,53,0.35)] cursor-pointer text-center rounded-lg"
+              />
             </div>
 
             {/* Quick Stats */}
             <div
-              className={`grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-6 xl:gap-8 2xl:gap-10 transform transition-all duration-300 delay-800 ${
+              className={`grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 transform transition-all duration-300 delay-800 ${
                 isLoaded
                   ? "translate-x-0 opacity-100"
                   : "-translate-x-10 opacity-0"
@@ -212,10 +215,10 @@ export function NewHero() {
                 { number: "99%", label: "Success Rate" },
               ].map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-black text-white mb-1 sm:mb-1.5 md:mb-1.5 lg:mb-2 xl:mb-2 2xl:mb-3">
+                  <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-white mb-1">
                     {stat.number}
                   </div>
-                  <div className="text-gray-400 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg uppercase tracking-wider">
+                  <div className="text-gray-400 text-xs uppercase tracking-wider">
                     {stat.label}
                   </div>
                 </div>

@@ -309,27 +309,30 @@ const LogoDesignSection = () => {
   const logoServices = [
     {
       icon: <Zap className="w-7 h-7" />,
-      title: "Brand Marks",
+      title: "Brand Marks & Emblems",
       description:
-        "Distinctive symbols that represent your brand's core identity",
+        "Distinctive symbolic marks designed to capture your brand's core essence.",
       gradient: "from-yellow-400 to-orange-500",
     },
     {
       icon: <Sparkles className="w-7 h-7" />,
-      title: "Wordmarks",
-      description: "Typography-focused logos that make your name memorable",
+      title: "Wordmarks & Typography",
+      description:
+        "Custom typography-focused logo designs that make your business name memorable.",
       gradient: "from-purple-400 to-pink-500",
     },
     {
       icon: <Target className="w-7 h-7" />,
       title: "Combination Marks",
-      description: "Perfect harmony between symbol and text elements",
+      description:
+        "Harmonious integration of iconic symbols and tailored text typography.",
       gradient: "from-blue-400 to-cyan-500",
     },
     {
       icon: <Compass className="w-7 h-7" />,
-      title: "Monograms",
-      description: "Elegant letter combinations for sophisticated brands",
+      title: "Monograms & Lettermarks",
+      description:
+        "Refined, minimalist letter-based logos for modern corporate and luxury brands.",
       gradient: "from-green-400 to-teal-500",
     },
   ];
@@ -363,19 +366,17 @@ const LogoDesignSection = () => {
         >
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent text-sm font-semibold mb-4">
             <div className="w-8 h-px bg-gradient-to-r from-amber-600 to-orange-600"></div>
-            LOGO DESIGN
+            LOGO DESIGN SERVICES
             <div className="w-8 h-px bg-gradient-to-r from-amber-600 to-orange-600"></div>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            Iconic Logos That
+            Custom Logo Design Services{" "}
             <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent">
-              Define Brands
+              That Define Iconic Brands
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Every great brand starts with a powerful logo. We craft memorable
-            marks that capture your essence and leave lasting impressions in the
-            minds of your audience.
+            Every great brand starts with a memorable mark. Our bespoke logo design services in Lucknow combine artistic craftsmanship, strategic brand storytelling, and modern typography to build logos that connect with audiences and endure the test of time.
           </p>
         </div>
 
@@ -506,14 +507,13 @@ const LogoDesignSection = () => {
         >
           <div className="bg-gradient-to-r from-amber-600 to-orange-600 rounded-3xl p-8 lg:p-12 text-white">
             <h3 className="text-3xl font-bold mb-4">
-              Ready to Create Your Iconic Logo?
+              Ready to Create Your Iconic Brand Identity?
             </h3>
             <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-              Let's craft a logo that captures your brand's essence and makes a
-              lasting impression on your audience.
+              Partner with Lucknow's dedicated graphic design team to craft a distinctive logo that commands attention and builds customer trust.
             </p>
             <ContactPopup
-              buttonText="Create Your First Logo"
+              buttonText="Get Free Consultation"
               buttonClassName=" cursor-pointer bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-bold shadow-lg transform hover:scale-105 transition-all"
             />
           </div>

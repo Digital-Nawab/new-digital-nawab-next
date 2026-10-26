@@ -29,9 +29,9 @@ export default function CornerstonesWebsite() {
         <div className="absolute inset-0 "></div>
         <div className="relative max-w-7xl mx-auto px-6 py-10 ">
           <div className="text-center ">
-            <h1 className="text-5xl md:text-7xl font-bold bg-white bg-clip-text text-transparent mb-6 drop-shadow-2xl">
+            <h2 className="text-4xl md:text-6xl font-bold bg-white bg-clip-text text-transparent mb-4 drop-shadow-2xl">
               Drive Growth
-            </h1>
+            </h2>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto drop-shadow-lg">
               Transform your digital presence with cutting-edge strategies that
               convert visitors into customers

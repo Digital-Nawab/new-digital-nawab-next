@@ -38,15 +38,15 @@ const BrandingSection = () => {
               </span>
             </div>
 
-            <h1 className="text-5xl lg:text-7xl font-bold mb-8 leading-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
               <span className="bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
-                Leading Graphic Designing
+                Leading Graphic Design
               </span>
               <br />
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 Company in Lucknow
               </span>
-            </h1>
+            </h2>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -60,12 +60,11 @@ const BrandingSection = () => {
                     </div>
                   </div>
                   <div>
-                    <p className="text-gray-700 text-lg leading-relaxed">
-                      In this competitive era, the role of graphic design is
-                      simply unbreakable. Business companies would therefore
-                      want to hire graphic designers from Lucknow graphic design
-                      firms to create appealing and unique designs that may
-                      capture the minds of the public.
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      Strategic Brand Identity Design
+                    </h3>
+                    <p className="text-gray-700 text-base lg:text-lg leading-relaxed">
+                      As a premier graphic design company in Lucknow, Digital Nawab delivers strategic visual assets that elevate market credibility and inspire customer action. In today&apos;s crowded digital landscape, professional graphic designing services provide your business with the distinct visual identity needed to outshine competitors, establish trust, and drive sustainable growth.
                     </p>
                   </div>
                 </div>
@@ -79,14 +78,11 @@ const BrandingSection = () => {
                     </div>
                   </div>
                   <div>
-                    <p className="text-gray-700 text-lg leading-relaxed">
-                      For you to remain competitive, effective communication is
-                      highly vital these days. This is why there is a very
-                      significant need for talented and wise graphic designers.
-                      You should know the world-leading graphic designing
-                      company in Lucknow that meets your specific requirements
-                      if you want to hire a skillful graphic designer from a
-                      well-known graphical design company.
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      Full-Service Graphic Designing Solutions
+                    </h3>
+                    <p className="text-gray-700 text-base lg:text-lg leading-relaxed">
+                      From custom logo development and complete brand identity guidelines to sales brochures and digital ad campaigns, our talented graphic designers in Lucknow translate your core value proposition into stunning visual experiences. We blend artistic brilliance with consumer psychology to ensure every asset drives tangible ROI.
                     </p>
                   </div>
                 </div>
@@ -107,30 +103,30 @@ const BrandingSection = () => {
 
                   <div className="space-y-4">
                     <h3 className="text-2xl font-bold text-gray-800">
-                      Creative Excellence
+                      Brand Identity Design
                     </h3>
                     <p className="text-gray-600">
-                      Transforming ideas into stunning visual experiences
+                      Transforming business ideas into high-converting visual brand assets
                     </p>
                   </div>
 
                   <div className="grid grid-cols-3 gap-4 pt-6">
                     <div className="p-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl border border-blue-100">
-                      <div className="w-8 h-8 bg-blue-500 rounded-lg mx-auto mb-2"></div>
-                      <p className="text-xs font-medium text-gray-600">
+                      <div className="w-8 h-8 bg-blue-500 rounded-lg mx-auto mb-2 flex items-center justify-center text-white text-xs font-bold">ID</div>
+                      <p className="text-xs font-medium text-gray-700">
                         Brand Identity
                       </p>
                     </div>
                     <div className="p-4 bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl border border-green-100">
-                      <div className="w-8 h-8 bg-green-500 rounded-lg mx-auto mb-2"></div>
-                      <p className="text-xs font-medium text-gray-600">
-                        Web Design
+                      <div className="w-8 h-8 bg-green-500 rounded-lg mx-auto mb-2 flex items-center justify-center text-white text-xs font-bold">AD</div>
+                      <p className="text-xs font-medium text-gray-700">
+                        Ad Creatives
                       </p>
                     </div>
                     <div className="p-4 bg-gradient-to-br from-pink-50 to-red-50 rounded-2xl border border-pink-100">
-                      <div className="w-8 h-8 bg-pink-500 rounded-lg mx-auto mb-2"></div>
-                      <p className="text-xs font-medium text-gray-600">
-                        Print Design
+                      <div className="w-8 h-8 bg-pink-500 rounded-lg mx-auto mb-2 flex items-center justify-center text-white text-xs font-bold">PKG</div>
+                      <p className="text-xs font-medium text-gray-700">
+                        Packaging
                       </p>
                     </div>
                   </div>

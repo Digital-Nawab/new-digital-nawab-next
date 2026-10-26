@@ -19,7 +19,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ThreeDMarqueeDemoSecond } from "../Home/ThreeDMarqueeDemoSecond";
-import Image from 'next/image'
+import Image from 'next/image';
+import ContactPopup from "../ContactPopup";
 // Aceternity UI Background Components (Modified for Light Mode)
 const GridBackground = () => (
   <div className="absolute inset-0 opacity-20">
@@ -284,28 +285,28 @@ const adCreatives = {
 const adTypes = [
   {
     id: "social",
-    name: "Social Media",
+    name: "Social Media Graphic Design",
     icon: <Smartphone className="w-5 h-5" />,
     count: 15,
     color: "from-pink-300 to-rose-400",
   },
   {
     id: "display",
-    name: "Display Ads",
+    name: "Advertising Creative Design",
     icon: <MonitorPlay className="w-5 h-5" />,
     count: 12,
     color: "from-blue-300 to-indigo-400",
   },
   {
     id: "video",
-    name: "Video Campaigns",
+    name: "Video & Motion Campaigns",
     icon: <Play className="w-5 h-5" />,
     count: 8,
     color: "from-green-300 to-emerald-400",
   },
   {
     id: "print",
-    name: "Print Media",
+    name: "Brochure & Print Media",
     icon: <Globe className="w-5 h-5" />,
     count: 6,
     color: "from-purple-300 to-violet-400",
@@ -457,22 +458,18 @@ const AdCreativesSection = () => {
                 <div className="flex items-center gap-2 bg-gradient-to-r from-cyan-200/50 to-blue-200/50 border border-cyan-300/50 rounded-full px-4 py-2">
                   <Sparkles className="w-4 h-4 text-cyan-500" />
                   <span className="text-cyan-600 font-semibold text-sm">
-                    AD CREATIVES & CAMPAIGNS
+                    ADVERTISING & SOCIAL MEDIA CREATIVES
                   </span>
                   <Sparkles className="w-4 h-4 text-cyan-500" />
                 </div>
               </div>
-              <CardTitle className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
-                Ads That Stop Scrolls & Convert
-              </CardTitle>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">
+                Advertising Creative Design & Social Media Graphics
+              </h2>
             </CardHeader>
             <CardContent>
               <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                In today's attention economy, you have seconds to make an
-                impression. At Creativds, our award-winning creative team
-                designs advertising campaigns that capture attention and convert
-                viewers into customers, leveraging cutting-edge digital
-                marketing strategies.
+                In today&apos;s fast-moving digital feed, your ads have less than three seconds to stop the scroll. At Digital Nawab, our creative design team crafts high-converting advertising creative design and social media graphic design that command immediate attention, communicate powerful value propositions, and drive qualified leads for businesses in Lucknow and beyond.
               </p>
             </CardContent>
           </Card>
@@ -669,19 +666,18 @@ const AdCreativesSection = () => {
         >
           <Card className="border-none shadow-none bg-transparent">
             <CardContent>
-              <h3 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4">
-                Ready to Amplify Your Campaigns?
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+                Ready to Amplify Your Ad Performance?
               </h3>
               <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-6">
-                Let’s create ads that captivate and convert. Contact us today to
-                launch your next high-impact campaign.
+                Let&apos;s create high-converting social media creatives and advertising campaigns that elevate your brand. Speak with our design team today.
               </p>
-              <Button
-                className="bg-gradient-to-r from-cyan-400 to-blue-400 text-white hover:from-cyan-500 hover:to-blue-500 px-6 py-3 text-lg"
-                asChild
-              >
-                <a href="/contact-us">Get in Touch</a>
-              </Button>
+              <div className="flex justify-center">
+                <ContactPopup
+                  buttonText="Request a Design Quote"
+                  buttonClassName="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold px-8 py-3.5 rounded-xl text-base hover:from-cyan-600 hover:to-blue-600 shadow-lg hover:shadow-xl transition-all cursor-pointer"
+                />
+              </div>
             </CardContent>
           </Card>
         </div>

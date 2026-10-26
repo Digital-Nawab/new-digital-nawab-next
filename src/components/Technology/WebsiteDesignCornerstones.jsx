@@ -33,19 +33,19 @@ export default function WebsiteDesignCornerstones() {
   ];
 
   return (
-    <div className="bg-white ">
-      <div className="container xl:max-w-7xl mx-auto p-6 bg-gradient-to-br from-slate-50 to-white min-h-screen">
+    <div className="bg-white py-12 lg:py-16">
+      <div className="container xl:max-w-7xl mx-auto p-6 bg-gradient-to-br from-slate-50 to-white rounded-3xl">
         {/* Header Section */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <Badge
             variant="outline"
-            className="mb-4 px-4 py-2 text-sm font-medium"
+            className="mb-3 px-4 py-1.5 text-xs font-semibold"
           >
             Web Design Excellence
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-            Cornerstones of a powerful website design
-          </h1>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3 leading-tight">
+            Cornerstones of a Powerful Website Design
+          </h2>
           <Separator className="w-24 mx-auto bg-gradient-to-r from-blue-500 to-purple-500 h-1 rounded-full" />
         </div>
 
