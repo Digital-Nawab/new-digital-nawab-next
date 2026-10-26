@@ -2,13 +2,14 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import Script from "next/script"; // ✅ Import Script
+import Script from "next/script"; 
 import Image from "next/image";
 import Link from "next/link";
 
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import FloatingDock from "@/components/FloatingDock";
+import AutoPopup from "@/components/AutoPopup";
 import { ThemeProvider } from "@/components/theme-provider.jsx";
 
 import "./globals.css";
@@ -17,7 +18,7 @@ import "./app.css";
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
-  // Scroll behavior
+
   useEffect(() => {
     if (window.location.hash) {
       const id = window.location.hash.replace("#", "");
@@ -33,6 +34,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
         {/* ✅ GTM Script: loads after the app becomes interactive */}
         <Script
           id="gtm-script"
@@ -75,6 +79,7 @@ export default function RootLayout({ children }) {
           {children}
 
           <Footer />
+          <AutoPopup />
         </ThemeProvider>
       </body>
     </html>

@@ -1,7 +1,6 @@
 "use client";
 
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
@@ -14,7 +13,8 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import { ChevronDown } from "lucide-react";
-import Image from 'next/image'
+import Image from "next/image";
+
 // 🔗 ActiveLink wrapper
 function ActiveLink({ href, children }) {
   const pathname = usePathname();
@@ -24,9 +24,9 @@ function ActiveLink({ href, children }) {
     <Link
       href={href}
       className={clsx(
-        "text-white truncate text-sm lg:text-md transition-colors duration-400",
+        "text-white truncate text-[15px] lg:text-base transition-colors duration-400",
         isActive
-          ? "!text-black font-bold bg-white px-1 rounded-full"
+          ? "!text-black font-bold bg-white px-2 py-0.5 rounded-full"
           : "hover:text-cyan-400"
       )}
     >
@@ -37,6 +37,26 @@ function ActiveLink({ href, children }) {
 
 const NavBar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [cities, setCities] = useState([]);
+  const [loadingCities, setLoadingCities] = useState(true);
+
+  useEffect(() => {
+    const fetchCities = async () => {
+      try {
+        const response = await fetch("https://dashboard.digitalnawab.com/api/cities");
+        const result = await response.json();
+        if (result.status && Array.isArray(result.data)) {
+          setCities(result.data.filter((city) => city.is_active));
+        }
+      } catch (error) {
+        console.error("Failed to fetch cities:", error);
+      } finally {
+        setLoadingCities(false);
+      }
+    };
+
+    fetchCities();
+  }, []);
 
   const handleBurgerClick = () => {
     setIsNavOpen((prev) => !prev);
@@ -46,7 +66,7 @@ const NavBar = () => {
     <div className="fixed top-0 left-0 w-full z-50 flex justify-center items-center bg-black/60 backdrop-blur-md p-2">
       <div className="w-full xl:container mx-auto flex justify-between items-center">
         <div className="w-full min-h-[82px] flex items-center rounded-full bg-[#191b24] pr-[20px] pl-[40px] shadow-lg">
-          <div className="grid grid-cols-7 w-full">
+          <div className="grid grid-cols-7 w-full items-center">
             {/* Logo */}
             <Link
               href="/"
@@ -65,90 +85,83 @@ const NavBar = () => {
             >
               <nav
                 className={clsx(
-                  "flex w-full md:w-auto",
+                  "flex w-full md:w-auto items-center",
                   isNavOpen ? "flex-col items-center" : "items-center"
                 )}
               >
                 <ul
                   className={clsx(
-                    "flex gap-5 m-0 p-0 w-full md:w-auto",
+                    "flex gap-5 m-0 p-0 w-full md:w-auto items-center",
                     isNavOpen ? "flex-col items-center" : "items-center"
                   )}
                 >
-                  {/* Dropdown Menu Example */}
+                  {/* Home */}
+                  <li>
+                    <ActiveLink href="/">Home</ActiveLink>
+                  </li>
+
+                  {/* About Us */}
+                  <li>
+                    <ActiveLink href="/about-us">About Us</ActiveLink>
+                  </li>
+
+                  {/* Services Dropdown */}
                   <li>
                     <Menubar>
                       <MenubarMenu>
                         <MenubarTrigger>
-                          <h2 className="text-white truncate text-sm lg:text-md flex items-center gap-1 transition-colors duration-400 cursor-pointer">
-                            Marketing Services{" "}
+                          <h2 className="text-white truncate text-[15px] lg:text-base flex items-center gap-1 transition-colors duration-400 cursor-pointer">
+                            Services{" "}
                             <span className="text-xs">
                               <ChevronDown size={20} />
                             </span>
                           </h2>
                         </MenubarTrigger>
-                        <MenubarContent>
+                        <MenubarContent className="bg-[#191b24] border-gray-800 text-white min-w-[14rem]">
                           <MenubarItem asChild>
-                            <Link href="/service/seo-company-in-lucknow">
+                            <Link href="/service/seo-company-in-lucknow" className="text-sm hover:text-cyan-400">
                               SEO Marketing
                             </Link>
                           </MenubarItem>
-                          <MenubarSeparator />
+                          <MenubarSeparator className="bg-gray-800" />
                           <MenubarItem asChild>
-                            <Link href="/service/pay-per-click-services">
+                            <Link href="/service/pay-per-click-services" className="text-sm hover:text-cyan-400">
                               Google Ads Services
                             </Link>
                           </MenubarItem>
-                          <MenubarSeparator />
+                          <MenubarSeparator className="bg-gray-800" />
                           <MenubarItem asChild>
-                            <Link href="/service/social-media-marketing">
+                            <Link href="/service/social-media-marketing" className="text-sm hover:text-cyan-400">
                               Social Media Marketing
                             </Link>
                           </MenubarItem>
-                          <MenubarSeparator />
-
+                          <MenubarSeparator className="bg-gray-800" />
                           <MenubarItem asChild>
-                            <Link href="/service/direct-marketing">
+                            <Link href="/service/direct-marketing" className="text-sm hover:text-cyan-400">
                               Direct Marketing
                             </Link>
                           </MenubarItem>
-                          <MenubarSeparator />
+                          <MenubarSeparator className="bg-gray-800" />
                           <MenubarItem asChild>
-                            <Link href="/service/ecommerce-marketing">
+                            <Link href="/service/ecommerce-marketing" className="text-sm hover:text-cyan-400">
                               E-Commerce Marketing
                             </Link>
                           </MenubarItem>
-                        </MenubarContent>
-                      </MenubarMenu>
-                    </Menubar>
-                  </li>
-
-                  {/* Regular Links */}
-                  <li>
-                    <ActiveLink href="/service/graphic-designing-services">
-                      Graphic Design Services
-                    </ActiveLink>
-                  </li>
-                  <li>
-                    <Menubar>
-                      <MenubarMenu>
-                        <MenubarTrigger>
-                          <h2 className="text-white truncate text-sm lg:text-md flex items-center gap-1 transition-colors duration-400 cursor-pointer">
-                            Development Services{" "}
-                            <span className="text-xs">
-                              <ChevronDown size={20} />
-                            </span>
-                          </h2>
-                        </MenubarTrigger>
-                        <MenubarContent>
+                          <MenubarSeparator className="bg-gray-800" />
                           <MenubarItem asChild>
-                            <Link href="/service/website-design-and-development">
+                            <Link href="/service/graphic-designing-services" className="text-sm hover:text-cyan-400">
+                              Graphic Design Services
+                            </Link>
+                          </MenubarItem>
+                          <MenubarSeparator className="bg-gray-800" />
+                          <MenubarItem asChild>
+                            <Link href="/service/website-design-and-development" className="text-sm hover:text-cyan-400">
                               Website Development
                             </Link>
                           </MenubarItem>
-                          <MenubarSeparator />
+                          <MenubarSeparator className="bg-gray-800" />
                           <MenubarItem asChild>
-                            <Link href="/service/mobile-application-development">
+                            <Link href="/service/mobile-application-development" className="text-sm hover:text-cyan-400">
                               App Development
                             </Link>
                           </MenubarItem>
@@ -156,14 +169,63 @@ const NavBar = () => {
                       </MenubarMenu>
                     </Menubar>
                   </li>
+
+                  {/* Portfolio */}
                   <li>
                     <ActiveLink href="/portfolio">Portfolio</ActiveLink>
                   </li>
+
+                  {/* Package */}
                   <li>
-                    <ActiveLink href="/about-us">About Us</ActiveLink>
+                    <ActiveLink href="/package">Package</ActiveLink>
                   </li>
+
+                  {/* Blogs */}
+                  <li>
+                    <ActiveLink href="/blog">Blogs</ActiveLink>
+                  </li>
+
+                  {/* Career */}
                   <li>
                     <ActiveLink href="/career">Career</ActiveLink>
+                  </li>
+
+                  {/* City Dropdown */}
+                  <li>
+                    <Menubar>
+                      <MenubarMenu>
+                        <MenubarTrigger>
+                          <h2 className="text-white truncate text-[15px] lg:text-base flex items-center gap-1 transition-colors duration-400 cursor-pointer">
+                            City{" "}
+                            <span className="text-xs">
+                              <ChevronDown size={20} />
+                            </span>
+                          </h2>
+                        </MenubarTrigger>
+                        <MenubarContent className="bg-[#191b24] border-gray-800 text-white min-w-[12rem]">
+                          {loadingCities ? (
+                            <MenubarItem disabled className="text-sm text-gray-400">
+                              Loading...
+                            </MenubarItem>
+                          ) : cities.length === 0 ? (
+                            <MenubarItem disabled className="text-sm text-gray-400">
+                              No cities found
+                            </MenubarItem>
+                          ) : (
+                            cities.map((city, idx) => (
+                              <React.Fragment key={city.id}>
+                                <MenubarItem asChild>
+                                  <Link href={`/city/${city.slug}`} className="text-sm hover:text-cyan-400">
+                                    {city.name}
+                                  </Link>
+                                </MenubarItem>
+                                {idx !== cities.length - 1 && <MenubarSeparator className="bg-gray-800" />}
+                              </React.Fragment>
+                            ))
+                          )}
+                        </MenubarContent>
+                      </MenubarMenu>
+                    </Menubar>
                   </li>
                 </ul>
               </nav>
@@ -194,7 +256,7 @@ const NavBar = () => {
                     </div>
                   </div>
                 </div>
-                <div className="pl-[3.4rem] pr-[1.1rem] group-hover:pl-[1.1rem] group-hover:pr-[3.4rem] transition-all duration-[1s] ease-[cubic-bezier(0.510,0.026,0.368,1.016)] group-hover:text-black text-white">
+                <div className="pl-[3.4rem] pr-[1.1rem] group-hover:pl-[1.1rem] group-hover:pr-[3.4rem] transition-all duration-[1s] ease-[cubic-bezier(0.510,0.026,0.368,1.016)] group-hover:text-black text-white text-[15px]">
                   Contact Us
                 </div>
               </Link>

@@ -53,54 +53,49 @@ const PPC = () => {
         <div className="absolute bottom-0 left-1/2 w-72 h-72 bg-gradient-to-r from-green-500 to-cyan-500 rounded-full blur-3xl animate-pulse delay-2000"></div>
       </div>
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Google Ads Services Section */}
+      <section className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-white backdrop-blur-sm"></div>
 
         {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-4 h-4 bg-blue-400 rounded-full animate-bounce delay-300"></div>
-        <div className="absolute top-40 right-20 w-6 h-6 bg-pink-400 rounded-full animate-bounce delay-700"></div>
-        <div className="absolute bottom-32 left-20 w-3 h-3 bg-green-400 rounded-full animate-bounce delay-1000"></div>
+        <div className="absolute top-12 left-10 w-3 h-3 bg-blue-400 rounded-full animate-bounce delay-300"></div>
+        <div className="absolute top-20 right-20 w-4 h-4 bg-pink-400 rounded-full animate-bounce delay-700"></div>
+        <div className="absolute bottom-16 left-20 w-3 h-3 bg-green-400 rounded-full animate-bounce delay-1000"></div>
 
-        <div className="relative z-10 max-w-7xl py-10 mx-auto text-center">
-          <div className="mb-8">
-            <div className="hidden lg:inline-flex items-center gap-3 bg-white backdrop-blur-xl border border-white/20 text-black px-8 py-4 rounded-full text-md xl:text-lg font-semibold mb-12 shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 group">
-              <MousePointer className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
-              <Sparkles className="w-5 h-5 text-yellow-400 animate-pulse" />
-              Best PPC Services in Lucknow
-            </div>
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 bg-white/95 backdrop-blur-md border border-slate-200 text-slate-800 px-5 py-2 rounded-full text-xs sm:text-sm font-semibold mb-5 shadow-md hover:shadow-blue-500/10 transition-all duration-300 group">
+            <MousePointer className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300 text-blue-600" />
+            <Sparkles className="w-4 h-4 text-amber-500 animate-pulse" />
+            <span>Best PPC Services in Lucknow</span>
+          </div>
 
-            <h1 className="text-6xl md:text-8xl xl:text-9xl font-black mb-8 leading-none">
-              <span className="bg-gradient-to-r from-black via-blue-600 to-black bg-clip-text text-transparent  ">
-                Google Ads
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-black via-blue-600 to-black bg-clip-text text-transparent">
-                Services
-              </span>
-            </h1>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 leading-[1.15] tracking-tight">
+            <span className="bg-gradient-to-r from-slate-950 via-blue-700 to-slate-950 bg-clip-text text-transparent">
+              Google Ads
+            </span>{" "}
+            <span className="bg-gradient-to-r from-slate-950 via-blue-700 to-slate-950 bg-clip-text text-transparent">
+              Services
+            </span>
+          </h2>
 
-            <div className="max-w-6xl mx-auto mb-16">
-              <p className="text-lg xl:text-xl text-black leading-relaxed max-w-6xl mx-auto">
-                The technique of marketing a business through paid adverts that
-                display on search engine results pages is known as search engine
-                marketing or PPC advertising. Advertisers bid on keywords that
-                users of search engines like Google and Bing may input when
-                seeking certain items or services, giving the advertiser the
-                possibility for their adverts to show alongside the results for
-                such search queries.
-              </p>
-              <p className="text-lg mt-2 xl:text-xl text-black leading-relaxed max-w-6xl mx-auto">
-                These advertising, often known as pay-per-click advertisements,
-                are available in several forms. Some are modest text-based
-                advertising, and others, such as product listing advertising
-                (PLAs, also known as Shopping advertising), are more visual,
-                product-based promotions that allow users to see key
-                information, such as pricing and reviews, at a glance.
-              </p>
-            </div>
-
-            
+          <div className="space-y-3.5 text-slate-700 text-sm sm:text-base md:text-lg leading-relaxed text-center font-normal">
+            <p>
+              The technique of marketing a business through paid adverts that
+              display on search engine results pages is known as search engine
+              marketing or PPC advertising. Advertisers bid on keywords that
+              users of search engines like Google and Bing may input when
+              seeking certain items or services, giving the advertiser the
+              possibility for their adverts to show alongside the results for
+              such search queries.
+            </p>
+            <p>
+              These advertising, often known as pay-per-click advertisements,
+              are available in several forms. Some are modest text-based
+              advertising, and others, such as product listing advertising
+              (PLAs, also known as Shopping advertising), are more visual,
+              product-based promotions that allow users to see key
+              information, such as pricing and reviews, at a glance.
+            </p>
           </div>
         </div>
       </section>
@@ -184,70 +179,99 @@ const PPC = () => {
             </div>
           </div>
         </div>
-      </section>``
-
-      
+      </section>
 
       {/* How PPC Works Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/30 via-gray-200 to-cyan-400/30"></div>
+      <section className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-[#070312] via-[#0d0722] to-black text-white">
+        {/* Subtle Background Pattern */}
+        <div
+          className="absolute inset-0 opacity-15 pointer-events-none"
+          style={{
+            backgroundImage: "radial-gradient(#8b5cf6 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+          }}
+        />
 
-        {/* Floating Background Elements */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        {/* Floating Ambient Glow Elements */}
+        <div className="absolute top-1/4 left-10 w-96 h-96 bg-cyan-600/10 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-purple-600/15 rounded-full blur-[140px] pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto">
+        <div className="relative z-10 max-w-6xl mx-auto">
           {/* Header Section */}
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-900 to-blue-500 backdrop-blur-xl border border-cyan-500 text-cyan-300 px-6 py-3 rounded-full text-sm font-medium mb-8">
-              <Monitor className="w-4 h-4" />
-              How It Works
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs sm:text-sm font-semibold mb-5 shadow-sm">
+              <Monitor className="w-4 h-4 text-cyan-400" />
+              <span>✦ TRANSPARENT AUCTION MECHANISM ✦</span>
             </div>
 
-            <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
-              <span className="bg-gradient-to-r from-indigo-900 via-blue-500 to-indigo-900 bg-clip-text text-transparent">
-                How does Pay Per Click
-              </span>
-              <br />
-              <span className="text-[#2f2f2f] text-4xl md:text-5xl font-light">
-                Ads work?
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4 tracking-tight">
+              How Does Pay-Per-Click{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
+                Ads Work?
               </span>
             </h2>
 
-            <p className="text-xl md:text-2xl text-[#4e4e4e] max-w-4xl mx-auto leading-relaxed">
-              PPC is a sort of online advertising in which marketers get
-              compensated each time a user clicks on one of their
-              advertisements.
+            <p className="text-sm sm:text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed font-normal">
+              Pay-Per-Click is a high-performance marketing model where businesses only incur a cost when an interested prospect actually clicks on their advertisement.
             </p>
           </div>
 
-          {/* Main Content Card */}
-          <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl border border-white/20 rounded-3xl p-8 md:p-16 shadow-2xl mb-16">
-            <div className="space-y-8">
-              <p className="text-lg md:text-xl text-gray-900 leading-relaxed">
-                PPC advertising comes in a variety of forms, but one of the most
-                frequent is the sponsored search ad. These adverts display when
-                individuals search for items online using a search engine like
-                Google - particularly when they make commercial queries,
-                indicating that they are looking to buy something.
-              </p>
-
-              <p className="text-lg md:text-xl text-gray-900 leading-relaxed">
-                This might range from a mobile search (someone looking for
-                "pizza near me" on their phone) to a local service search
-                (someone searching for a dentist or a plumber in their
-                neighborhood) to someone buying for a present ("Mother's Day
-                flowers") or a high-end item such as business software. All of
-                these queries result in pay-per-click advertisements.
-              </p>
-
-              <div className="bg-gradient-to-r from-cyan-500 to-blue-500 border border-cyan-500 rounded-2xl p-6 md:p-8">
-                <p className="text-lg md:text-xl text-gray-300 leading-relaxed font-medium">
-                  Businesses who run advertisements in pay-per-click advertising
-                  are only compensated when a user clicks on their ad, hence the
-                  name "pay-per-click."
-                </p>
+          {/* Structured 3-Part Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {/* Step 1 */}
+            <div className="relative rounded-3xl p-7 bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-cyan-500/40 transition-all duration-300 hover:-translate-y-1.5 shadow-xl group">
+              <div className="w-12 h-12 rounded-2xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-5 group-hover:scale-110 transition-transform">
+                <Search className="w-6 h-6" />
               </div>
+              <h3 className="text-lg font-bold text-white mb-2.5 group-hover:text-cyan-300 transition-colors">
+                Commercial Search Intent
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+                PPC ads trigger whenever individuals search online using Google or Bing for products and services with buying intent — from local &ldquo;near me&rdquo; searches to high-ticket B2B software solutions.
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="relative rounded-3xl p-7 bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-blue-500/40 transition-all duration-300 hover:-translate-y-1.5 shadow-xl group">
+              <div className="w-12 h-12 rounded-2xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-5 group-hover:scale-110 transition-transform">
+                <Target className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2.5 group-hover:text-blue-300 transition-colors">
+                The Real-Time Auction
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+                Google&rsquo;s automated Ad Auction assesses keyword bids, ad relevance, and landing page quality score in milliseconds to determine top placement on search result pages (SERPs).
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="relative rounded-3xl p-7 bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-purple-500/40 transition-all duration-300 hover:-translate-y-1.5 shadow-xl group">
+              <div className="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-5 group-hover:scale-110 transition-transform">
+                <DollarSign className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2.5 group-hover:text-purple-300 transition-colors">
+                Pay Only For Results
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+                You never pay for empty impressions. You only pay when a customer clicks your ad to visit your landing page, giving you 100% control over customer acquisition costs.
+              </p>
+            </div>
+          </div>
+
+          {/* Highlight Callout Box */}
+          <div className="rounded-2xl p-6 sm:p-7 bg-gradient-to-r from-blue-950/50 via-purple-950/50 to-pink-950/50 border border-purple-500/30 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3.5 text-center sm:text-left">
+              <div className="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-300 flex-shrink-0">
+                <Sparkles className="w-5 h-5 text-amber-400 animate-pulse" />
+              </div>
+              <p className="text-sm sm:text-base text-slate-200 font-medium">
+                Businesses running pay-per-click advertising only pay when a prospective customer actively clicks, hence the name <span className="text-cyan-300 font-bold">&ldquo;Pay-Per-Click&rdquo;</span>.
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <span className="inline-flex px-3.5 py-1.5 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-xs font-bold tracking-wide">
+                100% Accountable ROI
+              </span>
             </div>
           </div>
         </div>

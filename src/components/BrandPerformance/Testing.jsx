@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import React from "react";
 import {
   BarChart3,
@@ -7,213 +6,268 @@ import {
   Target,
   Users,
   Zap,
-  ArrowRight,
-  LineChart,
-  Activity,
 } from "lucide-react";
+import ContactPopup from "../ContactPopup";
 
-const ABTestingSection = () => {
-  const features = [
-    {
-      icon: BarChart3,
-      title: "Split Testing",
-      description:
-        "Run controlled experiments to compare different versions of your pages and identify what converts better.",
-      gradient: "from-blue-500 to-cyan-500",
-      bgGradient: "from-blue-50 to-cyan-50",
-    },
-    {
-      icon: TrendingUp,
-      title: "Performance Analytics",
-      description:
-        "Track key metrics and conversion rates with detailed insights into user behavior patterns.",
-      gradient: "from-purple-500 to-pink-500",
-      bgGradient: "from-purple-50 to-pink-50",
-    },
-    {
-      icon: Target,
-      title: "Funnel Analysis",
-      description:
-        "Identify bottlenecks in your conversion funnel and optimize each step for maximum results.",
-      gradient: "from-emerald-500 to-teal-500",
-      bgGradient: "from-emerald-50 to-teal-50",
-    },
-    {
-      icon: Users,
-      title: "Audience Segmentation",
-      description:
-        "Test different approaches for various user segments to personalize the experience.",
-      gradient: "from-orange-500 to-red-500",
-      bgGradient: "from-orange-50 to-red-50",
-    },
-  ];
+const ABTestingSection = ({ theme = "dark" }) => {
+  const isDark = theme === "dark";
 
   const stats = [
     {
       number: "87%",
       label: "Average Conversion Increase",
-      color: "text-blue-600",
+      color: isDark ? "text-cyan-400" : "text-[#2563eb]",
     },
-    { number: "2.4x", label: "ROI Improvement", color: "text-purple-600" },
-    { number: "15+", label: "Testing Variables", color: "text-emerald-600" },
-    { number: "48hrs", label: "Results Delivery", color: "text-orange-600" },
+    {
+      number: "2.4x",
+      label: "ROI Improvement",
+      color: isDark ? "text-purple-400" : "text-[#7c3aed]",
+    },
+    {
+      number: "15+",
+      label: "Testing Variables",
+      color: isDark ? "text-emerald-400" : "text-[#059669]",
+    },
+    {
+      number: "48hrs",
+      label: "Results Delivery",
+      color: isDark ? "text-amber-400" : "text-[#ea580c]",
+    },
+  ];
+
+  const features = [
+    {
+      icon: BarChart3,
+      title: "Split Testing",
+      description:
+        "Run controlled experiments to compare different versions of your ad copies, landing pages, and CTAs to identify what converts highest.",
+      cardBg: isDark ? "bg-white/[0.04] border-white/10" : "bg-[#f0f8ff] border-sky-100",
+      iconBg: "bg-[#0284c7]",
+    },
+    {
+      icon: TrendingUp,
+      title: "Performance Analytics",
+      description:
+        "Track key metrics, cost-per-lead, and conversion rates with detailed insights into user behavior and bounce drop-offs.",
+      cardBg: isDark ? "bg-white/[0.04] border-white/10" : "bg-[#fdf2f8] border-pink-100",
+      iconBg: "bg-[#db2777]",
+    },
+    {
+      icon: Target,
+      title: "Funnel Analysis",
+      description:
+        "Identify friction points and leakages in your sales funnel to streamline checkout flows and increase closed sales.",
+      cardBg: isDark ? "bg-white/[0.04] border-white/10" : "bg-[#ecfdf5] border-emerald-100",
+      iconBg: "bg-[#059669]",
+    },
+    {
+      icon: Users,
+      title: "Audience Segmentation",
+      description:
+        "Test customized offers and messaging tailored to different traffic temperatures (cold search intent vs. warm retargeting).",
+      cardBg: isDark ? "bg-white/[0.04] border-white/10" : "bg-[#fff7ed] border-orange-100",
+      iconBg: "bg-[#ea580c]",
+    },
+  ];
+
+  const steps = [
+    {
+      step: "01",
+      title: "Hypothesis",
+      description: "Define clear testing objectives and expected conversion outcomes.",
+      circleBg: "bg-[#0284c7]",
+    },
+    {
+      step: "02",
+      title: "Design",
+      description: "Create landing page variations and configure split traffic rules.",
+      circleBg: "bg-[#db2777]",
+    },
+    {
+      step: "03",
+      title: "Execute",
+      description: "Run statistical tests with proper traffic allocation and tracking.",
+      circleBg: "bg-[#059669]",
+    },
+    {
+      step: "04",
+      title: "Analyze & Scale",
+      description: "Review winning variations and roll out winners to maximize ad ROAS.",
+      circleBg: "bg-[#ea580c]",
+    },
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
-      {/* Enhanced Background Pattern */}
-      <div className="absolute inset-0 opacity-40">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full blur-3xl animate-pulse"></div>
-        <div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-cyan-200 to-pink-200 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
-        <div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-emerald-200 to-teal-200 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "2s" }}
-        ></div>
-      </div>
+    <section
+      className={`relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden ${
+        isDark
+          ? "bg-gradient-to-b from-[#070214] via-[#0d0622] to-[#04010a] text-white"
+          : "bg-[#f8f9ff] text-gray-900 border-y border-slate-200/60"
+      }`}
+      aria-label="A/B Testing and Funnel Optimization"
+    >
+      {/* Dark Ambient Elements */}
+      {isDark && (
+        <>
+          <div
+            className="absolute inset-0 opacity-15 pointer-events-none"
+            style={{
+              backgroundImage: "radial-gradient(#8b5cf6 1px, transparent 1px)",
+              backgroundSize: "32px 32px",
+            }}
+          />
+          <div className="absolute top-1/4 left-10 w-96 h-96 bg-purple-600/10 rounded-full blur-[140px] pointer-events-none" />
+          <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-pink-600/10 rounded-full blur-[140px] pointer-events-none" />
+        </>
+      )}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Enhanced Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full border border-white/50 shadow-lg mb-6 group hover:shadow-xl hover:bg-white/90 transition-all duration-300">
-            <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-              <Zap className="w-3 h-3 text-white" />
-            </div>
-            <span className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Data-Driven Optimization
-            </span>
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Header Section */}
+        <div className="text-center mb-12 sm:mb-14">
+          <div
+            className={`inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs sm:text-sm font-semibold mb-5 shadow-sm ${
+              isDark
+                ? "bg-purple-500/10 border border-purple-500/30 text-purple-300"
+                : "bg-[#f3e8ff] border border-purple-200/60 text-[#7c3aed]"
+            }`}
+          >
+            <Zap className="w-4 h-4 text-purple-400" />
+            <span>✦ DATA-DRIVEN OPTIMIZATION ✦</span>
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            A/B Testing &{" "}
-            <span className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <h2
+            className={`text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 tracking-tight leading-tight ${
+              isDark ? "text-white" : "text-gray-900"
+            }`}
+          >
+            A/B Testing &amp;{" "}
+            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               Funnel Optimization
-              <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full transform scale-x-0 hover:scale-x-100 transition-transform duration-700"></div>
             </span>
           </h2>
 
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Make data-driven decisions with comprehensive testing and
-            optimization tools. Increase conversions through systematic
-            experimentation and funnel analysis.
+          <p
+            className={`text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-normal ${
+              isDark ? "text-slate-300" : "text-gray-500"
+            }`}
+          >
+            Driving PPC clicks is only half the formula. We continuously split-test landing page headlines, CTAs, and checkout flows to transform traffic into profitable conversions.
           </p>
         </div>
 
-        {/* Enhanced Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+        {/* 4 Stats Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto mb-12">
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="bg-white/60 backdrop-blur-sm p-8 rounded-3xl border border-white/50 text-center group hover:shadow-2xl hover:-translate-y-2 hover:bg-white/80 transition-all duration-500 relative overflow-hidden"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`rounded-2xl p-6 text-center transition-all duration-300 hover:-translate-y-1 ${
+                isDark
+                  ? "bg-white/[0.04] backdrop-blur-xl border border-white/10 hover:border-purple-500/40 shadow-xl"
+                  : "bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md"
+              }`}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div
-                className={`text-4xl md:text-5xl font-bold ${stat.color} mb-3 group-hover:scale-110 transition-transform duration-300 relative z-10`}
+                className={`text-3xl sm:text-4xl font-extrabold ${stat.color} mb-1 tracking-tight`}
               >
                 {stat.number}
               </div>
-              <div className="text-sm text-gray-600 font-medium relative z-10">
+              <div
+                className={`text-xs font-medium ${
+                  isDark ? "text-slate-400" : "text-gray-500"
+                }`}
+              >
                 {stat.label}
               </div>
             </div>
           ))}
         </div>
 
-        {/* Enhanced Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className={`bg-gradient-to-br ${feature.bgGradient} p-8 rounded-3xl border border-white/50 group hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 relative overflow-hidden`}
-              style={{ animationDelay: `${index * 150}ms` }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-              <div className="flex items-start gap-4 relative z-10">
-                <div className="flex-shrink-0">
-                  <div
-                    className={`w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg`}
-                  >
-                    <feature.icon className="w-8 h-8 text-white" />
-                  </div>
+        {/* 4 Feature Cards (2x2 Grid) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6 max-w-5xl mx-auto mb-12">
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+            return (
+              <div
+                key={index}
+                className={`${feature.cardBg} border rounded-2xl p-6 sm:p-7 flex items-start gap-4 transition-all duration-300 hover:-translate-y-1 ${
+                  isDark
+                    ? "hover:border-purple-500/40 shadow-xl"
+                    : "shadow-sm hover:shadow-md"
+                }`}
+              >
+                <div
+                  className={`w-12 h-12 ${feature.iconBg} rounded-xl flex items-center justify-center text-white flex-shrink-0 shadow-md`}
+                >
+                  <Icon className="w-6 h-6" />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-gray-800 transition-colors">
+                <div className="flex-1 min-w-0">
+                  <h3
+                    className={`font-bold text-base sm:text-lg mb-1.5 tracking-tight ${
+                      isDark ? "text-white" : "text-gray-900"
+                    }`}
+                  >
                     {feature.title}
                   </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p
+                    className={`text-xs sm:text-sm leading-relaxed font-normal ${
+                      isDark ? "text-slate-300" : "text-gray-500"
+                    }`}
+                  >
                     {feature.description}
                   </p>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* Enhanced Process Flow */}
-        <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-white/50 shadow-xl relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50"></div>
-
-          <h3 className="text-3xl font-bold text-gray-900 text-center mb-12 relative z-10">
-            Our Testing Process
+        {/* Testing Process Box */}
+        <div
+          className={`rounded-2xl sm:rounded-3xl p-8 sm:p-10 max-w-5xl mx-auto mb-12 ${
+            isDark
+              ? "bg-white/[0.03] backdrop-blur-xl border border-white/10 shadow-2xl"
+              : "bg-white border border-gray-100 shadow-sm"
+          }`}
+        >
+          <h3
+            className={`text-xl sm:text-2xl font-bold text-center mb-8 tracking-tight ${
+              isDark ? "text-white" : "text-gray-900"
+            }`}
+          >
+            Our 4-Step Optimization Methodology
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
-            {[
-              {
-                step: "01",
-                title: "Hypothesis",
-                description:
-                  "Define clear testing objectives and expected outcomes",
-                color: "from-blue-500 to-cyan-500",
-              },
-              {
-                step: "02",
-                title: "Design",
-                description:
-                  "Create variations and set up controlled experiments",
-                color: "from-purple-500 to-pink-500",
-              },
-              {
-                step: "03",
-                title: "Execute",
-                description:
-                  "Run tests with proper traffic allocation and monitoring",
-                color: "from-emerald-500 to-teal-500",
-              },
-              {
-                step: "04",
-                title: "Analyze",
-                description: "Review results and implement winning variations",
-                color: "from-orange-500 to-red-500",
-              },
-            ].map((process, index) => (
-              <div key={index} className="relative group">
-                <div className="text-center">
-                  <div
-                    className={`w-20 h-20 bg-gradient-to-br ${process.color} rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg`}
-                  >
-                    <span className="text-2xl font-bold text-white">
-                      {process.step}
-                    </span>
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                    {process.title}
-                  </h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {process.description}
-                  </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+            {steps.map((item, index) => (
+              <div key={index} className="relative text-center">
+                <div
+                  className={`w-12 h-12 ${item.circleBg} text-white font-bold rounded-full flex items-center justify-center mx-auto mb-3 shadow-md shadow-black/10 text-sm`}
+                >
+                  {item.step}
                 </div>
+                <h4
+                  className={`font-bold text-sm sm:text-base mb-1 tracking-tight ${
+                    isDark ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  {item.title}
+                </h4>
+                <p
+                  className={`text-xs leading-relaxed font-normal ${
+                    isDark ? "text-slate-400" : "text-gray-500"
+                  }`}
+                >
+                  {item.description}
+                </p>
 
-                {/* Enhanced Arrow */}
+                {/* Subtle connector dot for desktop */}
                 {index < 3 && (
-                  <div className="hidden md:block absolute top-10 -right-4 transform translate-x-full">
-                    <div className="w-8 h-8 bg-gradient-to-r from-gray-300 to-gray-400 rounded-full flex items-center justify-center">
-                      <ArrowRight className="w-4 h-4 text-white" />
-                    </div>
+                  <div className="hidden lg:flex absolute top-5 -right-3 transform translate-x-1/2 items-center justify-center pointer-events-none">
+                    <span
+                      className={`w-2.5 h-2.5 rounded-full ${
+                        isDark ? "bg-white/20" : "bg-gray-300"
+                      }`}
+                    ></span>
                   </div>
                 )}
               </div>
@@ -221,7 +275,20 @@ const ABTestingSection = () => {
           </div>
         </div>
 
-        {/* Enhanced CTA */}
+        {/* CTA Button */}
+        <div className="text-center">
+          <ContactPopup
+            buttonText="Start Testing Today →"
+            buttonClassName="cursor-pointer bg-gradient-to-r from-[#4f46e5] via-[#9333ea] to-[#db2777] hover:opacity-95 text-white text-xs sm:text-sm font-semibold px-8 py-3.5 rounded-full shadow-xl shadow-purple-500/25 transition-all inline-flex items-center gap-2 transform hover:scale-105 active:scale-95"
+          />
+          <p
+            className={`text-xs mt-3 font-normal ${
+              isDark ? "text-slate-400" : "text-gray-400"
+            }`}
+          >
+            No setup fees · Comprehensive conversion tracking · Cancel anytime
+          </p>
+        </div>
       </div>
     </section>
   );

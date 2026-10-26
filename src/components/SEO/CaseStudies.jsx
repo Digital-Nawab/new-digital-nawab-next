@@ -1,121 +1,245 @@
+"use client";
 import React from "react";
+import Image from "next/image";
+import {
+  TrendingUp,
+  Search,
+  Users,
+  CheckCircle2,
+  MapPin,
+  PhoneCall,
+  MousePointerClick,
+  ShoppingBag,
+  ArrowRight,
+  ExternalLink,
+} from "lucide-react";
+import ContactPopup from "../ContactPopup";
+
+const caseStudiesData = [
+  {
+    id: "healthcare",
+    title: "Healthcare Website",
+    category: "Technical SEO • Local SEO • Content",
+    image: "/assets/images/seo/case-healthcare.jpg",
+    alt: "Healthcare Clinic SEO Case Study in Lucknow",
+    description:
+      "A leading multi-speciality healthcare clinic in Lucknow achieved #1 Google positions for critical medical queries, booking high-trust patient appointments.",
+    metrics: [
+      {
+        icon: TrendingUp,
+        label: "Organic Traffic",
+        value: "+ 200%",
+        color: "text-blue-600",
+        bg: "bg-blue-50",
+      },
+      {
+        icon: Search,
+        label: "Keywords Ranked",
+        value: "+ 120",
+        color: "text-indigo-600",
+        bg: "bg-indigo-50",
+      },
+      {
+        icon: Users,
+        label: "Leads",
+        value: "+ 150%",
+        color: "text-cyan-600",
+        bg: "bg-cyan-50",
+      },
+    ],
+  },
+  {
+    id: "ecommerce",
+    title: "Ecommerce Store",
+    category: "On-Page SEO • Product Optimization • Content",
+    image: "/assets/images/seo/case-ecommerce.jpg",
+    alt: "Fashion & Lifestyle Ecommerce SEO Case Study",
+    description:
+      "A fast-growing D2C lifestyle brand expanded non-branded search revenue exponentially with optimized collections, schema markup, and speed audits.",
+    metrics: [
+      {
+        icon: TrendingUp,
+        label: "Organic Traffic",
+        value: "+ 180%",
+        color: "text-blue-600",
+        bg: "bg-blue-50",
+      },
+      {
+        icon: Search,
+        label: "Keywords Ranked",
+        value: "+ 95",
+        color: "text-indigo-600",
+        bg: "bg-indigo-50",
+      },
+      {
+        icon: ShoppingBag,
+        label: "Revenue",
+        value: "+ 120%",
+        color: "text-cyan-600",
+        bg: "bg-cyan-50",
+      },
+    ],
+  },
+  {
+    id: "local-business",
+    title: "Local Business",
+    category: "Local SEO • GBP Optimization • Citations",
+    image: "/assets/images/seo/case-local.jpg",
+    alt: "Local Business Google Business Profile SEO Case Study",
+    description:
+      "A premium Lucknow dining and lounge brand dominated the local 3-pack Google Maps rankings across Gomti Nagar, Aliganj, and Hazratganj.",
+    metrics: [
+      {
+        icon: MapPin,
+        label: "Map Views",
+        value: "+ 300%",
+        color: "text-purple-600",
+        bg: "bg-purple-50",
+      },
+      {
+        icon: PhoneCall,
+        label: "Calls",
+        value: "+ 190%",
+        color: "text-blue-600",
+        bg: "bg-blue-50",
+      },
+      {
+        icon: MousePointerClick,
+        label: "Website Clicks",
+        value: "+ 160%",
+        color: "text-cyan-600",
+        bg: "bg-cyan-50",
+      },
+    ],
+  },
+];
 
 const CaseStudies = () => {
   return (
-    <div>
-      <div className="bg-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-            Results and Case Studies
-          </h2>
-          <p className="text-lg text-gray-600 mt-2 mb-8">
+    <section
+      id="case-studies"
+      className="relative bg-gradient-to-b from-white via-slate-50 to-white py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-slate-200"
+    >
+      {/* Background Subtle Accent Gradients */}
+      <div className="absolute top-20 right-1/4 w-96 h-96 bg-blue-50 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-1/4 w-96 h-96 bg-indigo-50 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* Section Header matching Screenshots 3 & 4 */}
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+          <span className="text-xs sm:text-sm font-bold tracking-widest text-blue-600 uppercase mb-2 block">
+            CASE STUDIES
+          </span>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
             Real Results for Real Businesses
+          </h2>
+
+          <p className="text-sm sm:text-base text-slate-600 mt-3 font-normal leading-relaxed">
+            See how our SEO strategies have helped businesses improve visibility,
+            traffic, and leads with verifiable growth.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* eCommerce Business Card */}
-            <div className="bg-[#E6F4E8] rounded-lg p-6 flex flex-col items-start">
-              <div className="flex items-center justify-between w-full mb-4">
-                <svg
-                  className="w-6 h-6 text-gray-600"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h10v2H7v-2z" />
-                </svg>
-                <a href="#" className="text-gray-600 hover:text-gray-900">
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M5 12h14m-6 6l6-6m-6-6l6 6" />
-                  </svg>
-                </a>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900">
-                eCommerce Business
-              </h3>
-              <ul className="text-gray-700 mt-2 space-y-1">
-                <li>
-                  <strong>Traffic:</strong> "Increased by 150% in 6 months"
-                </li>
-                <li>
-                  <strong>Rankings:</strong> "Ranked #1 for sustainable
-                  clothing" within 3 months.
-                </li>
-              </ul>
-            </div>
-
-            {/* Local Service Provider Card */}
-            <div className="bg-[#E6F4E8] rounded-lg p-6 flex flex-col items-start">
-              <div className="flex items-center justify-between w-full mb-4">
-                <svg
-                  className="w-6 h-6 text-gray-600"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />
-                </svg>
-                <a href="#" className="text-gray-600 hover:text-gray-900">
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M5 12h14m-6 6l6-6m-6-6l6 6" />
-                  </svg>
-                </a>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900">
-                Local Service Provider
-              </h3>
-              <ul className="text-gray-700 mt-2 space-y-1">
-                <li>
-                  <strong>Leads:</strong> "Generated 500+ local leads in under
-                  90 days."
-                </li>
-              </ul>
-            </div>
-
-            {/* SaaS Startup Card */}
-            <div className="bg-[#E6F4E8] rounded-lg p-6 flex flex-col items-start">
-              <div className="flex items-center justify-between w-full mb-4">
-                <svg
-                  className="w-6 h-6 text-gray-600"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm4 2h6v2H9V7zm0 4h6v2H9v-2zm0 4h6v2H9v-2z" />
-                </svg>
-                <a href="#" className="text-gray-600 hover:text-gray-900">
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M5 12h14m-6 6l6-6m-6-6l6 6" />
-                  </svg>
-                </a>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900">
-                SaaS Startup
-              </h3>
-              <ul className="text-gray-700 mt-2 space-y-1">
-                <li>
-                  <strong>ROI:</strong> "Achieved 10X ROI through organic lead
-                  generation."
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8">
-            <a href="#" className="text-gray-600 underline hover:text-gray-900">
-              See Full Success Stories
-            </a>
-          </div>
         </div>
+
+        {/* 3 Case Study Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {caseStudiesData.map((study) => (
+            <div
+              key={study.id}
+              className="bg-white rounded-2xl border border-slate-200/90 shadow-md hover:shadow-2xl hover:border-blue-300 transition-all duration-300 overflow-hidden flex flex-col group"
+            >
+              {/* Mockup Preview Image */}
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
+                <img
+                  src={study.image}
+                  alt={study.alt}
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+
+              {/* Card Body */}
+              <div className="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  {/* Title */}
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors">
+                    {study.title}
+                  </h3>
+
+                  {/* Subtitle Tags */}
+                  <p className="text-xs text-slate-500 font-semibold tracking-wide mt-1 mb-4">
+                    {study.category}
+                  </p>
+
+                  {/* 3-Box Metrics Row matching Screenshot 3 & 4 */}
+                  <div className="grid grid-cols-3 gap-2 p-3 rounded-xl bg-slate-50 border border-slate-100 mb-4">
+                    {study.metrics.map((metric, idx) => {
+                      const Icon = metric.icon;
+                      return (
+                        <div
+                          key={idx}
+                          className="flex flex-col items-center text-center p-1"
+                        >
+                          <div
+                            className={`w-7 h-7 rounded-lg ${metric.bg} flex items-center justify-center mb-1`}
+                          >
+                            <Icon className={`w-3.5 h-3.5 ${metric.color}`} />
+                          </div>
+                          <span className="text-[10px] sm:text-[11px] font-medium text-slate-500 leading-tight">
+                            {metric.label}
+                          </span>
+                          <span
+                            className={`text-xs sm:text-sm font-extrabold ${metric.color} mt-0.5`}
+                          >
+                            {metric.value}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Short Summary */}
+                  <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">
+                    {study.description}
+                  </p>
+                </div>
+
+                {/* Footer with Verified Result Pill */}
+                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+                  <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700">
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 fill-blue-100" />
+                    <span>Verified result</span>
+                  </div>
+
+                  <ContactPopup
+                    buttonText="Get Similar Growth"
+                    buttonClassName="text-xs font-bold text-blue-700 hover:text-blue-800 flex items-center gap-1 hover:underline cursor-pointer"
+                  />
+                </div>
+
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Banner for audit */}
+        <div className="mt-14 text-center">
+          <p className="text-sm text-slate-600 mb-4">
+            Want to see how your website compares with your top competitors?
+          </p>
+          <a
+            href="#audit-form"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-slate-900 hover:bg-black text-white font-bold text-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+          >
+            <span>Claim Your Free Competitor SEO Audit</span>
+            <ArrowRight className="w-4 h-4 text-cyan-400" />
+          </a>
+        </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 

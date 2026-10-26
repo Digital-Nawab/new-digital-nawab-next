@@ -2,31 +2,32 @@
 
 import React from "react";
 import SocialMediaHero from "./Hero";
-import SocialMediaServices from "./Second";
-import SocialFeaturesSection from "./FeatureSection";
-import ServicesSection from "./Ytsection";
+import DigitalNawabSections from "./SocialMediaMarketingSection";
 import YouTubeProcessSection from "./YouTubeProcessSection";
 import FacebookMarketingSection from "./FacebookMarketingSection ";
-import LinkedInMarketingSection from "./LinkedInMarketingSection ";
-import ContentPlanningSection from "./ContentPlanningSection ";
-import SMOPackages from "./SMOPackages";
-import SMMPackages from "./SMMPackages";
-import DigitalNawabSections from "./SocialMediaMarketingSection";
+import SocialPackagesUnified from "./SocialPackagesUnified";
+import SocialFAQ from "./SocialFAQ";
 
 const SocialMarketing = () => {
   return (
-    <div>
+    <div className="overflow-hidden">
+      {/* 1. DARK: Social Media Marketing Hero */}
       <SocialMediaHero />
-      <SocialMediaServices />
-      {/* <SocialFeature        sSection/> */}
+
+      {/* 2. LIGHT: SMM Agency Benefits (Dynamic from Admin: /api/getsmmbenefit) */}
       <DigitalNawabSections />
-      <SMOPackages />
+
+      {/* 3. DARK: YouTube Video & Channel Marketing (Dynamic from Admin: /api/getsmmyoutube & /api/getsmmService) */}
       <YouTubeProcessSection />
-      <ServicesSection />
-      {/* <FacebookMarketingSection />                                 */}
-      <SMMPackages />
-      <LinkedInMarketingSection />
-      {/* <ContentPlanningSection /> */}
+
+      {/* 4. LIGHT: Meta & Facebook Ads Strategy (Dynamic from Admin: /api/getsmmfacebook) */}
+      <FacebookMarketingSection />
+
+      {/* 5. DARK: Unified Social Media Packages (SMO Organic + SMM Paid Ads) */}
+      <SocialPackagesUnified />
+
+      {/* 6. LIGHT: SMM Frequently Asked Questions & Consultation */}
+      <SocialFAQ />
     </div>
   );
 };

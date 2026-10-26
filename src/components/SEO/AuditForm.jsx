@@ -63,7 +63,7 @@ const AuditForm = () => {
     <div>
       <HeroHighlight
         containerClassName={
-          "bg-gradient-to-r  from-[rgba(5,5,5,1)] via-[#142b26] to-black "
+          "bg-gradient-to-r from-[#070b18] via-[#0d162f] to-[#070b18]"
         }
       >
         <div className="max-w-7xl mx-auto">
@@ -76,10 +76,10 @@ const AuditForm = () => {
               />
             </div>
             <div className=" mx-auto flex flex-col justify-center ">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white text-center">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white text-center">
                 Free SEO Audit Form
               </h2>
-              <p className="text-lg text-white text-center mt-2 mb-8">
+              <p className="text-lg text-slate-300 text-center mt-2 mb-8">
                 Get a FREE SEO Audit – See What’s Holding Your Website Back.
               </p>
 
@@ -92,7 +92,7 @@ const AuditForm = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Business Name"
-                    className="w-full px-4 py-3 rounded-lg bg-[#2A4A42] text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#D4FF66]"
+                    className="w-full px-4 py-3 rounded-lg bg-[#0f172a] text-white placeholder-slate-400 border border-slate-700/80 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500/40 shadow-inner"
                   />
                 </div>
 
@@ -103,7 +103,7 @@ const AuditForm = () => {
                     value={formData.website_url}
                     onChange={handleChange}
                     placeholder="Website URL"
-                    className="w-full px-4 py-3 rounded-lg bg-[#2A4A42] text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#D4FF66]"
+                    className="w-full px-4 py-3 rounded-lg bg-[#0f172a] text-white placeholder-slate-400 border border-slate-700/80 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500/40 shadow-inner"
                   />
                 </div>
 
@@ -114,7 +114,7 @@ const AuditForm = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Email Address"
-                    className="w-full px-4 py-3 rounded-lg bg-[#2A4A42] text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#D4FF66]"
+                    className="w-full px-4 py-3 rounded-lg bg-[#0f172a] text-white placeholder-slate-400 border border-slate-700/80 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500/40 shadow-inner"
                   />
                 </div>
 
@@ -123,7 +123,7 @@ const AuditForm = () => {
                     name="current_traffic"
                     value={formData.current_traffic}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg bg-[#2A4A42] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#D4FF66]"
+                    className="w-full px-4 py-3 rounded-lg bg-[#0f172a] text-white border border-slate-700/80 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500/40 shadow-inner"
                   >
                     <option value="" disabled>
                       Current Traffic
@@ -140,7 +140,7 @@ const AuditForm = () => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="SEO Goals (e.g. 'More Traffic', 'Better Ranking')"
-                    className="w-full px-4 py-3 rounded-lg bg-[#2A4A42] text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#D4FF66] resize-none h-24"
+                    className="w-full px-4 py-3 rounded-lg bg-[#0f172a] text-white placeholder-slate-400 border border-slate-700/80 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500/40 shadow-inner resize-none h-24"
                   />
                 </div>
 
@@ -148,7 +148,7 @@ const AuditForm = () => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-[#D4FF66] text-black font-semibold py-3 rounded-lg hover:bg-[#C0E55A] transition"
+                    className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-3.5 rounded-lg shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer"
                   >
                     {loading ? "Submitting..." : "Analyze My Site"}
                   </button>
@@ -156,7 +156,7 @@ const AuditForm = () => {
               </form>
 
               {response && (
-                <div className="mt-4 text-green-500 bg-white/10 p-4 rounded-lg">
+                <div className="mt-4 text-blue-400 bg-blue-950/40 border border-blue-500/30 p-4 rounded-lg">
                   <pre>{response.message}</pre>
                 </div>
               )}

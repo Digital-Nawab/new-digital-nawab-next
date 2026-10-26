@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
-import { Check, X, Heart, Zap, Crown, Rocket, Instagram, Facebook, Linkedin, Youtube, Users, BarChart3, MessageCircle, Camera, Calendar, Palette } from 'lucide-react';
+import { Check, X, Heart, Zap, Crown, Rocket, Instagram, Facebook, Linkedin, Youtube, Users, BarChart3, MessageCircle, Camera, Calendar, Palette, Sparkles } from 'lucide-react';
+import ContactPopup from '../ContactPopup';
 
 const SMOPackages = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [currency, setCurrency] = useState('INR');
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState('');
+
+  const handleSelectPlan = (planName) => {
+    setSelectedPlan(planName);
+    setIsContactOpen(true);
+  };
 
   const packages = [
     {
@@ -138,7 +146,7 @@ const SMOPackages = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-purple-50 via-pink-50 to-white min-h-screen">
+    <section id="packages" className="py-24 px-4 bg-gradient-to-b from-gray-50 via-white to-purple-50/40 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -303,9 +311,11 @@ const SMOPackages = () => {
                   </div>
 
                   {/* CTA Button */}
-                  <button className={`w-full py-3 px-4 rounded-lg font-semibold transition-all duration-300 ${
+                  <button 
+                    onClick={() => handleSelectPlan(pkg.name)}
+                    className={`w-full py-3.5 px-4 rounded-xl font-semibold transition-all duration-300 cursor-pointer ${
                     pkg.popular
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 shadow-lg hover:shadow-xl'
+                      ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500 text-white hover:opacity-95 shadow-lg shadow-purple-500/25 hover:shadow-xl'
                       : `border-2 hover:text-white ${
                           pkg.id === 'starter' ? 'border-pink-500 text-pink-600 hover:bg-pink-500' :
                           pkg.id === 'pro' ? 'border-purple-500 text-purple-600 hover:bg-purple-500' :
@@ -313,7 +323,7 @@ const SMOPackages = () => {
                           'border-violet-500 text-violet-600 hover:bg-violet-500'
                         }`
                   }`}>
-                    Start Building Brand
+                    Choose {pkg.name}
                   </button>
                 </div>
               </div>
@@ -321,25 +331,28 @@ const SMOPackages = () => {
           ))}
         </div>
 
-        {/* Social Media Icons Section */}
+        {/* Social Media Trust Footnote */}
         <div className="mt-16 text-center">
-          <div className="flex justify-center items-center gap-6 mb-6">
-            <div className="flex items-center gap-3 bg-white rounded-full px-4 py-2 shadow-md">
+          <div className="flex justify-center items-center gap-6 mb-4">
+            <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-full px-5 py-2.5 shadow-sm">
               <Facebook className="w-5 h-5 text-blue-600" />
               <Instagram className="w-5 h-5 text-pink-600" />
               <Linkedin className="w-5 h-5 text-blue-700" />
               <Youtube className="w-5 h-5 text-red-600" />
+              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider pl-2 border-l border-gray-200">All Platforms Covered</span>
             </div>
           </div>
-          <p className="text-gray-600 mb-4">
-            All packages include strategic content planning, professional designs, and performance tracking
+          <p className="text-gray-600 max-w-xl mx-auto text-sm">
+            All plans include strategic content planning, custom graphic design, caption copywriting, and monthly performance analytics.
           </p>
-          <button className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium">
-            View Sample Content & Portfolio
-            <BarChart3 className="w-4 h-4" />
-          </button>
         </div>
       </div>
+
+      <ContactPopup
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        defaultSubject={selectedPlan ? `SMO Package: ${selectedPlan}` : 'SMO Package Inquiry'}
+      />
     </section>
   );
 };

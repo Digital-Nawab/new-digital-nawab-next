@@ -1,114 +1,151 @@
-import React from 'react';
-import { ArrowRight, MessageSquare, Smartphone, Search } from 'lucide-react';
+"use client";
+
+import React from "react";
+import {
+  ArrowRight,
+  MessageSquare,
+  Smartphone,
+  Search,
+  Sparkles,
+  TrendingUp,
+  Video,
+  Target,
+  Palette,
+  Users,
+  CheckCircle2,
+} from "lucide-react";
+import ContactPopup from "../ContactPopup";
 
 const SocialMediaServices = () => {
   const services = [
     {
-      icon: MessageSquare,
-      title: "Digital marketing plan",
-      description: "Lorem ipsum dolor sit amet consectetur. Cras feugiat massa pellentesque tortor. Sed massa sit vehicula in ut id donec urna.Lorem ipsum dolor sit amet consectetur. Cras"
+      icon: Video,
+      title: "Thumb-Stopping Reels & Creative",
+      badge: "Viral Content",
+      accent: "from-pink-500 to-rose-500",
+      bgLight: "bg-pink-50 text-pink-600 border-pink-100",
+      description:
+        "High-retention short-form video production, aesthetic carousels, and scroll-stopping stories designed to capture attention in the first 3 seconds and trigger algorithmic distribution.",
+      benefits: ["High-Retention Hooks", "Trend Analysis & Audio", "Custom Motion Graphics"],
     },
     {
-      icon: Smartphone,
-      title: "Social media strategy",
-      description: "Lorem ipsum dolor sit amet consectetur. Cras feugiat massa pellentesque tortor. Sed massa sit vehicula in ut id donec urna.Lorem ipsum dolor sit amet consectetur. Cras"
+      icon: Target,
+      title: "High-ROAS Paid Social Ads (SMM)",
+      badge: "Paid Growth",
+      accent: "from-blue-600 to-indigo-600",
+      bgLight: "bg-blue-50 text-blue-600 border-blue-100",
+      description:
+        "Hyper-targeted Meta Ads (Facebook & Instagram) engineered with lookalike audiences, retargeting pixels, and conversion-optimized ad creatives for maximum return on ad spend.",
+      benefits: ["Audience Segmentation", "A/B Creative Split-Testing", "Conversion API & Pixel"],
     },
     {
-      icon: Search,
-      title: "Search engine optimization",
-      description: "Lorem ipsum dolor sit amet consectetur. Cras feugiat massa pellentesque tortor. Sed massa sit vehicula in ut id donec urna.Lorem ipsum dolor sit amet consectetur. Cras"
-    }
+      icon: Users,
+      title: "Community & Brand Reputation",
+      badge: "Engagement",
+      accent: "from-purple-600 to-violet-600",
+      bgLight: "bg-purple-50 text-purple-600 border-purple-100",
+      description:
+        "Active DM management, genuine comment replies, influencer seeding, and proactive customer interaction that turns casual followers into vocal brand champions.",
+      benefits: ["Fast Response Moderation", "Influencer Collaborations", "Sentiment & Trust Growth"],
+    },
   ];
 
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
-      {/* Subtle Background Animation */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gray-100 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-gray-200 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s'}}></div>
-      </div>
+    <section
+      className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 via-white to-slate-100/90 text-slate-900 relative overflow-hidden font-sans border-y border-slate-200/70"
+      aria-label="Core Social Media Marketing Services"
+    >
+      {/* Subtle Dot Grid */}
+      <div
+        className="absolute inset-0 opacity-40 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(#94a3b8 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
-          <div className="animate-fade-in-up">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Take the lead in smartly{' '}
-              <span className="relative">
-                social media marketing
-                <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gray-300 rounded-full transform scale-x-0 hover:scale-x-100 transition-transform duration-700"></div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16">
+          <div className="lg:col-span-7">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-xs sm:text-sm font-semibold mb-5 shadow-sm">
+              <Sparkles className="w-4 h-4 text-purple-600" />
+              <span>✦ FULL-FUNNEL SOCIAL STRATEGY ✦</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 leading-tight tracking-tight">
+              Take the Lead With Smarter{" "}
+              <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
+                Social Media Marketing
               </span>
             </h2>
           </div>
-          
-          <div className="lg:pl-8 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur. Cras feugiat massa pellentesque 
-              tortor. Sed massa sit vehicula in ut id donec urna.Lorem ipsum dolor sit 
-              amet consectetur. Cras feugiat massa pellentesque tortor. Sed massa sit 
-              vehicula in ut id donec urna.
+
+          <div className="lg:col-span-5">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+              In today&apos;s fast-paced digital ecosystem, sporadic posting won&apos;t cut through the noise. Digital Nawab unites thumb-stopping creative production, algorithmic audience growth, and full-funnel conversion tracking under one roof.
             </p>
           </div>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div 
-              key={index}
-              className="bg-white p-8 rounded-3xl border-2 border-gray-200 group hover:shadow-xl hover:-translate-y-2 hover:border-gray-300 transition-all duration-500 animate-fade-in-up"
-              style={{ animationDelay: `${index * 200}ms` }}
-            >
-              {/* Icon */}
-              <div className="mb-6">
-                <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center group-hover:bg-gray-900 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                  <service.icon className="w-8 h-8 text-gray-600 group-hover:text-white transition-colors duration-300" />
+        {/* Services Grid (3 Cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <div
+                key={index}
+                className="group relative bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-xl hover:border-purple-300 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between overflow-hidden"
+              >
+                <div>
+                  {/* Top Row: Icon + Badge */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div
+                      className={`w-14 h-14 rounded-2xl ${service.bgLight} border flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300`}
+                    >
+                      <Icon className="w-7 h-7" />
+                    </div>
+                    <span className="text-[11px] font-bold tracking-wide uppercase px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+                      {service.badge}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-950 mb-3 group-hover:text-purple-600 transition-colors tracking-tight">
+                    {service.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-6">
+                    {service.description}
+                  </p>
+
+                  {/* Benefits Checklist */}
+                  <div className="space-y-2 mb-6 pt-4 border-t border-slate-100">
+                    {service.benefits.map((b, bIdx) => (
+                      <div key={bIdx} className="flex items-center gap-2 text-xs font-medium text-slate-700">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+                        <span>{b}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Bottom CTA Button */}
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                  <ContactPopup
+                    buttonText="Get Strategy Call →"
+                    buttonClassName="text-xs sm:text-sm font-bold text-purple-700 hover:text-purple-900 cursor-pointer inline-flex items-center gap-1.5 group-hover:translate-x-1 transition-transform"
+                  />
+                  <span className="text-[11px] text-slate-400 font-mono font-semibold">
+                    0{index + 1}
+                  </span>
                 </div>
               </div>
-              
-              {/* Content */}
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4 group-hover:text-gray-700 transition-colors">
-                  {service.title}
-                </h3>
-                
-                <p className="text-gray-600 leading-relaxed mb-6 group-hover:text-gray-700 transition-colors">
-                  {service.description}
-                </p>
-                
-                {/* CTA Button */}
-                <button className="inline-flex items-center gap-2 text-gray-900 font-medium group-hover:gap-3 transition-all duration-300">
-                  <span className="text-sm">Discover more</span>
-                  <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center group-hover:bg-gray-900 group-hover:scale-110 transition-all duration-300">
-                    <ArrowRight className="w-3 h-3 text-gray-600 group-hover:text-white transition-colors" />
-                  </div>
-                </button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
-
-      {/* Vertical Divider */}
-      {/* <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-200 to-transparent transform -translate-x-1/2"></div> */}
-
-      <style jsx>{`
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out forwards;
-          opacity: 0;
-        }
-      `}</style>
     </section>
   );
 };

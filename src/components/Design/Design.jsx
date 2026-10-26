@@ -8,9 +8,8 @@ import { NewHero } from "./NewHero";
 import BrandingSection from "./BrandingSection ";
 import LogoDesignSection from "./LogoDesignSection ";
 import AdCreativesSection from "./AdCreativesSection ";
-import PackagingDesignSection from "./PackagingDesignSection ";
 import { ThreeDMarqueeDemoSecond } from "../Home/ThreeDMarqueeDemoSecond";
-import GraphicPackages from "./GraphicPackages";
+import PackagingAndPackagesSection from "./PackagingAndPackagesSection";
 
 // 👇 Extract your hook usage into a child component wrapped by Suspense
 const DesignContent = () => {
@@ -48,11 +47,7 @@ const DesignContent = () => {
       <LogoDesignSection />
 
       <section id="packaging-design">
-        <PackagingDesignSection />
-      </section>
-
-      <section>
-        <GraphicPackages />
+        <PackagingAndPackagesSection />
       </section>
     </div>
   );

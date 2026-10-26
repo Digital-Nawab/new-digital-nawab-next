@@ -1,26 +1,25 @@
 
-import Ecommerce from "@/components/Ecommerce";
+import EcommerceMarketingPage from "@/components/Ecommerce/EcommerceMarketingPage";
 import React from "react";
 
 export const metadata = {
-  title: 'Ecommerce Marketing Services | Ecommerce Digital Marketing Agency Lucknow',
+  title: "Ecommerce Marketing Services | Ecommerce Digital Marketing Agency Lucknow | Digital Nawab",
   description:
-    'Digital nawab specializes in web design, development, & marketing solutions for ecommerce. Scale your ecommerce business with expert digital marketing solutions in Lucknow. SEO, PPC, Social Media, content marketing & Email Marketing. Boost sales & grow your business online with proven strategies. Get your free quote today!',
+    "Scale your online store with proven ecommerce digital marketing solutions in Lucknow. Expert Ecommerce SEO, Google Shopping, Meta Ads, Email Marketing & Conversion Optimization. Increase sales and maximize ROAS.",
   alternates: {
-    canonical: 'https://www.digitalnawab.com/service/ecommerce-marketing',
+    canonical: "https://www.digitalnawab.com/service/ecommerce-marketing",
   },
+  openGraph: {
+    title: "Ecommerce Marketing Agency Lucknow | Scale Online Sales | Digital Nawab",
+    description:
+      "Boost your ecommerce store sales with full-funnel marketing strategies. Top-ranking SEO, Google Shopping, Meta Ads, and automated customer retention.",
+    url: "https://www.digitalnawab.com/service/ecommerce-marketing",
+    siteName: "Digital Nawab",
+    type: "website",
+  },
+};
+
+export default function Page() {
+  return <EcommerceMarketingPage />;
 }
 
-function Page() {
-
-
-  return (
-    
-    <>
-      
-    <Ecommerce />
-    </>
-  );
-}
-
-export default Page;

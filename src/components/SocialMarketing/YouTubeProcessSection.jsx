@@ -1,311 +1,295 @@
 import React, { useState, useEffect } from "react";
 import {
+  Play,
+  Tv,
+  Sparkles,
+  ArrowRight,
+  CheckCircle2,
+  Phone,
+  BarChart3,
+  Video,
+  Layers,
+  Flame,
   Search,
   Target,
   PenTool,
-  Video,
   TrendingUp,
   Users,
-  Play,
-  ArrowRight,
-  CheckCircle,
-  MessageCircle,
-  BarChart3,
-  Lightbulb,
-  Rocket,
   Eye,
+  ChevronRight
 } from "lucide-react";
 import ContactPopup from "../ContactPopup";
 import Link from "next/link";
 
-const iconMap = {
-  1: Search,
-  2: Target,
-  3: PenTool,
-  4: Video,
-  5: Play,
-};
-const colorMap = {
-  1: "bg-blue-500",
-  2: "bg-cyan-500",
-  3: "bg-purple-500",
-  4: "bg-red-500",
-  5: "bg-orange-500",
-};
+const stepIcons = [Search, Target, PenTool, Video, TrendingUp, Play];
 
 const YouTubeProcessSection = () => {
+  const [activeTab, setActiveTab] = useState("services"); // "services" | "process"
   const [activeStep, setActiveStep] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+  const [services, setServices] = useState([]);
   const [processSteps, setProcessSteps] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setIsVisible(true);
-    const fetchProcessSteps = async () => {
+    const fetchData = async () => {
       try {
-        const res = await fetch(
-          "https://dashboard.digitalnawab.com/api/getsmmyoutube"
-        );
-        const data = await res.json();
-        if (data?.data) {
-          const mappedSteps = data.data.map((step, index) => ({
+        const [ytRes, srvRes] = await Promise.all([
+          fetch("https://dashboard.digitalnawab.com/api/getsmmyoutube"),
+          fetch("https://dashboard.digitalnawab.com/api/getsmmService")
+        ]);
+
+        const ytData = await ytRes.json();
+        const srvData = await srvRes.json();
+
+        if (ytData?.data) {
+          const mapped = ytData.data.map((step, idx) => ({
             ...step,
-            id: step.id,
             title: step.heading,
             description: step.description,
-            image: step.image.startsWith("http")
+            image: step.image?.startsWith("http")
               ? step.image
               : `https://dashboard.digitalnawab.com/${step.image}`,
             features: step.features || [],
-            icon: iconMap[index + 1] || Search, // fallback icon
-            color: colorMap[index + 1] || "bg-gray-500",
+            icon: stepIcons[idx % stepIcons.length]
           }));
-          setProcessSteps(mappedSteps);
+          setProcessSteps(mapped);
+        }
+
+        if (srvData?.data) {
+          setServices(
+            srvData.data.map((item) => ({
+              id: item.id,
+              title: item.heading,
+              description: item.description
+            }))
+          );
         }
       } catch (err) {
-        console.error("Error fetching YouTube process steps:", err);
+        console.error("Error fetching YouTube section data:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchProcessSteps();
+    fetchData();
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-20 px-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Rocket className="w-4 h-4" />
-            Our Process
+    <section className="py-24 px-4 bg-gradient-to-b from-slate-950 via-[#0a0e1a] to-slate-950 text-white relative overflow-hidden">
+      {/* Cinematic Red/Crimson Ambient Glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-red-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-rose-600/10 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Section Header */}
+        <div className="text-center max-w-4xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider mb-5 backdrop-blur-md">
+            <Play className="w-3.5 h-3.5 fill-red-400" />
+            YouTube & Video Growth Engine
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Our YouTube Marketing
-            <span className="text-red-500 block">Process</span>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-5">
+            Social Media Marketing Services & Process to {" "}
+            <span className="bg-gradient-to-r from-red-500 via-rose-400 to-amber-400 bg-clip-text text-transparent">
+              Grow Your Business
+            </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            From strategy to execution, we follow a proven methodology that
-            delivers exceptional results for your YouTube channel
+
+          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+            Digital Nawab provides strategic social media marketing services to help businesses build brand awareness, connect with their target audience, and generate relevant enquiries. Our structured process combines business and audience research, social media strategy, creative content planning, account management, targeted advertising, and performance tracking to align marketing activities with your business goals and support continuous growth.
           </p>
+
+          {/* Tab Switcher */}
+          <div className="mt-8 inline-flex p-1.5 bg-slate-900/90 border border-slate-800 rounded-2xl backdrop-blur-md shadow-xl">
+            <button
+              onClick={() => setActiveTab("services")}
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                activeTab === "services"
+                  ? "bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-600/25"
+                  : "text-slate-400 hover:text-white"
+              }`}
+            >
+              <Tv className="w-4 h-4" />
+              Specialized Services ({services.length || 9})
+            </button>
+            <button
+              onClick={() => setActiveTab("process")}
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                activeTab === "process"
+                  ? "bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-lg shadow-red-600/25"
+                  : "text-slate-400 hover:text-white"
+              }`}
+            >
+              <Flame className="w-4 h-4" />
+              Growth Process ({processSteps.length || 6} Steps)
+            </button>
+          </div>
         </div>
 
-        {/* Process Steps */}
-        <div className="space-y-12 mb-20">
-          {processSteps.map((step, index) => (
-            <div
-              key={step.id}
-              className={`transform transition-all duration-700 ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-20 opacity-0"
-              }`}
-              style={{ transitionDelay: `${index * 200}ms` }}
-              onMouseEnter={() => setActiveStep(index)}
-            >
-              <div
-                className={`grid lg:grid-cols-2 gap-8 items-center ${
-                  index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
-                }`}
-              >
-                {/* Content Side */}
+        {/* TAB 1: Specialized Services Grid */}
+        {activeTab === "services" && (
+          <div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+              {services.map((service, index) => (
                 <div
-                  className={`${
-                    index % 2 === 1 ? "lg:col-start-2" : ""
-                  } space-y-6`}
+                  key={service.id || index}
+                  className="group relative bg-slate-900/60 border border-slate-800/80 hover:border-red-500/40 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-red-500/10 flex flex-col justify-between overflow-hidden"
                 >
-                  <div className="flex items-center gap-4">
-                    <div
-                      className={`w-12 h-12 rounded-2xl ${step.color} flex items-center justify-center shadow-lg`}
-                    >
-                      <step.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
-                      Step {step.id}
-                    </div>
-                  </div>
-
-                  <h3 className="text-3xl font-bold text-gray-900">
-                    {step.title}
-                  </h3>
-
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    {step.description}
-                  </p>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    {step.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">{feature}</span>
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-red-600/5 rounded-full blur-2xl group-hover:bg-red-600/15 transition-all duration-500" />
+                  
+                  <div>
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-rose-500/10 border border-red-500/30 flex items-center justify-center text-red-400 group-hover:scale-110 group-hover:bg-red-500 group-hover:text-white transition-all duration-300">
+                        <Play className="w-5 h-5 fill-current" />
                       </div>
-                    ))}
+                      <span className="text-2xl font-black text-slate-700 group-hover:text-red-500/40 transition-colors">
+                        0{index + 1}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-slate-300 text-sm leading-relaxed">
+                      {service.description}
+                    </p>
                   </div>
 
-                  {index < processSteps.length - 1 && (
-                    <div className="flex items-center gap-2 text-gray-400 pt-4">
-                      <span className="text-sm">Next Step</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
-                  )}
+                  <div className="mt-6 pt-4 border-t border-slate-800/60 flex items-center gap-2 text-xs font-semibold text-red-400 group-hover:text-red-300">
+                    <span>Algorithm-Driven Growth</span>
+                    <ChevronRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
+              ))}
+            </div>
+          </div>
+        )}
 
-                {/* Image Side */}
+        {/* TAB 2: Process Steps Timeline */}
+        {activeTab === "process" && (
+          <div className="space-y-10 mb-16">
+            {processSteps.map((step, index) => {
+              const StepIcon = step.icon || Search;
+              return (
                 <div
-                  className={`${
-                    index % 2 === 1 ? "lg:col-start-1" : ""
-                  } relative`}
+                  key={step.id || index}
+                  onMouseEnter={() => setActiveStep(index)}
+                  className="bg-slate-900/60 border border-slate-800/80 hover:border-red-500/40 rounded-3xl p-6 sm:p-10 transition-all duration-500 hover:shadow-2xl hover:shadow-red-500/10"
                 >
-                  <div className="relative group">
-                    <div
-                      className={`absolute inset-0 ${step.color} opacity-20 rounded-3xl blur-2xl group-hover:opacity-30 transition-opacity duration-500`}
-                    ></div>
-                    <div className="relative bg-white rounded-3xl p-8 shadow-xl border border-gray-100 group-hover:shadow-2xl transition-all duration-500">
-                      {/* Decorative Elements */}
-                      <div className="absolute top-4 right-4 flex gap-2">
-                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                        <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                  <div className={`grid lg:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}>
+                    {/* Content */}
+                    <div className={index % 2 === 1 ? "lg:col-start-2" : ""}>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 to-rose-600 flex items-center justify-center shadow-lg shadow-red-600/30">
+                          <StepIcon className="w-5 h-5 text-white" />
+                        </div>
+                        <span className="text-xs font-bold uppercase tracking-wider text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-full">
+                          Phase 0{index + 1}
+                        </span>
                       </div>
 
-                      <div className="mt-4">
+                      <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-4">
+                        {step.title}
+                      </h3>
+
+                      <p className="text-slate-300 leading-relaxed text-base mb-6">
+                        {step.description}
+                      </p>
+
+                      {/* Feature Tags */}
+                      {step.features && step.features.length > 0 && (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6">
+                          {step.features.map((feature, fIdx) => (
+                            <div key={fIdx} className="flex items-center gap-2.5 bg-slate-950/60 border border-slate-800/60 rounded-xl px-3.5 py-2">
+                              <CheckCircle2 className="w-4 h-4 text-red-400 flex-shrink-0" />
+                              <span className="text-slate-300 text-xs font-medium">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Step Image */}
+                    <div className={index % 2 === 1 ? "lg:col-start-1" : ""}>
+                      <div className="relative group overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-2xl">
                         <img
                           src={step.image}
                           alt={step.title}
-                          className="w-full h-48 object-cover rounded-2xl mb-6 group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-64 sm:h-72 object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                          onError={(e) => {
+                            e.target.src = "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&auto=format&fit=crop&q=80";
+                          }}
                         />
-
-                        {/* Mock Interface Elements */}
-                        <div className="space-y-3">
-                          <div className="flex items-center gap-3">
-                            <div
-                              className={`w-8 h-8 rounded-lg ${step.color} flex items-center justify-center`}
-                            >
-                              <step.icon className="w-4 h-4 text-white" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="h-2 bg-gray-200 rounded-full">
-                                <div
-                                  className={`h-2 ${step.color} rounded-full transition-all duration-300`}
-                                  style={{
-                                    width: `${
-                                      ((index + 1) / processSteps.length) * 100
-                                    }%`,
-                                  }}
-                                ></div>
-                              </div>
-                            </div>
-                            <div className="text-sm font-semibold text-gray-600">
-                              {Math.round(
-                                ((index + 1) / processSteps.length) * 100
-                              )}
-                              %
-                            </div>
-                          </div>
-
-                          <div className="grid grid-cols-3 gap-2 pt-2">
-                            {[1, 2, 3].map((_, idx) => (
-                              <div
-                                key={idx}
-                                className="h-2 bg-gray-200 rounded-full"
-                              >
-                                <div
-                                  className={`h-2 ${step.color} rounded-full transition-all duration-700`}
-                                  style={{
-                                    width: `${
-                                      activeStep === index
-                                        ? Math.random() * 100
-                                        : 60
-                                    }%`,
-                                    transitionDelay: `${idx * 100}ms`,
-                                  }}
-                                ></div>
-                              </div>
-                            ))}
-                          </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
+                        <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                          <span className="text-xs font-semibold text-slate-300 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-700">
+                            Deliverable: Stage #{index + 1}
+                          </span>
+                          <span className="text-xs font-bold text-red-400 bg-red-500/10 px-3 py-1.5 rounded-lg border border-red-500/20">
+                            100% Quality Checked
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              );
+            })}
+          </div>
+        )}
 
-        {/* CTA Section */}
-        <div className="relative">
-          <div className="bg-gradient-to-r from-red-500 to-orange-500 rounded-3xl p-12 text-white relative overflow-hidden">
-            <div className="absolute inset-0 bg-black/10"></div>
-            <div className="relative">
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                <div>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                    Best YouTube Marketing
-                    <span className="block">Company in Lucknow</span>
-                  </h3>
-                  <p className="text-xl opacity-90 mb-6">
-                    Ready to transform your YouTube presence? Let's create
-                    something amazing together.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    {/* <button className="bg-white text-red-500 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center gap-2">
-                      <MessageCircle className="w-5 h-5" />
-                      Get Started With Us
-                    </button> */}
-                    <ContactPopup
-                      buttonText="Get Started With Us"
-                      buttonClassName=" cursor-pointer bg-white text-red-500 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center gap-2"
-                    />
-                    <Link href="/portfolio">
-                    
-                    <button className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-red-500 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
-                      <Eye className="w-5 h-5" />
-                      View Our Work
-                    </button>
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="relative">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                      <div className="text-center">
-                        <div className="text-3xl font-bold">500+</div>
-                        <div className="text-sm opacity-80">Channels Grown</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-3xl font-bold">2M+</div>
-                        <div className="text-sm opacity-80">
-                          Views Generated
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-3xl font-bold">95%</div>
-                        <div className="text-sm opacity-80">
-                          Client Satisfaction
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-3xl font-bold">24/7</div>
-                        <div className="text-sm opacity-80">Support</div>
-                      </div>
-                    </div>
-                    <div className="text-center">
-                      <button className="bg-orange-400 hover:bg-orange-300 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300 uppercase tracking-wide text-sm">
-                        Enquiry
-                      </button>
-                    </div>
-                  </div>
-                </div>
+        {/* High-Converting CTA Banner */}
+        <div className="relative rounded-3xl bg-gradient-to-r from-red-600 via-rose-600 to-orange-600 p-8 sm:p-12 text-white overflow-hidden shadow-2xl shadow-red-600/20">
+          <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+          
+          <div className="relative z-10 grid lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7">
+              <span className="inline-block px-3.5 py-1 rounded-full bg-white/20 text-white text-xs font-bold uppercase tracking-wider mb-4">
+                Top YouTube Agency in Lucknow
+              </span>
+              <h3 className="text-2xl sm:text-4xl font-black mb-3 leading-tight">
+                Ready to Grow Your Channel with Proven Viral Strategies?
+              </h3>
+              <p className="text-white/90 text-sm sm:text-base leading-relaxed mb-6">
+                Get a comprehensive YouTube audit, audience blueprint, and high-retention video plan tailored for your brand.
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <ContactPopup
+                  buttonText="Get Free YouTube Audit"
+                  buttonClassName="cursor-pointer bg-white text-red-600 px-7 py-3.5 rounded-xl font-bold hover:bg-slate-100 transition-all shadow-lg hover:shadow-xl hover:scale-105 flex items-center gap-2"
+                />
+                <a
+                  href="tel:+919008504821"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white bg-black/25 hover:bg-black/40 border border-white/20 transition-all hover:scale-105 backdrop-blur-sm"
+                >
+                  <Phone className="w-4 h-4" />
+                  +91 9008504821
+                </a>
               </div>
             </div>
 
-            {/* Decorative Elements */}
-            <div className="absolute top-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-            <div className="absolute bottom-10 left-10 w-24 h-24 bg-orange-300/20 rounded-full blur-xl"></div>
+            <div className="lg:col-span-5 grid grid-cols-2 gap-4">
+              <div className="bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-5 text-center">
+                <div className="text-3xl font-black text-white mb-1">500+</div>
+                <div className="text-xs text-white/80 font-medium">Channels Optimized</div>
+              </div>
+              <div className="bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-5 text-center">
+                <div className="text-3xl font-black text-white mb-1">20M+</div>
+                <div className="text-xs text-white/80 font-medium">Views Generated</div>
+              </div>
+              <div className="bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-5 text-center">
+                <div className="text-3xl font-black text-white mb-1">98.4%</div>
+                <div className="text-xs text-white/80 font-medium">Satisfaction Rate</div>
+              </div>
+              <div className="bg-black/20 backdrop-blur-md border border-white/10 rounded-2xl p-5 text-center">
+                <div className="text-3xl font-black text-white mb-1">24/7</div>
+                <div className="text-xs text-white/80 font-medium">Dedicated Support</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

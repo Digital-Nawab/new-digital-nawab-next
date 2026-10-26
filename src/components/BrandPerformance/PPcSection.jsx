@@ -1,5 +1,5 @@
 "use client";
-import Image from 'next/image'
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import {
   Search,
@@ -19,340 +19,233 @@ import {
   Monitor,
   Eye,
   Play,
+  ShoppingBag,
+  Mail,
+  CheckCircle2,
+  PhoneCall,
 } from "lucide-react";
-import ContactPopup from '../ContactPopup';
+import ContactPopup from "../ContactPopup";
 
-  const iconMap = {
-    "fa-solid fa-cloud": Search,
-    "fa-solid fa-tv": Monitor,
-    "fa-solid fa-users": Users,
-    "fa-solid fa-bullseye": Target,
-    "fa-solid fa-chart-bar": BarChart3,
-    "fa-solid fa-eye": Eye,
-    "fa-solid fa-play": Play,
-    "fa-solid fa-cog": Settings,
-  };
+const iconMap = {
+  "fa-solid fa-cloud": Search,
+  "fa-solid fa-tv": Monitor,
+  "fa-solid fa-users": Users,
+  "fa-solid fa-user": Users,
+  "fa-solid fa-bullseye": Target,
+  "fa-solid fa-chart-bar": BarChart3,
+  "fa-solid fa-eye": Eye,
+  "fa-solid fa-play": Play,
+  "fa-solid fa-cog": Settings,
+};
+
+// Helper for dynamic contextual icon assignment if needed
+const getCardIcon = (iconStr, heading) => {
+  const h = (heading || "").toLowerCase();
+  if (h.includes("shopping") || h.includes("product")) return ShoppingBag;
+  if (h.includes("gmail") || h.includes("mail") || h.includes("email")) return Mail;
+  if (h.includes("youtube") || h.includes("video")) return Play;
+  if (h.includes("display") || h.includes("banner")) return Monitor;
+  if (h.includes("social")) return Users;
+  if (h.includes("search")) return Search;
+  if (iconMap[iconStr]) return iconMap[iconStr];
+  return Search;
+};
+
+// Distinct vibrant gradients for each service card
+const cardStyles = [
+  {
+    gradient: "from-blue-500 to-cyan-500",
+    glow: "rgba(59, 130, 246, 0.35)",
+    tag: "High Search Intent",
+  },
+  {
+    gradient: "from-purple-500 to-pink-500",
+    glow: "rgba(168, 85, 247, 0.35)",
+    tag: "Visual Brand Reach",
+  },
+  {
+    gradient: "from-pink-500 to-rose-500",
+    glow: "rgba(236, 72, 153, 0.35)",
+    tag: "Social Audience",
+  },
+  {
+    gradient: "from-amber-500 to-orange-500",
+    glow: "rgba(245, 158, 11, 0.35)",
+    tag: "Direct Product Sales",
+  },
+  {
+    gradient: "from-red-500 to-rose-600",
+    glow: "rgba(239, 68, 68, 0.35)",
+    tag: "Direct Inbox Ads",
+  },
+  {
+    gradient: "from-violet-600 to-indigo-600",
+    glow: "rgba(124, 58, 237, 0.35)",
+    tag: "Video & Streaming",
+  },
+];
 
 const PPCServicesSection = () => {
   const [adsData, setAdsData] = useState([]);
-    useEffect(() => {
-      const fetchAdsData = async () => {
-        try {
-          const res = await fetch("https://dashboard.digitalnawab.com/api/googleppc");
-          const data = await res.json();
-          console.log("Fetched PPC services data:", data);
-          if (data?.data) {
-            setAdsData(data.data);
-          }
-        } catch (err) {
-          console.error("Error fetching PPC services:", err);
+
+  useEffect(() => {
+    const fetchAdsData = async () => {
+      try {
+        const res = await fetch("https://dashboard.digitalnawab.com/api/googleppc");
+        const data = await res.json();
+        console.log("Fetched PPC services data:", data);
+        if (data?.data) {
+          setAdsData(data.data);
         }
-      };
+      } catch (err) {
+        console.error("Error fetching PPC services:", err);
+      }
+    };
     fetchAdsData();
-}, []);
-
-
-  const benefits = [
-    {
-      icon: Target,
-      title: "Targeted Customers",
-      description:
-        "Analyze your audience's statistics across all digital channels to uncover similar elements such as keywords, localities, demographics, job titles, interests, and popular subjects.",
-    },
-    {
-      icon: Globe,
-      title: "Local or Global: You Choose",
-      description:
-        "Use PPC to display text advertising to individuals in your target markets, whether local or global, with proper cultural adaptation.",
-    },
-    {
-      icon: Zap,
-      title: "Speedy Results",
-      description:
-        "Paid advertising ensures reach and allows you to enhance your brand with particular targeting and generate more qualified leads instantly.",
-    },
-    {
-      icon: DollarSign,
-      title: "You Control the Budget",
-      description:
-        "Reach a wide and diverse audience with complete control over your advertising spend based on your goals and objectives.",
-    },
-    {
-      icon: HeadphonesIcon,
-      title: "Superb Campaign Support",
-      description:
-        "A marketing campaign collection with consistent tone and content that can promote across multiple platforms effectively.",
-    },
-    {
-      icon: TestTube,
-      title: "Test your Ads",
-      description:
-        "Track outcomes for each ad, phrase, and user. Connect campaigns to Google Analytics to determine what works and what doesn't.",
-    },
-  ];
-
-  const services = [
-    {
-      icon: BarChart3,
-      title: "PPC Campaign Management and Analysis",
-      description:
-        "Regular account activity and performance optimization including keyword analysis, negative keywords, and ad group refinements.",
-    },
-    {
-      icon: BarChart3,
-      title: "Keyword Research",
-      description:
-        "Keyword research for PPC may be extremely time-consuming, but it is also vital. The foundation of any PPC campaign is keywords, and the most successful Google Ads marketers are always growing and refining their PPC keyword list. If you simply conduct keyword research once, when you establish your initial campaign, you are likely to lose out on hundreds of thousands of useful, long-tail, low-cost, and highly relevant phrases that may drive traffic to your site.",
-    },
-    {
-      icon: Settings,
-      title: "Pay Per Click (PPC) Online Advertising",
-      description:
-        "Advertisers cannot simply spend more to ensure that their advertising displays more prominently than their competitors' advertising on a search engine (often referred to as a Search Engine Results Page, or SERP). Ads are instead subject to the Ad Auction, a fully automated procedure used by Google and other major search engines to assess the relevancy and legitimacy of adverts that show on their SERPs.",
-    },
-  ];
-
-  // Line pattern component
-  const LinePattern = () => (
-    <div className="absolute inset-0 opacity-10">
-      <svg
-        className="w-full h-full"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-      >
-        <defs>
-          <pattern
-            id="seo-lines"
-            patternUnits="userSpaceOnUse"
-            width="20"
-            height="20"
-          >
-            <path
-              d="M 0,20 l 20,-20 M -5,5 l 10,-10 M 15,25 l 10,-10"
-              stroke="rgba(59, 130, 246, 0.3)"
-              strokeWidth="0.5"
-            />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#seo-lines)" />
-      </svg>
-    </div>
-  );
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-      {/* Our PPC Services Section */}
-      
+    <div className="relative bg-[#060210] text-white overflow-hidden">
+      {/* Background Dots Pattern */}
+      <div
+        className="absolute inset-0 opacity-15 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(#8b5cf6 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
 
-      {/* Our Best PPC Services Section */}
-      <section className="relative py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-blue-900">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-          <LinePattern />
+      {/* Atmospheric Ambient Glows */}
+      <div className="absolute top-20 right-10 w-96 h-96 bg-purple-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
 
-          {/* Subtle background elements */}
-          <div className="absolute top-20 right-10 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 left-10 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl" />
-        </div>
-        {/* <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-black to-slate-900"></div> */}
-
-        {/* Animated Background Elements */}
-        <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-r from-blue-500/20 to-purple-300/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-r from-purple-300/20 to-pink-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-gradient-to-r from-cyan-500/20 to-blue-300/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
-
-        <div className="relative max-w-7xl mx-auto">
+      {/* Main Services Section */}
+      <section className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="relative z-10 max-w-7xl mx-auto">
           {/* Header Section */}
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-xl border border-purple-500/30 text-purple-300 px-6 py-3 rounded-full text-sm font-medium mb-8">
-              <Sparkles className="w-4 h-4" />
-              Premium Services
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-200 text-xs sm:text-sm font-semibold mb-5 shadow-sm">
+              <Sparkles className="w-4 h-4 text-yellow-400" />
+              <span>✦ TAILORED AD FORMATS ✦</span>
             </div>
 
-            <h2 className="text-6xl md:text-8xl font-black mb-4 leading-tight">
-              <span className="bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
-                Our Best
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-5 tracking-tight">
+              Our Best{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
+                PPC Services
               </span>
             </h2>
-            <h3 className="text-5xl md:text-7xl font-black mb-6 lg:mb-12 leading-tight">
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">
-                PPC services
-              </span>
-            </h3>
 
-            <div className="max-w-5xl mx-auto mb-12">
-              <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                When you're new to search engine marketing, it will be very hard
-                to know which type of ads will work for your business and which
-                method will drive you more traffic. Here, we've explained the
-                different types of PPC ads that you can consider for your
-                business and how we can help.
-              </p>
-            </div>
+            <p className="text-sm sm:text-base md:text-lg text-slate-300 leading-relaxed font-normal">
+              When launching search engine marketing, choosing the right ad format is critical to driving
+              high-quality traffic and qualified leads. Here are the specialized PPC ad formats we manage and scale for your business.
+            </p>
           </div>
 
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {adsData.map((ad) => {
-            console.log(ad)
-            const Icon = iconMap[ad.icon] || Search; 
-            return (
-              <div
-                key={ad.id}
-                className="group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl 
-                  border border-white/20 rounded-3xl p-8 shadow-2xl hover:shadow-blue-500/25 
-                  transition-all duration-500 hover:-translate-y-3"
-              >
-                <div className="relative mb-6">
-                  <div className="absolute -inset-3 bg-gradient-to-r from-blue-500 to-cyan-500 
-                    rounded-2xl blur-xl opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
-                  <div className="relative w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 
-                    rounded-2xl flex items-center justify-center shadow-2xl group-hover:scale-110 
-                    transition-transform duration-500">
-                    <Icon className="w-10 h-10 text-white" />
+          {/* Dynamic Services Grid (100% Admin API Data) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {adsData.map((ad, index) => {
+              const Icon = getCardIcon(ad.icon, ad.heading);
+              const style = cardStyles[index % cardStyles.length];
+              const formatNumber = String(index + 1).padStart(2, "0");
+
+              return (
+                <div
+                  key={ad.id}
+                  className="group relative rounded-3xl p-7 sm:p-8 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl border border-white/10 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(139,92,246,0.22)] flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Top Row: Glowing Icon + Badge */}
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="relative">
+                        <div
+                          className="absolute -inset-2 rounded-2xl blur-lg opacity-40 group-hover:opacity-80 transition-opacity duration-300"
+                          style={{ background: style.glow }}
+                        />
+                        <div
+                          className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br ${style.gradient} flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-transform duration-300`}
+                        >
+                          <Icon className="w-7 h-7 sm:w-8 sm:h-8" />
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col items-end gap-1">
+                        <span className="text-xs font-mono font-bold text-slate-500 group-hover:text-purple-300 transition-colors">
+                          #{formatNumber}
+                        </span>
+                        <span className="text-[10px] font-semibold text-slate-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full">
+                          {style.tag}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Heading from API */}
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors duration-300 tracking-tight">
+                      {ad.heading}
+                    </h3>
+
+                    {/* Description from API */}
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal mb-6">
+                      {ad.description}
+                    </p>
+                  </div>
+
+                  {/* Card Bottom CTA & Status */}
+                  <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <ContactPopup
+                      buttonText="Start Campaign →"
+                      buttonClassName="text-xs sm:text-sm font-semibold text-purple-300 hover:text-white transition-colors cursor-pointer inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform"
+                    />
+
+                    <div className="flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>Certified</span>
+                    </div>
                   </div>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 
-                  group-hover:text-blue-300 transition-colors duration-300">
-                  {ad.heading}
-                </h3>
-                <p className="text-gray-300 leading-relaxed">{ad.description}</p>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
 
-          {/* Bottom Section */}
-          <div className="text-center mt-20">
-            <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-xl border border-purple-500/20 rounded-3xl p-8 md:p-12">
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Ready to Choose Your PPC Strategy?
-              </h3>
-              <p className="text-lg text-gray-300 mb-8 max-w-3xl mx-auto">
-                Our experts will help you determine which PPC services are best
-                suited for your business goals and target audience.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                {/* <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2">
-                  <Users className="w-5 h-5" />
-                  Get Free Consultation
-                </button> */}
-                <ContactPopup
-                  buttonText=" Get Free Consultation"
-                  buttonClassName=" cursor-pointer bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
-                />
-                <button className="border-2 border-white/30 text-white px-10 py-4 rounded-full font-semibold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-300 backdrop-blur-xl">
-                  View Case Studies
-                </button>
+          {/* Bottom Conversion CTA Card */}
+          <div className="mt-16 sm:mt-20">
+            <div className="relative rounded-3xl p-8 sm:p-12 bg-gradient-to-r from-purple-950/60 via-[#160b33]/80 to-blue-950/60 border border-purple-500/30 backdrop-blur-xl text-center shadow-2xl overflow-hidden">
+              <div className="absolute top-0 right-0 w-80 h-80 bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+
+              <div className="relative z-10 max-w-3xl mx-auto space-y-5">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-purple-200 text-xs sm:text-sm font-semibold">
+                  <Sparkles className="w-4 h-4 text-yellow-400" />
+                  <span>Ready to Scale Your PPC Results?</span>
+                </div>
+
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight">
+                  Let Our Certified Experts Formulate Your Custom PPC Strategy
+                </h3>
+
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+                  Our specialists will analyze your industry, audit competitor ads, and recommend
+                  the exact ad formats best suited for your business goals and customer acquisition targets.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center pt-3">
+                  <ContactPopup
+                    buttonText="Get Free Consultation →"
+                    buttonClassName="cursor-pointer bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 hover:from-purple-500 hover:to-pink-500 text-white px-8 py-3.5 rounded-full font-bold text-sm sm:text-base shadow-xl shadow-purple-500/25 transform hover:scale-[1.03] active:scale-[0.98] transition-all duration-300"
+                  />
+                  <a
+                    href="tel:+919335621987"
+                    className="inline-flex items-center justify-center gap-2 border border-white/25 text-white px-8 py-3.5 rounded-full font-medium text-sm sm:text-base hover:bg-white/10 hover:border-white/50 transition-all duration-300 backdrop-blur-xl cursor-pointer"
+                  >
+                    <PhoneCall className="w-4 h-4 text-purple-300" />
+                    <span>Talk to Expert: +91 93356 21987</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slide-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slide-left {
-          from {
-            opacity: 0;
-            transform: translateX(-30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes slide-right {
-          from {
-            opacity: 0;
-            transform: translateX(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes bounce-in {
-          0% {
-            opacity: 0;
-            transform: scale(0.3);
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1.05);
-          }
-          70% {
-            transform: scale(0.9);
-          }
-          100% {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out forwards;
-        }
-
-        .animate-fade-in-delay {
-          animation: fade-in 0.8s ease-out 0.2s forwards;
-          opacity: 0;
-        }
-
-        .animate-slide-up {
-          animation: slide-up 0.8s ease-out forwards;
-        }
-
-        .animate-slide-up-delay {
-          animation: slide-up 0.8s ease-out 0.2s forwards;
-          opacity: 0;
-        }
-
-        .animate-slide-up-delay-2 {
-          animation: slide-up 0.8s ease-out 0.4s forwards;
-          opacity: 0;
-        }
-
-        .animate-slide-left {
-          animation: slide-left 0.8s ease-out forwards;
-        }
-
-        .animate-slide-right {
-          animation: slide-right 0.8s ease-out forwards;
-        }
-
-        .animate-fade-in-stagger {
-          animation: fade-in 0.6s ease-out forwards;
-          opacity: 0;
-        }
-
-        .animate-bounce-in {
-          animation: bounce-in 1s ease-out forwards;
-        }
-      `}</style> */}
     </div>
   );
 };

@@ -1,9 +1,38 @@
 import React, { useState } from 'react';
-import { Check, X, Rocket, Zap, Flame, Briefcase, Target, TrendingUp, BarChart3, Eye, Users, MousePointer, DollarSign, Clock, Settings, PieChart, Video, Globe } from 'lucide-react';
+import {
+  Check,
+  X,
+  Rocket,
+  Zap,
+  Flame,
+  Briefcase,
+  Target,
+  TrendingUp,
+  BarChart3,
+  Eye,
+  Users,
+  MousePointer,
+  DollarSign,
+  Clock,
+  Settings,
+  PieChart,
+  Video,
+  Globe,
+  Sparkles,
+  ShieldCheck
+} from 'lucide-react';
+import ContactPopup from '../ContactPopup';
 
 const SMMPackages = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [currency, setCurrency] = useState('INR');
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState('');
+
+  const handleSelectPlan = (planName) => {
+    setSelectedPlan(planName);
+    setIsContactOpen(true);
+  };
 
   const packages = [
     {
@@ -108,7 +137,7 @@ const SMMPackages = () => {
       popular: false,
       description: 'Enterprise-level campaigns with dedicated account management',
       campaignTypes: ['Full-Funnel (Brand to Sales)'],
-      platforms: ['All Platforms (Snapchat, Pinterest, Threads etc.)'],
+      platforms: ['All Platforms (Snapchat, Pinterest, Meta, LinkedIn)'],
       features: {
         'Ad Creatives (Design)': 'Unlimited Creative Variants',
         'Ad Copywriting': 'Full Funnel Copy Set',
@@ -137,61 +166,60 @@ const SMMPackages = () => {
   };
 
   const getCampaignIcons = (types) => {
-  const iconMap = {
-    'Awareness': <Eye className="w-4 h-4" />,
-    'Traffic': <MousePointer className="w-4 h-4" />,
-    'Engagement': <Users className="w-4 h-4" />,
-    'Leads': <Target className="w-4 h-4" />,
-    'Conversion': <DollarSign className="w-4 h-4" />,
-    'Video Views': <Video className="w-4 h-4" />,
-    'Full-Funnel (Brand to Sales)': <TrendingUp className="w-4 h-4" />
-  };
-  
-  return types.map((type) => (
-    <span key={type}>
-      {iconMap[type] || <Target className="w-4 h-4" />}
-    </span>
-  ));
-};
+    const iconMap = {
+      'Awareness': <Eye className="w-3.5 h-3.5" />,
+      'Traffic': <MousePointer className="w-3.5 h-3.5" />,
+      'Engagement': <Users className="w-3.5 h-3.5" />,
+      'Leads': <Target className="w-3.5 h-3.5" />,
+      'Conversion': <DollarSign className="w-3.5 h-3.5" />,
+      'Video Views': <Video className="w-3.5 h-3.5" />,
+      'Full-Funnel (Brand to Sales)': <TrendingUp className="w-3.5 h-3.5" />
+    };
 
+    return types.map((type) => (
+      <span key={type} className="inline-flex items-center gap-1">
+        {iconMap[type] || <Target className="w-3.5 h-3.5" />}
+      </span>
+    ));
+  };
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-red-50 via-orange-50 to-yellow-50 min-h-screen">
+    <section className="py-24 px-4 bg-gradient-to-b from-gray-50 via-white to-amber-50/40 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-100 to-orange-100 text-red-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-100 to-amber-100 text-orange-700 px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider mb-5">
             <Target className="w-4 h-4" />
-            SMM Packages
+            Paid Advertising Packages (SMM)
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Performance-driven paid campaigns
-            <span className="block bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent mt-2">
-              for maximum ROI
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 tracking-tight leading-tight mb-4">
+            Performance-Driven Paid Campaigns{" "}
+            <span className="block sm:inline bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
+              for Maximum ROAS & Leads
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Tailored advertising strategies for awareness, engagement, lead generation, and conversion optimization
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+            Engineered ad funnels on Meta, LinkedIn, and YouTube designed to minimize cost-per-lead and scale profitable revenue.
           </p>
-          
+
           {/* Currency Toggle */}
-          <div className="inline-flex bg-gray-100 rounded-lg p-1">
+          <div className="inline-flex bg-gray-100 p-1 rounded-xl border border-gray-200">
             <button
               onClick={() => setCurrency('INR')}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                currency === 'INR' 
-                  ? 'bg-white text-gray-900 shadow-sm' 
-                  : 'text-gray-600 hover:text-gray-900'
+              className={`px-5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                currency === 'INR'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-500 hover:text-gray-900'
               }`}
             >
               INR (₹)
             </button>
             <button
               onClick={() => setCurrency('USD')}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                currency === 'USD' 
-                  ? 'bg-white text-gray-900 shadow-sm' 
-                  : 'text-gray-600 hover:text-gray-900'
+              className={`px-5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                currency === 'USD'
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-500 hover:text-gray-900'
               }`}
             >
               USD ($)
@@ -201,205 +229,176 @@ const SMMPackages = () => {
 
         {/* Packages Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {packages.map((pkg) => {
-            console.log(pkg)
-            return (
+          {packages.map((pkg) => (
             <div
               key={pkg.id}
               onMouseEnter={() => setHoveredCard(pkg.id)}
               onMouseLeave={() => setHoveredCard(null)}
-              className={`relative group transition-all duration-500 ${
-                hoveredCard === pkg.id ? 'scale-105 z-10' : ''
+              className={`relative group transition-all duration-300 ${
+                hoveredCard === pkg.id ? 'transform -translate-y-2' : ''
               }`}
             >
               {/* Popular Badge */}
               {pkg.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                  <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+                <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 z-20">
+                  <div className="bg-gradient-to-r from-orange-600 via-red-600 to-rose-600 text-white text-xs font-bold px-4 py-1 rounded-full shadow-md uppercase tracking-wider">
                     Most Popular
                   </div>
                 </div>
               )}
 
-              <div className={`relative h-full bg-white rounded-2xl shadow-lg border transition-all duration-500 overflow-hidden ${
-                pkg.popular 
-                  ? 'border-red-200 shadow-xl' 
-                  : 'border-gray-200 group-hover:border-red-200 group-hover:shadow-xl'
-              }`}>
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-500 ${
-                  pkg.id === 'launch' ? 'from-blue-500/5 to-purple-500/5' :
-                  pkg.id === 'accelerate' ? 'from-red-500/5 to-orange-500/5' :
-                  pkg.id === 'scale' ? 'from-orange-500/5 to-yellow-500/5' :
-                  'from-purple-500/5 to-pink-500/5'
-                } ${hoveredCard === pkg.id ? 'opacity-100' : ''}`} />
-                <div className="relative p-6">
+              <div
+                className={`h-full bg-white rounded-2xl border transition-all duration-300 overflow-hidden flex flex-col justify-between ${
+                  pkg.popular
+                    ? 'border-orange-500 ring-2 ring-orange-500/20 shadow-xl'
+                    : 'border-gray-200 shadow-sm hover:border-orange-300 hover:shadow-xl'
+                }`}
+              >
+                <div className="p-6">
                   {/* Icon & Title */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`p-2 rounded-lg ${
-                      pkg.id === 'launch' ? 'bg-blue-100 text-blue-600' :
-                      pkg.id === 'accelerate' ? 'bg-red-100 text-red-600' :
-                      pkg.id === 'scale' ? 'bg-orange-100 text-orange-600' :
-                      'bg-purple-100 text-purple-600'
-                    }`}>
+                  <div className="flex items-center justify-between mb-4">
+                    <div
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                        pkg.id === 'launch'
+                          ? 'bg-blue-50 text-blue-600'
+                          : pkg.id === 'accelerate'
+                          ? 'bg-orange-50 text-orange-600'
+                          : pkg.id === 'scale'
+                          ? 'bg-red-50 text-red-600'
+                          : 'bg-purple-50 text-purple-600'
+                      }`}
+                    >
                       {pkg.icon}
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900">{pkg.name}</h3>
-                      <span className="text-2xl">{pkg.emoji}</span>
-                    </div>
+                    <span className="text-2xl">{pkg.emoji}</span>
                   </div>
 
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">{pkg.name}</h3>
+                  <p className="text-gray-500 text-xs min-h-[34px] leading-relaxed mb-4">
+                    {pkg.description}
+                  </p>
+
                   {/* Pricing */}
-                  <div className="mb-4">
-                    <div className="text-2xl font-bold text-gray-900">
+                  <div className="mb-4 pb-4 border-b border-gray-100">
+                    <div className="text-3xl font-black text-gray-900">
                       {formatPrice(pkg.priceINR, pkg.priceUSD)}
-                      <span className="text-sm font-normal text-gray-500">/month</span>
+                      <span className="text-xs font-normal text-gray-500 ml-1">/month</span>
                     </div>
-                    <div className="text-sm text-gray-600 mt-1">
-                      Management Fee + Ad Spend
-                    </div>
-                    <div className="mt-2 p-2 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg">
-                      <div className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
-                        Recommended Ad Spend
+                    <div className="text-xs text-gray-500 mt-1">Management Retainer</div>
+                    <div className="mt-2.5 p-2.5 bg-orange-50/70 border border-orange-100/80 rounded-xl">
+                      <div className="text-[11px] font-semibold text-gray-600 uppercase tracking-wide">
+                        Target Ad Spend
                       </div>
-                      <div className="text-sm font-bold text-orange-700">
+                      <div className="text-xs font-bold text-orange-700">
                         {formatAdSpend(pkg.adSpendINR, pkg.adSpendUSD)}
                       </div>
                     </div>
                   </div>
 
-                  {/* Description */}
-                  <p className="text-gray-600 text-sm mb-4">{pkg.description}</p>
-
-                  {/* Campaign Types */}
+                  {/* Campaign Focus */}
                   <div className="mb-4">
-                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                      Campaign Focus
+                    <div className="text-[11px] font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+                      Focus Objectives
                     </div>
-                    <div className="flex items-center gap-2 bg-gray-50 rounded-lg p-3">
+                    <div className="flex items-center gap-1.5 text-xs text-gray-700 bg-gray-50 px-3 py-2 rounded-lg border border-gray-100">
                       {getCampaignIcons(pkg.campaignTypes)}
-                      <span className="text-sm text-gray-700 ml-1">
-                        {pkg.campaignTypes.join(' / ')}
-                      </span>
+                      <span className="font-medium truncate">{pkg.campaignTypes.join(' / ')}</span>
                     </div>
                   </div>
 
                   {/* Platforms */}
-                  <div className="mb-6">
-                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                      Ad Platforms
+                  <div className="mb-5">
+                    <div className="text-[11px] font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+                      Supported Channels
                     </div>
-                    <div className="text-sm text-gray-700 bg-gradient-to-r from-gray-50 to-red-50 rounded-lg p-3">
+                    <div className="text-xs text-gray-700 bg-gradient-to-r from-gray-50 to-orange-50/40 px-3 py-2 rounded-lg border border-gray-100 font-medium">
                       {pkg.platforms.join(', ')}
                     </div>
                   </div>
 
-                  {/* Key Features */}
-                  <div className="space-y-3 mb-6">
-                    {Object.entries(pkg.features).slice(0, 6).map(([feature, value]) => {
-                      console.log('Rendering feature:', feature, 'with value:', value);
-                      return (
-                      <div key={feature} className="flex items-start gap-3">
+                  {/* Key Features List */}
+                  <div className="space-y-2.5 mb-6">
+                    {Object.entries(pkg.features).slice(0, 6).map(([feature, value]) => (
+                      <div key={feature} className="flex items-start gap-2.5">
                         {value === false ? (
-                          <X className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                          <X className="w-4 h-4 text-gray-300 mt-0.5 flex-shrink-0" />
                         ) : (
-                          <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
-                            pkg.id === 'launch' ? 'text-blue-500' :
-                            pkg.id === 'accelerate' ? 'text-red-500' :
-                            pkg.id === 'scale' ? 'text-orange-500' :
-                            'text-purple-500'
-                          }`} />
+                          <Check className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
                         )}
-                        <div  className="flex-1 min-w-0">
-                          <div className="text-sm font-medium text-gray-900">{feature}</div>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-xs font-semibold text-gray-800">{feature}</div>
                           {value !== false && (
-                            <div className="text-xs text-gray-600 mt-1">{value.toString()}</div>
+                            <div className="text-[11px] text-gray-500 leading-tight">{value.toString()}</div>
                           )}
                         </div>
                       </div>
-                    )
-                    })}
+                    ))}
                   </div>
+                </div>
 
-                  {/* Performance Metrics */}
-                  <div className="mb-6 p-3 bg-gradient-to-r from-gray-50 to-yellow-50 rounded-lg">
-                    <div className="flex items-center gap-2 mb-2">
-                      <BarChart3 className="w-4 h-4 text-orange-600" />
-                      <span className="text-sm font-medium text-gray-900">What's Included</span>
-                    </div>
-                    <div className="text-xs text-gray-600 space-y-1">
-                      <div>• {pkg.features['Ad Creatives (Design)']}</div>
-                      <div>• {pkg.features['Ad Copywriting']}</div>
-                      <div>• {pkg.features['Reports & Insights']}</div>
-                    </div>
-                  </div>
-
-                  {/* CTA Button */}
-                  <button className={`w-full py-3 px-4 rounded-lg font-semibold transition-all duration-300 ${
-                    pkg.popular
-                      ? 'bg-gradient-to-r from-red-600 to-orange-600 text-white hover:from-red-700 hover:to-orange-700 shadow-lg hover:shadow-xl'
-                      : `border-2 hover:text-white ${
-                          pkg.id === 'launch' ? 'border-blue-500 text-blue-600 hover:bg-blue-500' :
-                          pkg.id === 'accelerate' ? 'border-red-500 text-red-600 hover:bg-red-500' :
-                          pkg.id === 'scale' ? 'border-orange-500 text-orange-600 hover:bg-orange-500' :
-                          'border-purple-500 text-purple-600 hover:bg-purple-500'
-                        }`
-                  }`}>
-                    Start Campaign
+                {/* Card CTA */}
+                <div className="p-6 pt-0">
+                  <button
+                    onClick={() => handleSelectPlan(pkg.name)}
+                    className={`w-full py-3 px-4 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer ${
+                      pkg.popular
+                        ? 'bg-gradient-to-r from-orange-600 via-red-600 to-rose-600 text-white shadow-lg shadow-orange-500/25 hover:opacity-95'
+                        : 'bg-gray-900 text-white hover:bg-orange-600'
+                    }`}
+                  >
+                    Select {pkg.name} Plan
                   </button>
                 </div>
               </div>
             </div>
-          )
-          })}
+          ))}
         </div>
 
-        {/* Performance Metrics Section */}
-        <div className="mt-16">
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <TrendingUp className="w-5 h-5 text-green-600" />
-                </div>
-                <h4 className="font-semibold text-gray-900">ROAS Focused</h4>
-              </div>
-              <p className="text-sm text-gray-600">Every campaign optimized for maximum return on ad spend</p>
+        {/* Value Prop 3-Card Footer */}
+        <div className="mt-16 grid md:grid-cols-3 gap-6">
+          <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm flex items-start gap-4">
+            <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl">
+              <TrendingUp className="w-5 h-5" />
             </div>
-
-            <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <Settings className="w-5 h-5 text-blue-600" />
-                </div>
-                <h4 className="font-semibold text-gray-900">Real-time Optimization</h4>
-              </div>
-              <p className="text-sm text-gray-600">Continuous monitoring and adjustment for peak performance</p>
-            </div>
-
-            <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-purple-100 rounded-lg">
-                  <PieChart className="w-5 h-5 text-purple-600" />
-                </div>
-                <h4 className="font-semibold text-gray-900">Advanced Analytics</h4>
-              </div>
-              <p className="text-sm text-gray-600">Detailed insights and KPI tracking for informed decisions</p>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">ROAS-Obsessed Management</h4>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                We track actual revenues and qualified leads, not just vanity impressions.
+              </p>
             </div>
           </div>
 
-          <div className="text-center">
-            <p className="text-gray-600 mb-4">
-              All packages include comprehensive setup, ongoing optimization, and transparent reporting
-            </p>
-            <button className="inline-flex items-center gap-2 text-red-600 hover:text-red-700 font-medium">
-              View Campaign Case Studies & Results
-              <Target className="w-4 h-4" />
-            </button>
+          <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm flex items-start gap-4">
+            <div className="p-3 bg-blue-50 text-blue-600 rounded-xl">
+              <Settings className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Daily Creative Iterations</h4>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                Ongoing A/B copy and hook testing prevent ad fatigue and keep acquisition costs low.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm flex items-start gap-4">
+            <div className="p-3 bg-purple-50 text-purple-600 rounded-xl">
+              <PieChart className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">Transparent Dashboards</h4>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                Live metrics on CPL, CTR, conversions, and ad spend in real-time.
+              </p>
+            </div>
           </div>
         </div>
       </div>
+
+      <ContactPopup
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        defaultSubject={selectedPlan ? `SMM Ads Package: ${selectedPlan}` : 'SMM Paid Ads Inquiry'}
+      />
     </section>
   );
 };

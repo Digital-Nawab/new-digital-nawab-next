@@ -122,7 +122,7 @@ const SEOPackages = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-slate-50 to-white min-h-screen">
+    <section id="packages" className="py-20 px-4 bg-gradient-to-b from-slate-50 to-white min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -190,7 +190,7 @@ const SEOPackages = () => {
               }`}>
                 {/* Gradient Overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-500 ${
-                  pkg.id === 'local' ? 'from-green-500/5 to-emerald-500/5' :
+                  pkg.id === 'local' ? 'from-cyan-500/5 to-blue-500/5' :
                   pkg.id === 'standard' ? 'from-blue-500/5 to-indigo-500/5' :
                   pkg.id === 'ecommerce' ? 'from-purple-500/5 to-pink-500/5' :
                   'from-orange-500/5 to-red-500/5'
@@ -200,7 +200,7 @@ const SEOPackages = () => {
                   {/* Icon & Title */}
                   <div className="flex items-center gap-3 mb-4">
                     <div className={`p-2 rounded-lg ${
-                      pkg.id === 'local' ? 'bg-green-100 text-green-600' :
+                      pkg.id === 'local' ? 'bg-cyan-100 text-cyan-600' :
                       pkg.id === 'standard' ? 'bg-blue-100 text-blue-600' :
                       pkg.id === 'ecommerce' ? 'bg-purple-100 text-purple-600' :
                       'bg-orange-100 text-orange-600'
@@ -242,7 +242,7 @@ const SEOPackages = () => {
                           <X className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
                         ) : (
                           <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
-                            pkg.id === 'local' ? 'text-green-500' :
+                            pkg.id === 'local' ? 'text-cyan-600' :
                             pkg.id === 'standard' ? 'text-blue-500' :
                             pkg.id === 'ecommerce' ? 'text-purple-500' :
                             'text-orange-500'
@@ -259,26 +259,13 @@ const SEOPackages = () => {
                   </div>
 
                   {/* CTA Button */}
-                  {/* <button className={`w-full py-3 px-4 rounded-lg font-semibold transition-all duration-300 ${
-                    pkg.popular
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl'
-                      : `border-2 hover:text-white ${
-                          pkg.id === 'local' ? 'border-green-500 text-green-600 hover:bg-green-500' :
-                          pkg.id === 'standard' ? 'border-blue-500 text-blue-600 hover:bg-blue-500' :
-                          pkg.id === 'ecommerce' ? 'border-purple-500 text-purple-600 hover:bg-purple-500' :
-                          'border-orange-500 text-orange-600 hover:bg-orange-500'
-                        }`
-                  }`}>
-                    Get Started
-                  </button> */}
-
                   <ContactPopup
                   buttonText="Get Started"
                   buttonClassName={`w-full py-3 px-4 cursor-pointer rounded-lg font-semibold transition-all duration-300 ${
                     pkg.popular
                       ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl'
                       : `border-2 hover:text-white ${
-                          pkg.id === 'local' ? 'border-green-500 text-green-600 hover:bg-green-500' :
+                          pkg.id === 'local' ? 'border-cyan-500 text-cyan-600 hover:bg-cyan-500' :
                           pkg.id === 'standard' ? 'border-blue-500 text-blue-600 hover:bg-blue-500' :
                           pkg.id === 'ecommerce' ? 'border-purple-500 text-purple-600 hover:bg-purple-500' :
                           'border-orange-500 text-orange-600 hover:bg-orange-500'

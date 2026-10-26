@@ -46,6 +46,22 @@ function ActiveLink({ href, children, activeClass, inactiveClass }) {
 
 const FloatingDock = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [cities, setCities] = useState([]);
+
+  React.useEffect(() => {
+    const fetchCities = async () => {
+      try {
+        const res = await fetch("https://dashboard.digitalnawab.com/api/cities");
+        const json = await res.json();
+        if (json.status && Array.isArray(json.data)) {
+          setCities(json.data.filter((c) => c.is_active));
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    fetchCities();
+  }, []);
 
   const services = [
     {
@@ -68,6 +84,13 @@ const FloatingDock = () => {
         <IconMessage className="h-6 w-6 text-neutral-300 group-hover:text-blue-400" />
       ),
       href: "/service/social-media-marketing",
+    },
+    {
+      title: "Ecommerce Marketing",
+      icon: (
+        <IconGraph className="h-6 w-6 text-neutral-300 group-hover:text-blue-400" />
+      ),
+      href: "/service/ecommerce-marketing",
     },
     {
       title: "Graphic Design",
@@ -101,16 +124,16 @@ const FloatingDock = () => {
       href: "/",
     },
     {
-      title: "About Us",
-      icon: (
-        <IconTerminal2 className="h-6 w-6 text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "/about-us",
-    },
-    {
       title: "Services",
       icon: null, // we'll handle it separately below
       href: "#",
+    },
+    {
+      title: "Packages",
+      icon: (
+        <IconTerminal2 className="h-6 w-6 text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/packages",
     },
     {
       title: "Portfolio",
@@ -120,7 +143,7 @@ const FloatingDock = () => {
       href: "/portfolio",
     },
     {
-      title: "Contact Us",
+      title: "Contact",
       icon: (
         <Contact className="h-6 w-6 text-neutral-500 dark:text-neutral-300" />
       ),
@@ -207,6 +230,26 @@ const FloatingDock = () => {
                           </ActiveLink>
                         ))}
                       </div>
+
+                      {cities.length > 0 && (
+                        <div className="mt-4 pt-3 border-t border-gray-800">
+                          <p className="text-xs uppercase tracking-wider text-lime-400 font-semibold mb-2 text-center">
+                            Cities We Serve
+                          </p>
+                          <div className="flex flex-wrap justify-center gap-2">
+                            {cities.map((c) => (
+                              <Link
+                                key={c.id}
+                                href={`/city/${c.slug}`}
+                                onClick={() => setDrawerOpen(false)}
+                                className="px-3 py-1.5 rounded-lg bg-gray-800/80 hover:bg-lime-400 hover:text-black text-xs font-medium text-gray-200 border border-gray-700 transition-colors"
+                              >
+                                {c.name}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     <DrawerFooter className="pt-2">
