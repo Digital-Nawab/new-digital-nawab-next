@@ -20,8 +20,7 @@ import ToolsAndTechnologies from "../../components/TechWeUse";
 import HappyPartners from "./HappyPartners";
 import Testimonial from "./Testimonial";
 import InnovateHero from "./CatelystHero";
-import { MacbookScroll } from "@/components/ui/macbook-scroll";
-import FAQSection from "../../components/FAQSec";
+import FAQSection from "./FAQSec";
 import ContactUs from "./ContactUS";
 import VisionMissionSection from "./VIsion&Mission";
 import { ThreeDMarqueeDemoSecond } from "./ThreeDMarqueeDemoSecond";
@@ -45,7 +44,7 @@ const Home = () => {
       <ToolsAndTechnologies />
       {/* <Testimonial /> */}
       <ContactUs />
-      {/* <FAQSection /> */}
+      <FAQSection />
       {/* <BlogSection /> */}
     </>
   );

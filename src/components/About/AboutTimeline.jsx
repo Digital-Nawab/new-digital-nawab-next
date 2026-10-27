@@ -1,87 +1,207 @@
-import Image from 'next/image'
+"use client";
+
+import React from "react";
+import {
+  Sparkles,
+  Calendar,
+  CheckCircle2,
+  TrendingUp,
+  Award,
+  Rocket,
+  Search,
+  Megaphone,
+} from "lucide-react";
 
 const milestones = [
   {
     year: "2015",
-    title: "Started with Local SEO & Digital Marketing Solutions",
-    desc: "Digital Nawab began a digital journey in 2015, when it was a performance-oriented local SEO agency in Lucknow. Our focus is on helping local businesses establish a robust online presence, supported by our effective strategies. Our introductory activities provided the ideal foundation for achieving sustainable success for our clients through our effective SEO campaigns, scalable growth, and data-driven digital marketing services.",
-    image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80",
+    tag: "Inception & Local Foundations",
+    icon: <Search className="w-4 h-4 text-pink-400" />,
+    title: "Started with Local SEO & High-Intent Digital Solutions",
+    desc: "Digital Nawab began its digital journey in 2015 as a performance-oriented local SEO agency in Lucknow. Our primary mission was helping regional enterprises build a robust, searchable online presence with transparent search ranking methods.",
+    stats: "First 25+ Local Businesses Ranked #1",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
   },
   {
     year: "2017",
-    title: "Launched SEO & Content Marketing Services",
-    desc: "Our reputation as the best SEO agency in India has been established, thanks to our track record of successfully managing over 100 client campaigns. We help brands across various industries to base their operations on data-driven approaches, predictable reporting, and scalable performance. Our campaigns are designed to achieve better rankings, maximise traffic, and deliver ROI to meet the growth requirements of our clients.",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80",
+    tag: "Scale & Content Innovation",
+    icon: <TrendingUp className="w-4 h-4 text-purple-400" />,
+    title: "Launched Full-Scale SEO & Content Marketing Operations",
+    desc: "Expanded operations beyond local boundaries into national SEO, enterprise technical audits, and content marketing architectures. We established predictable client reporting and scalable search acquisition funnels.",
+    stats: "Over 100+ Campaigns Successfully Managed",
+    image:
+      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80",
   },
   {
     year: "2019",
-    title: "100+ Clients Served with Proven SEO Campaigns",
-    desc: "We are expanding our sphere of influence by offering strategically crafted SEO services in Lucknow, with over 100 clients and counting, to achieve long-term digital success. Performance-based, personalised, and analytical campaigns were offered. The customers were able to see an improvement in their ranking, particularly in terms of involvement and online presence. The ingredients that largely contributed to its success are our strategy, consistency, and knowledge of search behaviour.",
-    image: "https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?auto=format&fit=crop&w=400&q=80",
+    tag: "100+ Client Milestone",
+    icon: <Award className="w-4 h-4 text-cyan-400" />,
+    title: "100+ Retained Clients with Proven Multi-Industry ROI",
+    desc: "Achieved the major landmark of serving over 100 long-term retained clients across ecommerce, education, healthcare, and retail sectors. Personalized analytics and continuous CRO optimization became our core trademark.",
+    stats: "300% Average Traffic Increase for Clients",
+    image:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80",
   },
   {
     year: "2021",
-    title: "Introduced PPC Ads & Social Media Marketing",
-    desc: "Digital Nawab has emerged as a leader in PPC campaigns and high-level Meta Ads management in the service sector. These brands were more exposed, received leads, and used tactics related to the platforms. This was a significant change because such services helped businesses grow faster by utilising paid media and ensured brand consistency across digital platforms.",
-    image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80",
+    tag: "Paid Acquisition Era",
+    icon: <Megaphone className="w-4 h-4 text-amber-400" />,
+    title: "Introduced High-Conversion PPC & Paid Meta Advertising",
+    desc: "Scaled our performance marketing division to manage high-volume Google Ads and Meta ad spends. We pioneered automated lead verification pipelines that slashed client cost-per-lead (CPL) by up to 40%.",
+    stats: "Managed ₹5Cr+ in Paid Ad Spend",
+    image:
+      "https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=600&q=80",
   },
   {
     year: "2023",
-    title: "Awarded Top Digital Marketing Agency in India",
-    desc: "Digital Nawab has established a reputation for utilising innovative strategies and delivering excellent performance in Google Ads management at a national level. Our successes in developing high-conversion campaigns are due to the confidence we demonstrate in fulfilling the expectations of businesses across various sectors. The award was a testament to years of dedication, measurable client successes, and an eyes-on-the-future philosophy that continually finds ways to make it happen.",
-    image: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=400&q=80",
+    tag: "Excellence & Recognition",
+    icon: <Award className="w-4 h-4 text-pink-400" />,
+    title: "Recognized Among Top Digital Marketing Agencies in North India",
+    desc: "Honored for innovation in Google Ads management and omnichannel search dominance. Our client roster expanded to over 250 enterprise brands seeking dependable, high-yield digital returns.",
+    stats: "95% Client Retention & Satisfaction",
+    image:
+      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    year: "2025+",
+    tag: "Full-Stack Enterprise & AI",
+    icon: <Rocket className="w-4 h-4 text-purple-400" />,
+    title: "Next-Gen Web Architecture, AI Search & Omnichannel Dominance",
+    desc: "Today, Digital Nawab builds future-proof digital ecosystems with lightning-fast Next.js engineering, AI-optimized search visibility (GEO/AEO), and comprehensive brand scale strategies across India and globally.",
+    stats: "500+ Projects & Expanding Across Global Markets",
+    image:
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80",
   },
 ];
 
-const AboutTimeline = () => (
-  <section className="bg-gradient-to-b from-black via-gray-900 to-gray-950 py-16 px-4">
-    <div className="max-w-6xl mx-auto">
-      <div className="text-center mb-12">
-        <span className="bg-[#C73673]/20 text-[#C73673] px-3 py-1 rounded-full text-xs font-semibold tracking-widest uppercase">
-          Our Milestone
-        </span>
-        <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-4">
-          Our Growth Journey in Digital Marketing Since 2015
-        </h2>
-        <p className="text-gray-300 text-lg mt-4 max-w-4xl mx-auto">
-          With decades of experience, we have established a reputation as a strategic provider of online marketing services that can help you promote your brand, increase traffic, and enhance engagement levels.
-        </p>
-      </div>
-      <div className="relative">
-        {/* Central vertical line */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-full lg:border-l-2 border-dotted border-[#C73673]" style={{ top: 0, bottom: 0 }} />
-        <div className="flex flex-col gap-16">
-          {milestones.map((item, index) => (
-            <div
-              key={index}
-              className={`flex flex-col md:flex-row items-center gap-8 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}
-            >
-              {/* Text Block */}
-              <div className={`md:w-1/2 px-4 md:px-8 text-center md:text-${index % 2 === 0 ? "right" : "left"}`}>
-                <h3 className="text-[#C73673] text-lg font-bold mb-1">{item.year}</h3>
-                <h4 className="text-white text-lg font-bold mb-2">{item.title}</h4>
-                <p className="text-gray-300 text-sm">{item.desc}</p>
-              </div>
-              {/* Connector Dot */}
-              <div className="relative z-10 w-10 h-10 flex items-center justify-center">
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-gradient-to-br from-[#C73673] via-[#8F5AFF] to-[#FF6FD8] rounded-full shadow-lg transition-transform duration-300 scale-100 group-hover:scale-110 animate-pulse"></div>
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-white border-4 border-[#C73673] rounded-full shadow-md"></div>
-              </div>
-              {/* Image Block */}
-              <div className="md:w-1/2 px-4 md:px-8 mt-6 md:mt-0">
-                <img
-                  src={item.image}
-                  alt={item.year}
-                  className="rounded-xl shadow-lg w-full max-w-xs mx-auto object-cover"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          ))}
+const AboutTimeline = () => {
+  return (
+    <section className="relative w-full bg-[#05040a] border-t border-white/[0.06] py-20 lg:py-28 px-4 sm:px-6 lg:px-8 text-white overflow-hidden">
+      {/* Background Radial Glows */}
+      <div className="pointer-events-none absolute top-10 left-1/3 w-[600px] h-[600px] bg-gradient-to-br from-[#8F5AFF]/15 to-transparent blur-[160px] rounded-full" />
+      <div className="pointer-events-none absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-[#C73673]/15 to-transparent blur-[160px] rounded-full" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-purple-500/15 via-pink-500/15 to-blue-500/15 border border-purple-500/30 text-purple-300 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-5 shadow-lg shadow-purple-500/10">
+            <Sparkles className="w-3.5 h-3.5 text-pink-400" />
+            <span>Our Milestone</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-4 leading-tight tracking-tight">
+            A Decade of Relentless Growth &{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-[#FF6FD8]">
+              Digital Triumphs
+            </span>
+          </h2>
+
+          <p className="text-gray-300 text-base sm:text-lg leading-relaxed font-light max-w-2xl mx-auto">
+            From our founding roots in 2015 to managing national multi-channel
+            campaigns today, explore the key milestones that shaped Digital Nawab.
+          </p>
+        </div>
+
+        {/* Timeline Flow */}
+        <div className="relative">
+          {/* Central Vertical Glowing Line (visible on desktop) */}
+          <div className="hidden lg:block absolute left-1/2 top-4 bottom-4 -translate-x-1/2 w-[2px] bg-gradient-to-b from-[#C73673] via-[#8F5AFF] to-[#00F0FF] opacity-30 shadow-[0_0_15px_rgba(143,90,255,0.5)]" />
+
+          <div className="space-y-12 sm:space-y-16 lg:space-y-20">
+            {milestones.map((item, index) => {
+              const isEven = index % 2 === 0;
+
+              return (
+                <div
+                  key={index}
+                  className={`relative flex flex-col lg:flex-row items-center gap-8 lg:gap-14 ${
+                    isEven ? "lg:flex-row" : "lg:flex-row-reverse"
+                  }`}
+                >
+                  {/* Content Card (Half width) */}
+                  <div className="w-full lg:w-1/2">
+                    <div
+                      className={`p-6 sm:p-8 rounded-3xl bg-[#0e0c18]/80 border border-white/[0.08] backdrop-blur-xl hover:border-purple-500/50 hover:bg-[#120f20]/90 transition-all duration-300 shadow-xl group relative overflow-hidden ${
+                        isEven ? "lg:text-right" : "lg:text-left"
+                      }`}
+                    >
+                      {/* Top accent light on hover */}
+                      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C73673] via-[#8F5AFF] to-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                      {/* Header tags inside card */}
+                      <div
+                        className={`flex flex-wrap items-center gap-2.5 mb-4 ${
+                          isEven
+                            ? "lg:justify-end justify-start"
+                            : "justify-start"
+                        }`}
+                      >
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-[#C73673] to-[#8F5AFF] text-white font-mono font-bold text-xs tracking-wider shadow-md shadow-pink-500/20">
+                          <Calendar className="w-3 h-3" />
+                          <span>{item.year}</span>
+                        </span>
+
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-xs font-medium text-gray-300">
+                          {item.icon}
+                          <span>{item.tag}</span>
+                        </span>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-purple-200 transition-colors leading-snug">
+                        {item.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-gray-300/90 text-sm sm:text-base leading-relaxed font-light mb-5">
+                        {item.desc}
+                      </p>
+
+                      {/* Stats badge */}
+                      <div
+                        className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-xs font-medium text-purple-300 ${
+                          isEven ? "lg:flex-row-reverse" : "flex-row"
+                        }`}
+                      >
+                        <CheckCircle2 className="w-3.5 h-3.5 text-pink-400 shrink-0" />
+                        <span>{item.stats}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Central Node Marker on Desktop */}
+                  <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-[#0c0918] border-2 border-purple-500/60 flex items-center justify-center shadow-lg shadow-purple-500/30">
+                      <div className="w-5 h-5 rounded-full bg-gradient-to-r from-[#C73673] to-[#8F5AFF] animate-pulse" />
+                    </div>
+                  </div>
+
+                  {/* Image Card (Half width) */}
+                  <div className="w-full lg:w-1/2">
+                    <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-[#0c0918] aspect-[16/10] group max-w-lg mx-auto shadow-2xl">
+                      <img
+                        src={item.image}
+                        alt={`${item.year} - ${item.title}`}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#05040a] via-transparent to-transparent opacity-60" />
+
+                      {/* Year watermark */}
+                      <div className="absolute bottom-4 right-4 text-4xl sm:text-5xl font-mono font-extrabold text-white/10 select-none pointer-events-none">
+                        {item.year}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default AboutTimeline;

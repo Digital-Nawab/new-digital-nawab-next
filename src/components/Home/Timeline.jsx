@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { Spotlight } from "@/components/ui/spotlight-new";
 import { BackgroundBeams } from "@/components/ui/background-beams";
@@ -38,7 +39,6 @@ export function TimelineDemo() {
         };
 
         const response = await axios.request(config);
-        console.log(response.data);
         setServices(response.data);
       } catch (error) {
         console.error(error);
@@ -57,23 +57,31 @@ export function TimelineDemo() {
       subservices: [
         {
           name: "Social Media Marketing",
+          description: "Amplify your brand presence and engage target audiences across Instagram, Facebook, LinkedIn, and YouTube with data-driven social campaigns.",
           image: "/assets/images/services/1.webp",
-          icon: <TrendingUp className="w-6 h-6" />
+          icon: <TrendingUp className="w-6 h-6" />,
+          link: "/service/social-media-marketing",
         },
         {
           name: "SEO & Analytics",
+          description: "Drive continuous organic traffic, achieve first-page Google rankings, and gain actionable performance insights with advanced SEO & data analytics.",
           image: "/assets/images/services/2.webp",
-          icon: <BarChart3 className="w-6 h-6" />
+          icon: <BarChart3 className="w-6 h-6" />,
+          link: "/service/seo-company-in-lucknow",
         },
         {
           name: "Email Automation",
+          description: "Build automated customer journeys, high-converting drip workflows, and personalized newsletters that maximize lead retention and repeat revenue.",
           image: "/assets/images/services/3.webp",
-          icon: <Mail className="w-6 h-6" />
+          icon: <Mail className="w-6 h-6" />,
+          link: "/service/direct-marketing",
         },
         {
           name: "Strategy & Planning",
+          description: "Tailored multi-channel marketing roadmaps, competitor research, target persona audits, and ROI-focused campaign architectures.",
           image: "/assets/images/services/4.webp",
-          icon: <Target className="w-6 h-6" />
+          icon: <Target className="w-6 h-6" />,
+          link: "/service/pay-per-click-services",
         }
       ],
       content: (
@@ -139,23 +147,31 @@ export function TimelineDemo() {
       subservices: [
         {
           name: "Logo & Branding",
+          description: "Distinctive logo systems, cohesive brand color palettes, typography guidelines, and complete corporate identity collateral that leave lasting impressions.",
           image: "/assets/images/services/8.webp",
-          icon: <Sparkles className="w-6 h-6" />
+          icon: <Sparkles className="w-6 h-6" />,
+          link: "/service/graphic-designing-services",
         },
         {
           name: "UI/UX Design",
+          description: "Modern, user-centered web and mobile application prototypes, wireframes, and design systems crafted for intuitive navigation and high conversion rates.",
           image: "/assets/images/services/7.webp",
-          icon: <PenTool className="w-6 h-6" />
+          icon: <PenTool className="w-6 h-6" />,
+          link: "/service/graphic-designing-services",
         },
         {
           name: "Campaign Design",
+          description: "Dynamic visual themes, multi-platform promotional graphics, print collateral, and retail marketing assets that make your marketing memorable.",
           image: "/assets/images/services/5.webp",
-          icon: <Target className="w-6 h-6" />
+          icon: <Target className="w-6 h-6" />,
+          link: "/service/graphic-designing-services",
         },
         {
           name: "Ad Creatives",
+          description: "High-performing visual ads, display banners, and social creatives engineered with psychology-backed visual hierarchy to drive higher CTRs and ROAS.",
           image: "/assets/images/services/6.webp",
-          icon: <Palette className="w-6 h-6" />
+          icon: <Palette className="w-6 h-6" />,
+          link: "/service/pay-per-click-services",
         }
       ],
       content: (
@@ -220,23 +236,32 @@ export function TimelineDemo() {
       subservices: [
         {
           name: "Website Development",
+          description: "High-speed, SEO-optimized, and mobile-responsive websites engineered with modern architectures, clean code, and intuitive content management systems.",
           image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          icon: <Globe className="w-6 h-6" />
+          icon: <Globe className="w-6 h-6" />,
+          link: "/service/website-design-and-development",
         },
         {
           name: "Mobile Apps",
+          description: "Scalable Android and iOS mobile applications with sleek user interfaces, fast native performance, and secure cloud API synchronization.",
           image: "/assets/images/services/mobile.png",
-          icon: <Smartphone className="w-6 h-6" />
+          objectFit: "contain",
+          icon: <Smartphone className="w-6 h-6" />,
+          link: "/service/mobile-application-development",
         },
         {
           name: "ReactJS Development",
-          image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=500&auto=format&fit=crop",
-          icon: <Code2 className="w-6 h-6" />
+          description: "Dynamic single-page applications and modular frontend architectures built with React and Next.js for blazing fast interactivity and responsiveness.",
+          image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop",
+          icon: <Code2 className="w-6 h-6" />,
+          link: "/service/website-design-and-development",
         },
         {
           name: "Cloud Solutions",
-          image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=500&auto=format&fit=crop",
-          icon: <Rocket className="w-6 h-6" />
+          description: "Secure cloud hosting infrastructure, scalable microservices, database optimizations, and automated deployment pipelines on AWS and cloud platforms.",
+          image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop",
+          icon: <Rocket className="w-6 h-6" />,
+          link: "/service/website-design-and-development",
         }
       ],
       content: (
@@ -438,7 +463,7 @@ export function TimelineDemo() {
             </motion.div>
 
             {/* Services Grid with Animated Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
               {data3[activeCategory].subservices.map((service, index) => (
                 <motion.div
                   key={index}
@@ -447,19 +472,27 @@ export function TimelineDemo() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   onMouseEnter={() => setHoveredCard(index)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  className="group relative"
+                  className="group relative flex"
                 >
-                  <div className="relative overflow-hidden rounded-xl bg-gray-900/50 border border-gray-800 backdrop-blur-sm transition-all duration-300 hover:border-gray-700 hover:shadow-2xl hover:shadow-purple-500/20">
+                  <Link
+                    href={service.link || "/service/website-design-and-development"}
+                    className="relative flex flex-col w-full h-full rounded-2xl bg-gray-900/60 border border-gray-800 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-gray-700 hover:shadow-2xl hover:shadow-purple-500/20"
+                  >
                     {/* Image Container */}
-                    <div className="relative h-48 overflow-hidden">
+                    <div className="relative w-full aspect-[16/10] bg-gradient-to-b from-gray-950/80 to-gray-900 overflow-hidden flex items-center justify-center">
                       <motion.img
                         src={service.image}
                         alt={service.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${
+                          service.objectFit === "contain"
+                            ? "object-contain p-4"
+                            : "object-cover object-center"
+                        }`}
+                        loading="lazy"
                       />
                       
                       {/* Gradient Overlay */}
-                      <div className={`absolute inset-0 bg-gradient-to-t ${data3[activeCategory].gradient} opacity-0 group-hover:opacity-60 transition-opacity duration-300`} />
+                      <div className={`absolute inset-0 bg-gradient-to-t ${data3[activeCategory].gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-300 pointer-events-none`} />
                       
                       {/* Icon Overlay */}
                       <motion.div 
@@ -469,40 +502,42 @@ export function TimelineDemo() {
                           opacity: hoveredCard === index ? 1 : 0 
                         }}
                         transition={{ duration: 0.3 }}
-                        className="absolute inset-0 flex items-center justify-center"
+                        className="absolute inset-0 flex items-center justify-center pointer-events-none"
                       >
-                        <div className="p-4 rounded-full bg-white/20 backdrop-blur-md">
-                          {React.cloneElement(service.icon, { className: "w-8 h-8 text-white" })}
+                        <div className="p-3.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 shadow-xl">
+                          {React.cloneElement(service.icon, { className: "w-7 h-7 text-white" })}
                         </div>
                       </motion.div>
                     </div>
 
-                    {/* Content */}
-                    <div className="p-5">
-                      <h4 className="text-lg font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-300">
-                        {service.name}
-                      </h4>
-                      
-                      {/* Arrow Icon */}
-                      <motion.div
-                        initial={{ x: -10, opacity: 0 }}
-                        animate={{ 
-                          x: hoveredCard === index ? 0 : -10,
-                          opacity: hoveredCard === index ? 1 : 0 
-                        }}
-                        transition={{ duration: 0.3 }}
-                        className="flex items-center text-purple-400 text-sm font-medium"
-                      >
-                        Learn More
-                        <ChevronRight className="w-4 h-4 ml-1" />
-                      </motion.div>
+                    {/* Content & Supporting Text */}
+                    <div className="p-6 flex flex-col flex-1 justify-between">
+                      <div>
+                        <div className="flex items-center justify-between gap-3 mb-2.5">
+                          <h4 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-300">
+                            {service.name}
+                          </h4>
+                          <span className="p-2 rounded-lg bg-gray-800/80 text-gray-300 border border-gray-700/60 shrink-0">
+                            {React.cloneElement(service.icon, { className: "w-4 h-4 text-purple-400" })}
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-400 leading-relaxed line-clamp-3 mb-4">
+                          {service.description}
+                        </p>
+                      </div>
+
+                      {/* Action Link */}
+                      <div className="flex items-center justify-between pt-3 border-t border-gray-800/80 text-purple-400 text-sm font-semibold group-hover:text-pink-400 transition-colors">
+                        <span>Explore Service</span>
+                        <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      </div>
                     </div>
 
                     {/* Shine Effect */}
                     <motion.div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                       style={{
-                        background: "linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%)",
+                        background: "linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%)",
                       }}
                       animate={{
                         x: hoveredCard === index ? ["-100%", "200%"] : "-100%",
@@ -512,7 +547,10 @@ export function TimelineDemo() {
                         ease: "easeInOut",
                       }}
                     />
-                  </div>
+
+                    {/* Top border highlight */}
+                    <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${data3[activeCategory].gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                  </Link>
                 </motion.div>
               ))}
             </div>
