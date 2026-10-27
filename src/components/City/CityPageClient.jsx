@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { ChevronDown, MapPin, ArrowRight } from "lucide-react";
+import { ChevronDown, MapPin } from "lucide-react";
 import ContactPopup from "@/components/ContactPopup";
 import WavyPattern from "@/components/WaveyPattern";
 import { HeroHighlight } from "@/components/ui/hero-highlight";
@@ -346,19 +345,9 @@ export default function CityPageClient({
   }));
 
   return (
-    <main className="bg-[#060608] text-white relative overflow-x-hidden selection:bg-[#C73673] selection:text-white">
-      {/* Subtle Dot Grid Background */}
-      <div
-        className="pointer-events-none fixed inset-0 opacity-[0.15]"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(255,255,255,0.5) 1px, transparent 1px)",
-          backgroundSize: "26px 26px",
-        }}
-      />
-
-      {/* ================= 1. HERO SECTION ================= */}
-      <section className="relative overflow-hidden pt-36 sm:pt-40 lg:pt-44 pb-16 sm:pb-20 px-4">
+    <main className="w-full relative overflow-x-hidden selection:bg-[#C73673] selection:text-white">
+      {/* ================= 1. HERO SECTION (DARK) ================= */}
+      <section className="relative w-full overflow-hidden pt-36 sm:pt-40 lg:pt-44 pb-16 sm:pb-20 px-4 bg-[#060608] text-white">
         {/* Glow Spheres */}
         <div className="pointer-events-none absolute top-16 left-1/2 -translate-x-1/2 w-[36rem] h-[24rem] bg-[#C73673]/25 blur-[100px] rounded-full" />
         <div className="pointer-events-none absolute top-40 right-0 w-72 h-72 bg-[#8F5AFF]/20 blur-[90px] rounded-full" />
@@ -466,133 +455,29 @@ export default function CityPageClient({
         </div>
       </section>
 
-      {/* ================= 2. APPROACH SECTION ================= */}
+      {/* ================= 2. APPROACH SECTION (LIGHT) ================= */}
       {approaches && approaches.items && approaches.items.length > 0 && (
-        <section className="py-14 sm:py-16 border-t border-gray-800 max-w-7xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <SectionBadge>Our Approach</SectionBadge>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-4">
-              {approaches.heading || `Why Businesses in ${cityName} Work With Us`}
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-            {approaches.items.map((item, idx) => (
-              <div
-                key={idx}
-                className="relative rounded-2xl border border-gray-800 bg-gray-900/50 p-6 hover:border-[#D4AF37]/40 transition-colors"
-              >
-                <span className="text-3xl font-extrabold text-gray-800">
-                  {String(idx + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-3 text-base sm:text-lg font-bold text-white">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-xs sm:text-sm text-gray-400 leading-6">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* ================= 3. CREDENTIALS / PARTNERS ================= */}
-      <section className="py-14 sm:py-16 border-t border-gray-800 max-w-7xl mx-auto px-4">
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <SectionBadge>Credentials</SectionBadge>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-4">
-            Certified &amp; Trusted Partners
-          </h2>
-          <p className="mt-3 text-[15px] sm:text-lg text-gray-300 leading-7">
-            Recognized by the platforms we run your campaigns on.
-          </p>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
-          {[
-            {
-              title: "Google Partner",
-              svg: (
-                <path d="M21.6 12.23c0-.7-.06-1.37-.18-2H12v3.78h5.4a4.6 4.6 0 0 1-2 3.02v2.5h3.24c1.9-1.75 3-4.32 3-7.3Z" />
-              ),
-            },
-            {
-              title: "Meta Business Partner",
-              svg: (
-                <path d="M4 12.5c0-4.7 2.6-8 6.3-8 2 0 3.5 1.1 4.7 2.9 1.2-1.8 2.7-2.9 4.7-2.9 3.7 0 6.3 3.3 6.3 8s-2.6 8-6.3 8c-2 0-3.5-1.1-4.7-2.9-1.2 1.8-2.7 2.9-4.7 2.9-3.7 0-6.3-3.3-6.3-8Z" />
-              ),
-            },
-            {
-              title: "HubSpot Certified",
-              svg: (
-                <>
-                  <circle cx="12" cy="12" r="3.2" />
-                  <circle cx="19" cy="7" r="2.2" />
-                </>
-              ),
-            },
-            {
-              title: "SEMrush Certified",
-              svg: <path d="M4 18V9h3v9H4Zm6.5 0V5h3v13h-3ZM17 18v-6h3v6h-3Z" />,
-            },
-            {
-              title: "Bing Ads Certified",
-              svg: (
-                <path d="M6 3v15.2l4.6 2.6L20 15.3l-3.7-2.2 2-1.1-8.2-4.7V3H6Z" />
-              ),
-            },
-          ].map((partner, idx) => (
-            <div
-              key={idx}
-              className="flex flex-col items-center text-center gap-3 rounded-2xl border border-gray-800 bg-gray-900/50 px-3 py-6 sm:p-6 hover:border-[#D4AF37]/40 transition-colors"
-            >
-              <span className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#C73673] via-[#8F5AFF] to-[#FF6FD8] flex items-center justify-center text-white">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor">
-                  {partner.svg}
-                </svg>
-              </span>
-              <span className="text-xs sm:text-sm font-semibold text-gray-200 leading-tight">
-                {partner.title}
-              </span>
+        <section className="w-full bg-white border-t border-gray-200 text-gray-900">
+          <div className="py-14 sm:py-16 max-w-7xl mx-auto px-4">
+            <div className="text-center max-w-2xl mx-auto mb-10">
+              <SectionBadge>Our Approach</SectionBadge>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-4">
+                {approaches.heading || `Why Businesses in ${cityName} Work With Us`}
+              </h2>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================= 4. STRATEGIC APPROACH ================= */}
-      {strategic && strategic.items && strategic.items.length > 0 && (
-        <section className="py-14 sm:py-16 border-t border-gray-800 max-w-7xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-            <SectionBadge>{strategic.badge_text || "Methodology"}</SectionBadge>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-4">
-              {strategic.heading || "Strategic Framework"}
-            </h2>
-            {strategic.subheading && (
-              <p className="mt-3 text-[15px] sm:text-lg text-gray-300 leading-7">
-                {strategic.subheading}
-              </p>
-            )}
-          </div>
-          <div className="relative">
-            <div className="hidden lg:block absolute top-8 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
-              {strategic.items.map((item, idx) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+              {approaches.items.map((item, idx) => (
                 <div
                   key={idx}
-                  className="relative flex flex-col items-center text-center lg:items-start lg:text-left"
+                  className="relative rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:border-[#D4AF37]/70 hover:shadow-md transition-all duration-300"
                 >
-                  <div className="relative z-10 w-16 h-16 rounded-2xl bg-gray-900 border border-gray-800 flex items-center justify-center mb-5">
-                    <StrategicIcon
-                      type={item.icon || "search"}
-                      className="w-7 h-7 text-[#D4AF37]"
-                    />
-                    <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gradient-to-br from-[#C73673] via-[#8F5AFF] to-[#FF6FD8] text-white text-[11px] font-bold flex items-center justify-center">
-                      {idx + 1}
-                    </span>
-                  </div>
-                  <h3 className="text-base sm:text-lg font-bold text-white">
+                  <span className="text-3xl font-extrabold text-gray-300">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-3 text-base sm:text-lg font-bold text-gray-900">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-xs sm:text-sm text-gray-400 leading-6">
+                  <p className="mt-2 text-xs sm:text-sm text-gray-600 leading-6">
                     {item.description}
                   </p>
                 </div>
@@ -602,260 +487,304 @@ export default function CityPageClient({
         </section>
       )}
 
-      {/* ================= 5. CITY SERVICES ================= */}
-      {services && services.items && services.items.length > 0 && (
-        <section className="py-14 sm:py-16 border-t border-gray-800 max-w-7xl mx-auto px-4">
-          <div className="mb-8 sm:mb-10">
-            {services.badge_text && <SectionBadge>{services.badge_text}</SectionBadge>}
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-2 mb-2">
-              {services.heading || `Our Services in ${cityName}`}
+      {/* ================= 3. CREDENTIALS / PARTNERS (DARK) ================= */}
+      <section className="w-full bg-[#0c0d14] border-t border-gray-800 text-white">
+        <div className="py-14 sm:py-16 max-w-7xl mx-auto px-4">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <SectionBadge>Credentials</SectionBadge>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-4">
+              Certified &amp; Trusted Partners
             </h2>
-            {services.subheading && (
-              <p className="text-[15px] sm:text-lg text-gray-300 leading-7 sm:leading-8">
-                {services.subheading}
-              </p>
-            )}
+            <p className="mt-3 text-[15px] sm:text-lg text-gray-300 leading-7">
+              Recognized by the platforms we run your campaigns on.
+            </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-            {services.items.map((srv, idx) => {
-              const letter = (srv.title || "?").trim().charAt(0).toUpperCase();
-              return (
-                <div
-                  key={idx}
-                  className="group bg-gray-900/60 border border-gray-800 rounded-2xl p-6 hover:border-[#C73673]/60 hover:-translate-y-1 transition-all duration-300"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#C73673] via-[#8F5AFF] to-[#FF6FD8] flex items-center justify-center text-white font-bold text-sm mb-4 group-hover:scale-110 transition-transform">
-                    {letter}
-                  </div>
-                  <h3 className="text-base sm:text-lg font-bold text-white mb-2">
-                    {srv.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gray-400 leading-6">
-                    {srv.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      )}
-
-      {/* ================= 6. PRICING SECTION ================= */}
-      {pricing && pricing.packages && pricing.packages.length > 0 && (
-        <section className="py-16 sm:py-20 border-t border-gray-800 max-w-7xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-            <SectionBadge>{pricing.badge_text || "Affordable Packages"}</SectionBadge>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-4">
-              {pricing.heading || "Tailored Pricing Packages"}
-            </h2>
-            {pricing.subheading && (
-              <p className="mt-3 text-[15px] sm:text-lg text-gray-300 leading-7">
-                {pricing.subheading}
-              </p>
-            )}
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-            {pricing.packages.map((pkg, idx) => {
-              const colorMap = {
-                pink: "#C73673",
-                purple: "#8F5AFF",
-                gold: "#D4AF37",
-                yellow: "#D4AF37",
-                teal: "#3AA6A0",
-                green: "#3AA6A0",
-              };
-              const accent = colorMap[(pkg.color || "").toLowerCase()] || "#C73673";
-              const iconKeyMap = {
-                monitor: "web",
-                mousepointerclick: "ads",
-                users: "smm",
-                mappin: "listing",
-                search: "seo",
-              };
-              const pkgKey = iconKeyMap[(pkg.icon || "").toLowerCase()] || "web";
-
-              return (
-                <div
-                  key={idx}
-                  className={`relative flex flex-col rounded-3xl bg-gray-900/70 border border-gray-800 backdrop-blur-sm p-6 sm:p-7 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7)] transition-transform duration-300 hover:-translate-y-1.5 hover:border-gray-700 ${
-                    pkg.is_popular ? "lg:-translate-y-3 ring-2 ring-[#D4AF37]" : ""
-                  }`}
-                >
-                  {pkg.is_popular && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-bold tracking-widest uppercase text-black bg-[#D4AF37] px-3 py-1 rounded-full shadow-md whitespace-nowrap">
-                      Most Popular
-                    </span>
-                  )}
-
-                  <h3 className="text-lg sm:text-xl font-extrabold text-white text-center">
-                    {pkg.title}
-                  </h3>
-
-                  <div className="mt-5">
-                    <PackageIllustration pkgKey={pkgKey} accent={accent} />
-                  </div>
-
-                  <div className="mt-5 text-center">
-                    <span
-                      className="inline-block text-white text-xs sm:text-sm font-bold px-5 py-2 rounded-full shadow"
-                      style={{ backgroundColor: accent }}
-                    >
-                      {pkg.badge_label || "Package"}
-                    </span>
-                  </div>
-
-                  <p className="mt-5 text-center text-base sm:text-lg font-extrabold text-white">
-                    Start From ~ ₹{pkg.price}{" "}
-                    <span className="text-gray-400 font-medium text-sm">
-                      {pkg.price_suffix || "/Month"}
-                    </span>
-                  </p>
-
-                  <ul className="mt-5 space-y-3 flex-1">
-                    {(pkg.features || []).map((feat, fIdx) => (
-                      <li key={fIdx} className="flex items-start gap-2.5">
-                        <span
-                          className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 text-white"
-                          style={{ backgroundColor: accent }}
-                        >
-                          <CheckmarkIcon className="w-3 h-3" />
-                        </span>
-                        <span className="text-sm text-gray-300 leading-5">{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-6 flex flex-col min-[380px]:flex-row items-stretch gap-3">
-                    <Link
-                      href={pkg.view_package_url || "/package"}
-                      className="flex-1 text-center text-white font-bold text-sm px-4 py-3 rounded-full shadow-lg transition-transform hover:scale-[1.03] whitespace-nowrap"
-                      style={{ backgroundColor: accent }}
-                    >
-                      View Package
-                    </Link>
-                    <a
-                      href={`https://wa.me/${(pkg.whatsapp_number || cleanWhatsapp).replace(
-                        /[^0-9]/g,
-                        ""
-                      )}?text=${encodeURIComponent(
-                        `Hi, I'm interested in the ${pkg.title} for my ${cityName} business.`
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-1.5 text-center bg-[#25D366] text-white font-bold text-sm px-4 py-3 rounded-full shadow-lg transition-transform hover:scale-[1.03] whitespace-nowrap"
-                    >
-                      <WhatsAppIcon className="w-4 h-4" />
-                      <span>WhatsApp</span>
-                    </a>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          <p className="text-center text-xs sm:text-sm text-gray-500 mt-8">
-            *Prices are indicative starting points. Final pricing depends on scope — talk to us for a custom quote.
-          </p>
-        </section>
-      )}
-
-      {/* ================= 7. HOW WE WORK ================= */}
-      {howWeWork && howWeWork.steps && howWeWork.steps.length > 0 && (
-        <section className="py-14 sm:py-16 border-t border-gray-800 max-w-7xl mx-auto px-4">
-          <div className="mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
-              {howWeWork.heading || "How We Work"}
-            </h2>
-            {howWeWork.subheading && (
-              <p className="text-[15px] sm:text-lg text-gray-300 leading-7 sm:leading-8">
-                {howWeWork.subheading}
-              </p>
-            )}
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {howWeWork.steps.map((step, idx) => (
-              <div key={idx} className="relative rounded-2xl bg-gray-900/40 border border-gray-800 p-6">
-                <span className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-[#C73673] via-[#8F5AFF] to-[#FF6FD8] bg-clip-text text-transparent">
-                  {String(idx + 1).padStart(2, "0")}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
+            {[
+              {
+                title: "Google Partner",
+                svg: (
+                  <path d="M21.6 12.23c0-.7-.06-1.37-.18-2H12v3.78h5.4a4.6 4.6 0 0 1-2 3.02v2.5h3.24c1.9-1.75 3-4.32 3-7.3Z" />
+                ),
+              },
+              {
+                title: "Meta Business Partner",
+                svg: (
+                  <path d="M4 12.5c0-4.7 2.6-8 6.3-8 2 0 3.5 1.1 4.7 2.9 1.2-1.8 2.7-2.9 4.7-2.9 3.7 0 6.3 3.3 6.3 8s-2.6 8-6.3 8c-2 0-3.5-1.1-4.7-2.9-1.2 1.8-2.7 2.9-4.7 2.9-3.7 0-6.3-3.3-6.3-8Z" />
+                ),
+              },
+              {
+                title: "HubSpot Certified",
+                svg: (
+                  <>
+                    <circle cx="12" cy="12" r="3.2" />
+                    <circle cx="19" cy="7" r="2.2" />
+                  </>
+                ),
+              },
+              {
+                title: "SEMrush Certified",
+                svg: <path d="M4 18V9h3v9H4Zm6.5 0V5h3v13h-3ZM17 18v-6h3v6h-3Z" />,
+              },
+              {
+                title: "Bing Ads Certified",
+                svg: (
+                  <path d="M6 3v15.2l4.6 2.6L20 15.3l-3.7-2.2 2-1.1-8.2-4.7V3H6Z" />
+                ),
+              },
+            ].map((partner, idx) => (
+              <div
+                key={idx}
+                className="flex flex-col items-center text-center gap-3 rounded-2xl border border-gray-800 bg-gray-900/60 px-3 py-6 sm:p-6 hover:border-[#D4AF37]/40 transition-colors"
+              >
+                <span className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#C73673] via-[#8F5AFF] to-[#FF6FD8] flex items-center justify-center text-white">
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor">
+                    {partner.svg}
+                  </svg>
                 </span>
-                <h3 className="mt-3 text-base sm:text-lg font-bold text-white">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-xs sm:text-sm text-gray-400 leading-6">
-                  {step.description}
-                </p>
+                <span className="text-xs sm:text-sm font-semibold text-gray-200 leading-tight">
+                  {partner.title}
+                </span>
               </div>
             ))}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
-      {/* ================= 8. CITY PROJECTS ================= */}
-      {projects && projects.length > 0 && (
-        <section className="py-14 sm:py-16 border-t border-gray-800 max-w-7xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-            <SectionBadge>Our Projects</SectionBadge>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-4">
-              Projects We Developed In Past
-            </h2>
-            <div className="mt-4 mx-auto w-14 h-1 rounded-full bg-gradient-to-r from-[#C73673] via-[#8F5AFF] to-[#FF6FD8]" />
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-            {projects.map((proj) => (
-              <div
-                key={proj.id}
-                className="rounded-2xl bg-gray-900/60 border border-gray-800 overflow-hidden hover:border-[#D4AF37]/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="relative w-full h-48 sm:h-52 border-b border-gray-800 bg-black/40">
-                    <img
-                      src={getImageUrl(proj.image)}
-                      alt={proj.heading}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="p-6 text-center">
-                    <h3 className="text-base sm:text-lg font-bold text-white">
-                      {proj.heading}
+      {/* ================= 4. STRATEGIC APPROACH (LIGHT) ================= */}
+      {strategic && strategic.items && strategic.items.length > 0 && (
+        <section className="w-full bg-[#f8f9fa] border-t border-gray-200 text-gray-900">
+          <div className="py-14 sm:py-16 max-w-7xl mx-auto px-4">
+            <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+              <SectionBadge>{strategic.badge_text || "Methodology"}</SectionBadge>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-4">
+                {strategic.heading || "Strategic Framework"}
+              </h2>
+              {strategic.subheading && (
+                <p className="mt-3 text-[15px] sm:text-lg text-gray-600 leading-7">
+                  {strategic.subheading}
+                </p>
+              )}
+            </div>
+            <div className="relative">
+              <div className="hidden lg:block absolute top-8 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
+                {strategic.items.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="relative flex flex-col items-center text-center lg:items-start lg:text-left"
+                  >
+                    <div className="relative z-10 w-16 h-16 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-center justify-center mb-5">
+                      <StrategicIcon
+                        type={item.icon || "search"}
+                        className="w-7 h-7 text-[#D4AF37]"
+                      />
+                      <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gradient-to-br from-[#C73673] via-[#8F5AFF] to-[#FF6FD8] text-white text-[11px] font-bold flex items-center justify-center">
+                        {idx + 1}
+                      </span>
+                    </div>
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900">
+                      {item.title}
                     </h3>
-                    <p className="mt-2 text-xs sm:text-sm text-gray-400 leading-6">
-                      {proj.sub_heading}
+                    <p className="mt-2 text-xs sm:text-sm text-gray-600 leading-6">
+                      {item.description}
                     </p>
                   </div>
-                </div>
-
-                <div className="px-6 pb-6">
-                  <Link
-                    href={proj.button_url || "/portfolio"}
-                    className="inline-block w-full text-center text-white font-bold text-sm px-5 py-3 rounded-full transition-transform hover:scale-[1.03]"
-                    style={{ backgroundColor: proj.color || "#C73673" }}
-                  >
-                    {proj.button_text || "View Project"}
-                  </Link>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </section>
       )}
 
-      {/* ================= 9. WHY CHOOSE US ================= */}
-      {whyChooseUs && whyChooseUs.reasons && whyChooseUs.reasons.length > 0 && (
-        <section className="py-14 sm:py-16 max-w-7xl mx-auto px-4">
-          <div className="rounded-3xl bg-gray-900/60 border border-gray-800 p-6 sm:p-12">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-8">
-              {whyChooseUs.heading || `Why Choose Digital Nawab in ${cityName}?`}
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
-              {whyChooseUs.reasons.map((reason, idx) => (
-                <div key={idx} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-5 h-5 mt-1 rounded-full bg-gradient-to-br from-[#C73673] via-[#8F5AFF] to-[#FF6FD8] flex items-center justify-center text-white">
-                    <CheckmarkIcon className="w-3 h-3" />
+      {/* ================= 5. CITY SERVICES (DARK) ================= */}
+      {services && services.items && services.items.length > 0 && (
+        <section className="w-full bg-[#060608] border-t border-gray-800 text-white">
+          <div className="py-14 sm:py-16 max-w-7xl mx-auto px-4">
+            <div className="mb-8 sm:mb-10">
+              {services.badge_text && <SectionBadge>{services.badge_text}</SectionBadge>}
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-2 mb-2">
+                {services.heading || `Our Services in ${cityName}`}
+              </h2>
+              {services.subheading && (
+                <p className="text-[15px] sm:text-lg text-gray-300 leading-7 sm:leading-8">
+                  {services.subheading}
+                </p>
+              )}
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+              {services.items.map((srv, idx) => {
+                const letter = (srv.title || "?").trim().charAt(0).toUpperCase();
+                return (
+                  <div
+                    key={idx}
+                    className="group bg-gray-900/60 border border-gray-800 rounded-2xl p-6 hover:border-[#C73673]/60 hover:-translate-y-1 transition-all duration-300"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#C73673] via-[#8F5AFF] to-[#FF6FD8] flex items-center justify-center text-white font-bold text-sm mb-4 group-hover:scale-110 transition-transform">
+                      {letter}
+                    </div>
+                    <h3 className="text-base sm:text-lg font-bold text-white mb-2">
+                      {srv.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-400 leading-6">
+                      {srv.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ================= 6. PRICING SECTION (LIGHT) ================= */}
+      {pricing && pricing.packages && pricing.packages.length > 0 && (
+        <section className="w-full bg-white border-t border-gray-200 text-gray-900">
+          <div className="py-16 sm:py-20 max-w-7xl mx-auto px-4">
+            <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+              <SectionBadge>{pricing.badge_text || "Affordable Packages"}</SectionBadge>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 mt-4">
+                {pricing.heading || "Tailored Pricing Packages"}
+              </h2>
+              {pricing.subheading && (
+                <p className="mt-3 text-[15px] sm:text-lg text-gray-600 leading-7">
+                  {pricing.subheading}
+                </p>
+              )}
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+              {pricing.packages.map((pkg, idx) => {
+                const colorMap = {
+                  pink: "#C73673",
+                  purple: "#8F5AFF",
+                  gold: "#D4AF37",
+                  yellow: "#D4AF37",
+                  teal: "#3AA6A0",
+                  green: "#3AA6A0",
+                };
+                const accent = colorMap[(pkg.color || "").toLowerCase()] || "#C73673";
+                const iconKeyMap = {
+                  monitor: "web",
+                  mousepointerclick: "ads",
+                  users: "smm",
+                  mappin: "listing",
+                  search: "seo",
+                };
+                const pkgKey = iconKeyMap[(pkg.icon || "").toLowerCase()] || "web";
+
+                return (
+                  <div
+                    key={idx}
+                    className={`relative flex flex-col rounded-3xl bg-white border border-gray-200 p-6 sm:p-7 shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-transform duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-gray-300 ${
+                      pkg.is_popular ? "lg:-translate-y-3 ring-2 ring-[#D4AF37]" : ""
+                    }`}
+                  >
+                    {pkg.is_popular && (
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-bold tracking-widest uppercase text-black bg-[#D4AF37] px-3 py-1 rounded-full shadow-md whitespace-nowrap">
+                        Most Popular
+                      </span>
+                    )}
+
+                    <h3 className="text-lg sm:text-xl font-extrabold text-gray-900 text-center">
+                      {pkg.title}
+                    </h3>
+
+                    <div className="mt-5">
+                      <PackageIllustration pkgKey={pkgKey} accent={accent} />
+                    </div>
+
+                    <div className="mt-5 text-center">
+                      <span
+                        className="inline-block text-white text-xs sm:text-sm font-bold px-5 py-2 rounded-full shadow"
+                        style={{ backgroundColor: accent }}
+                      >
+                        {pkg.badge_label || "Package"}
+                      </span>
+                    </div>
+
+                    <p className="mt-5 text-center text-base sm:text-lg font-extrabold text-gray-900">
+                      Start From ~ ₹{pkg.price}{" "}
+                      <span className="text-gray-500 font-medium text-sm">
+                        {pkg.price_suffix || "/Month"}
+                      </span>
+                    </p>
+
+                    <ul className="mt-5 space-y-3 flex-1">
+                      {(pkg.features || []).map((feat, fIdx) => (
+                        <li key={fIdx} className="flex items-start gap-2.5">
+                          <span
+                            className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 text-white"
+                            style={{ backgroundColor: accent }}
+                          >
+                            <CheckmarkIcon className="w-3 h-3" />
+                          </span>
+                          <span className="text-sm text-gray-700 leading-5">{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-6 flex flex-col min-[380px]:flex-row items-stretch gap-3">
+                      <Link
+                        href={pkg.view_package_url || "/package"}
+                        className="flex-1 text-center text-white font-bold text-sm px-4 py-3 rounded-full shadow-lg transition-transform hover:scale-[1.03] whitespace-nowrap"
+                        style={{ backgroundColor: accent }}
+                      >
+                        View Package
+                      </Link>
+                      <a
+                        href={`https://wa.me/${(pkg.whatsapp_number || cleanWhatsapp).replace(
+                          /[^0-9]/g,
+                          ""
+                        )}?text=${encodeURIComponent(
+                          `Hi, I'm interested in the ${pkg.title} for my ${cityName} business.`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center gap-1.5 text-center bg-[#25D366] text-white font-bold text-sm px-4 py-3 rounded-full shadow-lg transition-transform hover:scale-[1.03] whitespace-nowrap"
+                      >
+                        <WhatsAppIcon className="w-4 h-4" />
+                        <span>WhatsApp</span>
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <p className="text-center text-xs sm:text-sm text-gray-500 mt-8">
+              *Prices are indicative starting points. Final pricing depends on scope — talk to us for a custom quote.
+            </p>
+          </div>
+        </section>
+      )}
+
+      {/* ================= 7. HOW WE WORK (DARK) ================= */}
+      {howWeWork && howWeWork.steps && howWeWork.steps.length > 0 && (
+        <section className="w-full bg-[#0c0d14] border-t border-gray-800 text-white">
+          <div className="py-14 sm:py-16 max-w-7xl mx-auto px-4">
+            <div className="mb-8 sm:mb-10">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
+                {howWeWork.heading || "How We Work"}
+              </h2>
+              {howWeWork.subheading && (
+                <p className="text-[15px] sm:text-lg text-gray-300 leading-7 sm:leading-8">
+                  {howWeWork.subheading}
+                </p>
+              )}
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {howWeWork.steps.map((step, idx) => (
+                <div key={idx} className="relative rounded-2xl bg-gray-900/60 border border-gray-800 p-6">
+                  <span className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-[#C73673] via-[#8F5AFF] to-[#FF6FD8] bg-clip-text text-transparent">
+                    {String(idx + 1).padStart(2, "0")}
                   </span>
-                  <span className="text-sm sm:text-base text-gray-200">{reason}</span>
+                  <h3 className="mt-3 text-base sm:text-lg font-bold text-white">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-xs sm:text-sm text-gray-400 leading-6">
+                    {step.description}
+                  </p>
                 </div>
               ))}
             </div>
@@ -863,43 +792,121 @@ export default function CityPageClient({
         </section>
       )}
 
-      {/* ================= 10. FAQS ================= */}
-      {faqs && faqs.faqs && faqs.faqs.length > 0 && (
-        <section className="py-14 sm:py-16 border-t border-gray-800 max-w-7xl mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-8">
-            {faqs.heading || "Frequently Asked Questions"}
-          </h2>
-          <div className="divide-y divide-gray-800">
-            {faqs.faqs.map((faq, idx) => {
-              const isOpen = openFaq === idx;
-              return (
-                <div key={idx} className="py-6 first:pt-0">
-                  <button
-                    onClick={() => setOpenFaq(isOpen ? null : idx)}
-                    className="w-full text-left flex items-center justify-between gap-4 font-bold text-base sm:text-xl text-white hover:text-[#D4AF37] transition-colors cursor-pointer"
-                  >
-                    <span>{faq.question}</span>
-                    <ChevronDown
-                      className={`w-5 h-5 shrink-0 text-gray-400 transition-transform duration-300 ${
-                        isOpen ? "rotate-180 text-[#D4AF37]" : ""
-                      }`}
-                    />
-                  </button>
-                  {isOpen && (
-                    <p className="mt-3 text-sm sm:text-base text-gray-400 leading-6 sm:leading-7 animate-fadeIn">
-                      {faq.answer}
-                    </p>
-                  )}
+      {/* ================= 8. CITY PROJECTS (LIGHT) ================= */}
+      {projects && projects.length > 0 && (
+        <section className="w-full bg-[#f8f9fa] border-t border-gray-200 text-gray-900">
+          <div className="py-14 sm:py-16 max-w-7xl mx-auto px-4">
+            <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+              <SectionBadge>Our Projects</SectionBadge>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 mt-4">
+                Projects We Developed In Past
+              </h2>
+              <div className="mt-4 mx-auto w-14 h-1 rounded-full bg-gradient-to-r from-[#C73673] via-[#8F5AFF] to-[#FF6FD8]" />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+              {projects.map((proj) => (
+                <div
+                  key={proj.id}
+                  className="rounded-2xl bg-white border border-gray-200 overflow-hidden shadow-sm hover:border-[#D4AF37]/60 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="relative w-full h-48 sm:h-52 border-b border-gray-100 bg-gray-50">
+                      <img
+                        src={getImageUrl(proj.image)}
+                        alt={proj.heading}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="p-6 text-center">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900">
+                        {proj.heading}
+                      </h3>
+                      <p className="mt-2 text-xs sm:text-sm text-gray-600 leading-6">
+                        {proj.sub_heading}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="px-6 pb-6">
+                    <Link
+                      href={proj.button_url || "/portfolio"}
+                      className="inline-block w-full text-center text-white font-bold text-sm px-5 py-3 rounded-full transition-transform hover:scale-[1.03]"
+                      style={{ backgroundColor: proj.color || "#C73673" }}
+                    >
+                      {proj.button_text || "View Project"}
+                    </Link>
+                  </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
         </section>
       )}
 
-      {/* ================= 11. TESTIMONIALS ================= */}
+      {/* ================= 9. WHY CHOOSE US (DARK) ================= */}
+      {whyChooseUs && whyChooseUs.reasons && whyChooseUs.reasons.length > 0 && (
+        <section className="w-full bg-[#060608] border-t border-gray-800 text-white">
+          <div className="py-14 sm:py-16 max-w-7xl mx-auto px-4">
+            <div className="rounded-3xl bg-gray-900/60 border border-gray-800 p-6 sm:p-12">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-8">
+                {whyChooseUs.heading || `Why Choose Digital Nawab in ${cityName}?`}
+              </h2>
+              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
+                {whyChooseUs.reasons.map((reason, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <span className="flex-shrink-0 w-5 h-5 mt-1 rounded-full bg-gradient-to-br from-[#C73673] via-[#8F5AFF] to-[#FF6FD8] flex items-center justify-center text-white">
+                      <CheckmarkIcon className="w-3 h-3" />
+                    </span>
+                    <span className="text-sm sm:text-base text-gray-200">{reason}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ================= 10. FAQS (LIGHT) ================= */}
+      {faqs && faqs.faqs && faqs.faqs.length > 0 && (
+        <section className="w-full bg-white border-t border-gray-200 text-gray-900">
+          <div className="py-14 sm:py-16 max-w-7xl mx-auto px-4">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-8">
+              {faqs.heading || "Frequently Asked Questions"}
+            </h2>
+            <div className="divide-y divide-gray-200">
+              {faqs.faqs.map((faq, idx) => {
+                const isOpen = openFaq === idx;
+                return (
+                  <div key={idx} className="py-6 first:pt-0">
+                    <button
+                      onClick={() => setOpenFaq(isOpen ? null : idx)}
+                      className="w-full text-left flex items-center justify-between gap-4 font-bold text-base sm:text-xl text-gray-900 hover:text-[#C73673] transition-colors cursor-pointer"
+                    >
+                      <span>{faq.question}</span>
+                      <ChevronDown
+                        className={`w-5 h-5 shrink-0 text-gray-400 transition-transform duration-300 ${
+                          isOpen ? "rotate-180 text-[#C73673]" : ""
+                        }`}
+                      />
+                    </button>
+                    {isOpen && (
+                      <p className="mt-3 text-sm sm:text-base text-gray-600 leading-6 sm:leading-7 animate-fadeIn">
+                        {faq.answer}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ================= 11. TESTIMONIALS (DARK) ================= */}
       {formattedTestimonials.length > 0 && (
-        <section className="border-t border-gray-800 overflow-hidden">
+        <section className="w-full bg-[#060608] border-t border-gray-800 overflow-hidden text-white">
           <WavyPattern waveColor="#000" backgroundColor="#060608" />
           <HeroHighlight>
             <div className="mb-2 text-center pt-10 md:pt-16">
@@ -919,16 +926,16 @@ export default function CityPageClient({
         </section>
       )}
 
-      {/* ================= 12. FINAL CTA ================= */}
-      <section className="py-16 sm:py-20 border-t border-gray-800 bg-gradient-to-b from-transparent via-[#11131c] to-transparent">
-        <div className="max-w-3xl mx-auto text-center px-4">
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
+      {/* ================= 12. FINAL CTA (LIGHT) ================= */}
+      <section className="w-full bg-[#f8f9fa] border-t border-gray-200 text-gray-900">
+        <div className="py-16 sm:py-20 max-w-3xl mx-auto text-center px-4">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-900">
             Let&apos;s Grow Your Business in{" "}
             <span className="bg-gradient-to-r from-[#C73673] via-[#8F5AFF] to-[#FF6FD8] bg-clip-text text-transparent">
               {cityName}
             </span>
           </h2>
-          <p className="mt-4 text-[15px] sm:text-lg text-gray-300 leading-7 sm:leading-8">
+          <p className="mt-4 text-[15px] sm:text-lg text-gray-600 leading-7 sm:leading-8">
             Whether you&apos;re launching a new venture or scaling an established brand, Digital Nawab is your proven growth partner in {cityName}.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -938,7 +945,7 @@ export default function CityPageClient({
             />
             <Link
               href="/contact-us"
-              className="border border-gray-700 hover:border-[#D4AF37] hover:text-[#D4AF37] text-white font-semibold px-8 py-3.5 rounded-full transition-colors"
+              className="border border-gray-300 hover:border-[#C73673] hover:text-[#C73673] text-gray-800 font-semibold px-8 py-3.5 rounded-full transition-colors"
             >
               Contact Us
             </Link>
@@ -946,28 +953,30 @@ export default function CityPageClient({
         </div>
       </section>
 
-      {/* ================= 13. EXPLORE OTHER CITIES ================= */}
+      {/* ================= 13. EXPLORE OTHER CITIES (DARK) ================= */}
       {allCities && allCities.length > 1 && (
-        <section className="py-12 border-t border-gray-900 max-w-7xl mx-auto px-4">
-          <div className="text-center mb-6">
-            <h3 className="text-xs uppercase tracking-widest text-gray-500 font-bold">
-              Explore Our Other Locations
-            </h3>
-          </div>
-          <div className="flex flex-wrap justify-center gap-2.5">
-            {allCities.map((c) => (
-              <Link
-                key={c.id}
-                href={`/city/${c.slug}`}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                  c.slug?.toLowerCase() === (city.slug || "").toLowerCase()
-                    ? "bg-[#C73673] text-white"
-                    : "bg-gray-900 hover:bg-gray-800 text-gray-300 hover:text-white border border-gray-800"
-                }`}
-              >
-                {c.name}
-              </Link>
-            ))}
+        <section className="w-full bg-[#060608] border-t border-gray-800 text-white">
+          <div className="py-12 max-w-7xl mx-auto px-4">
+            <div className="text-center mb-6">
+              <h3 className="text-xs uppercase tracking-widest text-gray-500 font-bold">
+                Explore Our Other Locations
+              </h3>
+            </div>
+            <div className="flex flex-wrap justify-center gap-2.5">
+              {allCities.map((c) => (
+                <Link
+                  key={c.id}
+                  href={`/city/${c.slug}`}
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                    c.slug?.toLowerCase() === (city.slug || "").toLowerCase()
+                      ? "bg-[#C73673] text-white"
+                      : "bg-gray-900 hover:bg-gray-800 text-gray-300 hover:text-white border border-gray-800"
+                  }`}
+                >
+                  {c.name}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       )}
