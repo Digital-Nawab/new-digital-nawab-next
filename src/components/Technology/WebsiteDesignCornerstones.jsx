@@ -10,7 +10,7 @@ export default function WebsiteDesignCornerstones() {
     const fetchCornerstones = async () => {
       try {
         const res = await fetch(
-          "https://dashboard.digitalnawab.com/api/getdev_cornerstone"
+          "/api/getdev_cornerstone"
         );
         const json = await res.json();
 

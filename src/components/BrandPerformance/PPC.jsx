@@ -30,7 +30,7 @@ const PPC = () => {
     const fetchCampaigns = async () => {
       try {
         const res = await fetch(
-          "https://dashboard.digitalnawab.com/api/googlecampaigns"
+          "/api/googlecampaigns"
         );
         const json = await res.json();
         if (json?.data) {

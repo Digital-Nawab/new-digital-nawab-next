@@ -51,7 +51,7 @@ const FloatingDock = () => {
   React.useEffect(() => {
     const fetchCities = async () => {
       try {
-        const res = await fetch("https://dashboard.digitalnawab.com/api/cities");
+        const res = await fetch("/api/cities");
         const json = await res.json();
         if (json.status && Array.isArray(json.data)) {
           setCities(json.data.filter((c) => c.is_active));

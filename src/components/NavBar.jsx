@@ -43,7 +43,7 @@ const NavBar = () => {
   useEffect(() => {
     const fetchCities = async () => {
       try {
-        const response = await fetch("https://dashboard.digitalnawab.com/api/cities");
+        const response = await fetch("/api/cities");
         const result = await response.json();
         if (result.status && Array.isArray(result.data)) {
           setCities(result.data.filter((city) => city.is_active));

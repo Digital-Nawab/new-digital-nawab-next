@@ -8,7 +8,7 @@ export default function HowThisDone() {
     const fetchSteps = async () => {
       try {
         const res = await fetch(
-          "https://dashboard.digitalnawab.com/api/getdevstep"
+          "/api/getdevstep"
         );
         const json = await res.json();
 

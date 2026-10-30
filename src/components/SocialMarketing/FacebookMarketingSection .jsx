@@ -55,7 +55,7 @@ const FacebookMarketingSection = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch("https://dashboard.digitalnawab.com/api/getsmmfacebook");
+        const response = await fetch("/api/getsmmfacebook");
         const data = await response.json();
         if (data && data.data) {
           const formatted = data.data.map((service, index) => ({

@@ -1,7 +1,6 @@
 import React from "react";
 import CityPageClient from "@/components/City/CityPageClient";
-
-const API_BASE = "https://dashboard.digitalnawab.com/api";
+import * as cityCtrl from "@/backend/controllers/cityController";
 
 async function getCityCompleteData(slug = "agra") {
   try {
@@ -19,16 +18,16 @@ async function getCityCompleteData(slug = "agra") {
       faqsRes,
       testimonialsRes,
     ] = await Promise.allSettled([
-      fetch(`${API_BASE}/cities`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/approaches?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/strategic-approaches?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/city-services-list?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/pricing-sections-list?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/how-we-works-list?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/city-projects-list?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/why-choose-us-list?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/city-faqs-list?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/city-testimonials-list?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
+      cityCtrl.getCities().then((r) => r.json()),
+      cityCtrl.getApproaches(citySlug).then((r) => r.json()),
+      cityCtrl.getStrategicApproaches(citySlug).then((r) => r.json()),
+      cityCtrl.getCityServices(citySlug).then((r) => r.json()),
+      cityCtrl.getPricingSections(citySlug).then((r) => r.json()),
+      cityCtrl.getHowWeWorks(citySlug).then((r) => r.json()),
+      cityCtrl.getCityProjects(citySlug).then((r) => r.json()),
+      cityCtrl.getWhyChooseUs(citySlug).then((r) => r.json()),
+      cityCtrl.getCityFaqs(citySlug).then((r) => r.json()),
+      cityCtrl.getCityTestimonials(citySlug).then((r) => r.json()),
     ]);
 
     const citiesData =
@@ -63,15 +62,15 @@ async function getCityCompleteData(slug = "agra") {
 }
 
 export const metadata = {
-  title: "Best Digital Marketing Agency in Agra | Digital Nawab",
+  title: "Top Digital Marketing Company in Lucknow & Major Indian Cities | Digital Nawab",
   description:
-    "Digital Nawab is a leading digital marketing & advertising agency in Agra. We deliver expert SEO, PPC, SMM, and web solutions to grow your business.",
+    "Explore Digital Nawab's city-level digital marketing services. From SEO to PPC, web development, and social media, find dedicated solutions tailored to your location.",
   alternates: {
     canonical: "https://www.digitalnawab.com/city",
   },
 };
 
-export default async function CitiesDirectoryPage() {
+export default async function CityIndexPage() {
   const data = await getCityCompleteData("agra");
 
   return (

@@ -82,7 +82,7 @@ const OpenPositionsSection = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: "https://dashboard.digitalnawab.com/api/getcareer",
+      url: "/api/getcareer",
       headers: {},
     };
 

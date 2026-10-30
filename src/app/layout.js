@@ -3,8 +3,6 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Script from "next/script"; 
-import Image from "next/image";
-import Link from "next/link";
 
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
@@ -17,7 +15,7 @@ import "./app.css";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
-
+  const isAdminOrAuth = pathname?.startsWith("/admin") || pathname?.startsWith("/login");
 
   useEffect(() => {
     if (window.location.hash) {
@@ -34,7 +32,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* ✅ GTM Script: loads after the app becomes interactive */}
         <Script
           id="gtm-script"
           strategy="afterInteractive"
@@ -50,7 +47,6 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body suppressHydrationWarning>
-        {/* ✅ GTM NoScript fallback */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-PP86R4MT"
@@ -61,22 +57,26 @@ export default function RootLayout({ children }) {
         </noscript>
 
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-          <div className="lg:block hidden">
-            <NavBar />
-          </div>
-
-          <div className="lg:hidden block">
-            {/* Your mobile header */}
-            <div className="fixed top-0 left-0 w-full z-50 flex justify-center items-center p-1">
-              {/* ... your header code ... */}
-            </div>
-            <FloatingDock />
-          </div>
+          {!isAdminOrAuth && (
+            <>
+              <div className="lg:block hidden">
+                <NavBar />
+              </div>
+              <div className="lg:hidden block">
+                <div className="fixed top-0 left-0 w-full z-50 flex justify-center items-center p-1"></div>
+                <FloatingDock />
+              </div>
+            </>
+          )}
 
           {children}
 
-          <Footer />
-          <AutoPopup />
+          {!isAdminOrAuth && (
+            <>
+              <Footer />
+              <AutoPopup />
+            </>
+          )}
         </ThemeProvider>
       </body>
     </html>

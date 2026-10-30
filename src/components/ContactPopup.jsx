@@ -46,7 +46,7 @@ const ContactPopup = ({
         const config = {
           method: "get",
           maxBodyLength: Infinity,
-          url: "https://dashboard.digitalnawab.com/api/get_service",
+          url: "/api/get_service",
           headers: {},
         };
         const response = await axios.request(config);
@@ -168,7 +168,7 @@ const ContactPopup = ({
       };
 
       const response = await axios.post(
-        "https://dashboard.digitalnawab.com/api/post_enquiry",
+        "/api/post_enquiry",
         payload,
         {
           headers: {

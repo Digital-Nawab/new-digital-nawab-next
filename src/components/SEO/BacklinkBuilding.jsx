@@ -431,7 +431,7 @@ const BacklinkBuilding = () => {
     const fetchServices = async () => {
       try {
         const response = await fetch(
-          "https://dashboard.digitalnawab.com/api/getseoservice"
+          "/api/getseoservice"
         );
         const result = await response.json();
         if (

@@ -120,14 +120,14 @@ const TeamSection = () => {
   const [teamMembers, setTeamMembers] = useState(defaultTeam);
   const [loading, setLoading] = useState(false);
 
-  // Fetch live team from API: https://dashboard.digitalnawab.com/api/getourteam
+  // Fetch live team from API: /api/getourteam
   useEffect(() => {
     let isMounted = true;
     const fetchTeam = async () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          "https://dashboard.digitalnawab.com/api/getourteam",
+          "/api/getourteam",
           {
             headers: {
               Accept: "application/json",

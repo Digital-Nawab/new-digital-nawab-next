@@ -86,7 +86,7 @@ const CROServices = () => {
     const fetchOfferings = async () => {
       try {
         const response = await fetch(
-          "https://dashboard.digitalnawab.com/api/getseo_optimization"
+          "/api/getseo_optimization"
         );
         const result = await response.json();
         if (result?.data && result.data.length > 0) {

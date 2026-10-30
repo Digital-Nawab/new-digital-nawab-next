@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/Components/*": ["./src/components/*"],
+      "@/backend/*": ["./backend/*"],
+      "@inertiajs/react": ["./src/lib/inertia-adapter.jsx"]
     }
   }
 }

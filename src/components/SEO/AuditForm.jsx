@@ -35,7 +35,7 @@ const AuditForm = () => {
       data.append("button", "Analyze site");
 
       const res = await axios.post(
-        "https://dashboard.digitalnawab.com/api/post_seoform",
+        "/api/post_seoform",
         data,
         {
           headers: {

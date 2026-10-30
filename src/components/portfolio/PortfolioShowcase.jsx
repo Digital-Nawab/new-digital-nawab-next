@@ -23,7 +23,7 @@ const PortfolioShowcase = () => {
         const config = {
           method: 'get',
           maxBodyLength: Infinity,
-          url: 'https://dashboard.digitalnawab.com/api/getproject',
+          url: '/api/getproject',
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',

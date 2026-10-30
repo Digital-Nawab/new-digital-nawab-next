@@ -18,7 +18,7 @@ const EcommerceTimeline = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const res = await fetch("https://dashboard.digitalnawab.com/api/getdev_commerce");
+        const res = await fetch("/api/getdev_commerce");
         const json = await res.json();
 
         if (json.data) {

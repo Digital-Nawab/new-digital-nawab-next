@@ -24,7 +24,7 @@ const WhySeoUs = () => {
     const fetchSeoData = async () => {
       try {
         const response = await fetch(
-          "https://dashboard.digitalnawab.com/api/getseohighlight"
+          "/api/getseohighlight"
         );
         const result = await response.json();
         if (result?.data && result.data.length > 0) {

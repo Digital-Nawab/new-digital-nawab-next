@@ -10,7 +10,7 @@ const SeoPlanningProcess = () => {
   useEffect(() => {
       const fetchSteps = async () => {
         try {
-          const response = await fetch("https://dashboard.digitalnawab.com/api/getseostrategy");
+          const response = await fetch("/api/getseostrategy");
           const result = await response.json();
           if (result?.data) {
             const formatted = result.data.map((item, index) => ({

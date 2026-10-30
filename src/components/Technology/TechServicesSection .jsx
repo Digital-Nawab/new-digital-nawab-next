@@ -23,7 +23,7 @@ const staticColors = [
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://dashboard.digitalnawab.com/api/getdev_innovation");
+        const res = await fetch("/api/getdev_innovation");
         const json = await res.json();
         if (json.data) {
           const formatted = json.data.map((item, idx) => ({

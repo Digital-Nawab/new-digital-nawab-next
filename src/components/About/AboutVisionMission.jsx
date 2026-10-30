@@ -38,14 +38,14 @@ export default function AboutVisionMission() {
   const [data, setData] = useState(defaultVisionMission);
   const [loading, setLoading] = useState(false);
 
-  // Fetch live Vision & Mission from API: https://dashboard.digitalnawab.com/api/getvision_mission
+  // Fetch live Vision & Mission from API: /api/getvision_mission
   useEffect(() => {
     let isMounted = true;
     const fetchVision = async () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          "https://dashboard.digitalnawab.com/api/getvision_mission",
+          "/api/getvision_mission",
           { timeout: 7000 }
         );
         if (

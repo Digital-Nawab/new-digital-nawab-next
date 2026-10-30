@@ -263,7 +263,7 @@ const LogoDesignSection = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          "https://dashboard.digitalnawab.com/api/getLogo"
+          "/api/getLogo"
         );
         const apiLogos = response.data.data.map((logo) => ({
           id: logo.id,

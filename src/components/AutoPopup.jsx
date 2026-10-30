@@ -170,7 +170,7 @@ export default function AutoPopup() {
     setIsSubmitting(true);
     try {
       await axios.post(
-        "https://dashboard.digitalnawab.com/api/post_enquiry",
+        "/api/post_enquiry",
         {
           name: formData.name,
           email: formData.email,

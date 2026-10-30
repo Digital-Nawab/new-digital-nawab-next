@@ -50,7 +50,7 @@ export default function JobDetailPage({ slug }) {
       try {
         setLoading(true);
         const res = await axios.get(
-          `https://dashboard.digitalnawab.com/api/careerdetail/${slug}`
+          `/api/careerdetail/${slug}`
         );
         setJob(res?.data?.data);
         setFormData((prev) => ({ ...prev, job_id: res?.data?.data?.id || "" }));
@@ -151,7 +151,7 @@ export default function JobDetailPage({ slug }) {
 
     try {
       await axios.post(
-        "https://dashboard.digitalnawab.com/api/career_form",
+        "/api/career_form",
         formDataToSend,
         {
           headers: { "Content-Type": "multipart/form-data" },

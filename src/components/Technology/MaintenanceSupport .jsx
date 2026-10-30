@@ -36,7 +36,7 @@ const MaintenanceSupport = () => {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          "https://dashboard.digitalnawab.com/api/getdev_maintain"
+          "/api/getdev_maintain"
         );
         const json = await res.json();
         if (json.data) {
