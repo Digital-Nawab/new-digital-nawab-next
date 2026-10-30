@@ -25,7 +25,7 @@ import {
 import { toast } from "sonner";
 // import { useToast } from '@/components/ui/use-toast';
 import Layout from "@/Layouts/Layout";
-import ShowImg from "@/Pages/utils/ShowImg";
+import ShowImg from "@/admin-pages/utils/ShowImg";
 
 export default function SeoOptimization({ seoOptimizations }) {
     // const { toast } = useToast();

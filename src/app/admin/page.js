@@ -2,7 +2,7 @@
 
 import React from "react";
 import axios from "axios";
-import DashboardPage from "@/Pages/Admin/Dashboard";
+import DashboardPage from "@/admin-pages/Admin/Dashboard";
 import { AdminPageWrapper } from "@/lib/AdminPageWrapper";
 
 export default function Page() {

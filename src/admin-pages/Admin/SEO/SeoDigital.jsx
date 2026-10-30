@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useForm, usePage } from "@inertiajs/react";
 import { Head } from "@inertiajs/react";
 import Layout from "@/Layouts/Layout";
-import ShowImg from "@/Pages/utils/ShowImg";
+import ShowImg from "@/admin-pages/utils/ShowImg";
 
 export default function SeoDigital({ seoDigitals }) {
     const { flash } = usePage().props;

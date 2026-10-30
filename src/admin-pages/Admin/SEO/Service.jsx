@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Plus, Edit, Trash2, X } from "lucide-react";
 import Layout from "@/Layouts/Layout"; // Adjust path to your layout
-import ShowImg from "@/Pages/utils/ShowImg";
+import ShowImg from "@/admin-pages/utils/ShowImg";
 
 // Quill Rich Text Editor Component (from reference)
 const QuillEditor = ({ value, onChange, placeholder = "Start writing..." }) => {

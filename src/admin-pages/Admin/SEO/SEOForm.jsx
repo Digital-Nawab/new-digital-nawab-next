@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "@inertiajs/react";
 import { LogOut } from "lucide-react";
 import Layout from "@/Layouts/Layout"; // Adjust path to your layout
-import ShowImg from "@/Pages/utils/ShowImg";
+import ShowImg from "@/admin-pages/utils/ShowImg";
 
 // Map for current_traffic display
 const TRAFFIC_MAP = {

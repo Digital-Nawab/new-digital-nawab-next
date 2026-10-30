@@ -4,6 +4,8 @@
       "@/*": ["./src/*"],
       "@/Components/*": ["./src/components/*"],
       "@/backend/*": ["./backend/*"],
+      "@/Pages/*": ["./src/admin-pages/*"],
+      "@/admin-pages/*": ["./src/admin-pages/*"],
       "@inertiajs/react": ["./src/lib/inertia-adapter.jsx"]
     }
   }
