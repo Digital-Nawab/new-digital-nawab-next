@@ -86,8 +86,8 @@ export default function WebsiteConsultationSection() {
         email: formData.email,
         number: formData.phone,
         city: formData.city,
-        service_id: null,
-        subservice_id: null,
+        service_id: 6,
+        subservice_id: 22,
         message: `[Website Consultation Enquiry]\nProject Type: ${formData.projectType}\nEstimated Budget: ${formData.budget}\nMessage: ${formData.message || "Requesting free website consultation and technical estimate."}`,
       };
 

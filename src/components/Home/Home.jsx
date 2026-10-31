@@ -43,7 +43,7 @@ const Home = () => {
       <ThreeDMarqueeDemoSecond />
       <ToolsAndTechnologies />
       {/* <Testimonial /> */}
-      <ContactUs />
+      <ContactUs isHomePage={true} />
       <FAQSection />
       {/* <BlogSection /> */}
     </>

@@ -99,18 +99,34 @@ export default function JobDetailPage({ slug }) {
   // Handle file upload
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (
-      file &&
-      (file.type === "application/pdf" || file.type.includes("msword"))
-    ) {
+    if (!file) return;
+
+    if (file.size > 2 * 1024 * 1024) {
+      setFormError("Resume file size must be less than 2MB (2048 KB).");
+      e.target.value = "";
+      return;
+    }
+
+    const validTypes = [
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ];
+    const isDoc =
+      file.name.endsWith(".doc") ||
+      file.name.endsWith(".docx") ||
+      file.name.endsWith(".pdf");
+
+    if (validTypes.includes(file.type) || isDoc) {
       setFormData((prev) => ({ ...prev, resume: file }));
       setFormError("");
     } else {
-      setFormError("Please upload a PDF or Word document.");
+      setFormError("Please upload a PDF or Word document (.pdf, .doc, .docx).");
+      e.target.value = "";
     }
   };
 
-  // Handle form submission (fixed for Laravel backend)
+  // Handle form submission (aligned with Laravel backend)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormError("");
@@ -118,31 +134,71 @@ export default function JobDetailPage({ slug }) {
 
     // Validation
     if (
-      !formData.name ||
-      !formData.email ||
-      !formData.contact ||
-      !formData.address ||
-      !formData.experience ||
-      !formData.resume ||
-      !formData.projectLinks ||
-      !formData.skills.length
+      !formData.name?.trim() ||
+      !formData.email?.trim() ||
+      !formData.contact?.trim() ||
+      !formData.address?.trim()
     ) {
       setFormError(
-        "Please fill in all required fields and add at least one skill."
+        "Please fill in all required fields (Name, Email, Contact Number, Address)."
       );
       return;
     }
 
+    const cleanContact = (formData.contact || "").replace(/\D/g, "");
+    if (cleanContact.length < 10 || cleanContact.length > 12) {
+      setFormError(
+        "Contact number must be between 10 and 12 digits (numeric only)."
+      );
+      return;
+    }
+
+    if (!formData.resume) {
+      setFormError("Please upload your resume (PDF or Word, max 2MB).");
+      return;
+    }
+
+    if (!formData.skills || formData.skills.length === 0) {
+      setFormError("Please add at least one skill.");
+      return;
+    }
+
+    let expYears = 0;
+    if (formData.experience !== undefined && formData.experience !== "") {
+      const parsed = parseInt(String(formData.experience).replace(/[^\d]/g, ""), 10);
+      expYears = isNaN(parsed) ? 0 : parsed;
+    }
+
+    const careerId = formData.job_id || job?.id || slug || 2;
+
+    let projectUrl = (formData.projectLinks || "").trim();
+    if (projectUrl) {
+      if (!/^https?:\/\//i.test(projectUrl)) {
+        projectUrl = "https://" + projectUrl;
+      }
+    } else {
+      // Backend MySQL column 'project_link' has NOT NULL constraint
+      projectUrl = "https://digitalnawab.com";
+    }
+
     const formDataToSend = new FormData();
-    formDataToSend.append("name", formData.name);
-    formDataToSend.append("email", formData.email);
-    formDataToSend.append("address", formData.address);
-    formDataToSend.append("year_of_experience", formData.experience); // ✅ match backend
-    formDataToSend.append("career_id", formData.job_id); // ✅ backend expects career_id
+    formDataToSend.append("name", formData.name.trim());
+    formDataToSend.append("email", formData.email.trim());
+    formDataToSend.append("address", formData.address.trim());
+    formDataToSend.append("year_of_experience", expYears);
+    formDataToSend.append("career_id", careerId);
     formDataToSend.append("resume", formData.resume);
-    formDataToSend.append("contact_number", formData.contact);
-    formDataToSend.append("project_link", formData.projectLinks);
-    formDataToSend.append("message", formData.message);
+    formDataToSend.append("contact_number", cleanContact);
+    formDataToSend.append("project_link", projectUrl);
+
+    if (formData.message && formData.message.trim()) {
+      formDataToSend.append("message", formData.message.trim().substring(0, 1000));
+    } else {
+      formDataToSend.append(
+        "message",
+        "Application for " + (job?.title || job?.desig || "Career Position")
+      );
+    }
 
     // Send skills[] array
     formData.skills.forEach((skill, i) => {
@@ -157,7 +213,9 @@ export default function JobDetailPage({ slug }) {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
-      setFormSuccess("Application submitted successfully!");
+      setFormSuccess(
+        "Application submitted successfully! Our talent team will review your application."
+      );
       setFormData({
         name: "",
         email: "",
@@ -168,12 +226,21 @@ export default function JobDetailPage({ slug }) {
         skills: [],
         projectLinks: "",
         message: "",
-        job_id: job?.id || "",
+        job_id: job?.id || slug || "",
       });
       setCurrentSkill("");
     } catch (err) {
       console.error("Error submitting form:", err);
-      setFormError("Failed to submit application. Please try again.");
+      const backendErrors = err.response?.data?.errors;
+      let msg = "Failed to submit application. Please check your inputs and try again.";
+      if (Array.isArray(backendErrors) && backendErrors.length > 0) {
+        msg = backendErrors.join(" ");
+      } else if (typeof backendErrors === "string") {
+        msg = backendErrors;
+      } else if (err.response?.data?.message) {
+        msg = err.response.data.message;
+      }
+      setFormError(msg);
     }
   };
 
@@ -521,7 +588,7 @@ export default function JobDetailPage({ slug }) {
                 htmlFor="resume"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Resume (PDF or Word) <span className="text-red-500">*</span>
+                Resume (PDF or Word, max 2MB) <span className="text-red-500">*</span>
               </label>
               <input
                 id="resume"
@@ -590,16 +657,15 @@ export default function JobDetailPage({ slug }) {
                 htmlFor="projectLinks"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Project Links
+                Project Link / Portfolio (Optional)
               </label>
-              <textarea
+              <input
                 id="projectLinks"
                 name="projectLinks"
+                type="url"
                 value={formData.projectLinks}
                 onChange={handleInputChange}
-                placeholder="Enter project links (one per line)"
-                rows={4}
-                required
+                placeholder="https://github.com/yourprofile or portfolio URL"
                 className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-lime-400 focus:ring-2 focus:ring-lime-200 transition-all duration-300 bg-gray-50 text-gray-900 placeholder-gray-400"
               />
             </div>

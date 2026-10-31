@@ -169,6 +169,9 @@ export default function AutoPopup() {
 
     setIsSubmitting(true);
     try {
+      const selectedCat = defaultCategories.find((c) => c.name === formData.service);
+      const selectedSub = selectedCat?.subServices?.find((s) => s.name === formData.subService);
+
       await axios.post(
         "https://dashboard.digitalnawab.com/api/post_enquiry",
         {
@@ -176,7 +179,9 @@ export default function AutoPopup() {
           email: formData.email,
           number: formData.phone,
           city: formData.city,
-          message: `[Category: ${formData.service || "N/A"} | Sub: ${formData.subService || "N/A"}] ${formData.message}`,
+          service_id: selectedCat?.id ? (selectedCat.id === 1 ? 6 : selectedCat.id === 2 ? 4 : selectedCat.id === 3 ? 7 : 5) : 4,
+          subservice_id: selectedSub?.id ? (selectedSub.id === 11 ? 22 : selectedSub.id === 12 ? 26 : selectedSub.id === 13 ? 25 : 3) : 3,
+          message: `[Auto Popup | Category: ${formData.service || "General"} | Sub: ${formData.subService || "All"}] ${formData.message}`,
         },
         {
           headers: {

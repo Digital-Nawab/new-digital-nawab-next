@@ -162,8 +162,8 @@ const ContactPopup = ({
         email: formData.email,
         number: formData.phone,
         city: formData.city,
-        service_id: selectedService ? selectedService.id : null,
-        subservice_id: selectedSubService ? selectedSubService.id : null,
+        service_id: selectedService ? selectedService.id : (services[0]?.id || 4),
+        subservice_id: selectedSubService ? selectedSubService.id : (selectedService?.subservices?.[0]?.id || 3),
         message: formData.message,
       };
 
