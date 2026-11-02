@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import React from "react";
 import CityPageClient from "@/components/City/CityPageClient";
 
@@ -20,16 +22,16 @@ async function getCityCompleteData(slug) {
       faqsRes,
       testimonialsRes,
     ] = await Promise.allSettled([
-      fetch(`${API_BASE}/cities`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/approaches?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/strategic-approaches?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/city-services-list?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/pricing-sections-list?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/how-we-works-list?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/city-projects-list?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/why-choose-us-list?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/city-faqs-list?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
-      fetch(`${API_BASE}/city-testimonials-list?city_slug=${citySlug}`, { next: { revalidate: 60 } }).then((r) => r.json()),
+      fetch(`${API_BASE}/cities`, { cache: "no-store" }).then((r) => r.json()),
+      fetch(`${API_BASE}/approaches?city_slug=${citySlug}`, { cache: "no-store" }).then((r) => r.json()),
+      fetch(`${API_BASE}/strategic-approaches?city_slug=${citySlug}`, { cache: "no-store" }).then((r) => r.json()),
+      fetch(`${API_BASE}/city-services-list?city_slug=${citySlug}`, { cache: "no-store" }).then((r) => r.json()),
+      fetch(`${API_BASE}/pricing-sections-list?city_slug=${citySlug}`, { cache: "no-store" }).then((r) => r.json()),
+      fetch(`${API_BASE}/how-we-works-list?city_slug=${citySlug}`, { cache: "no-store" }).then((r) => r.json()),
+      fetch(`${API_BASE}/city-projects-list?city_slug=${citySlug}`, { cache: "no-store" }).then((r) => r.json()),
+      fetch(`${API_BASE}/why-choose-us-list?city_slug=${citySlug}`, { cache: "no-store" }).then((r) => r.json()),
+      fetch(`${API_BASE}/city-faqs-list?city_slug=${citySlug}`, { cache: "no-store" }).then((r) => r.json()),
+      fetch(`${API_BASE}/city-testimonials-list?city_slug=${citySlug}`, { cache: "no-store" }).then((r) => r.json()),
     ]);
 
     const citiesData =
@@ -43,7 +45,7 @@ async function getCityCompleteData(slug) {
           c.slug?.toLowerCase() === citySlug ||
           c.name?.toLowerCase() === citySlug
       ) || citiesData[0] || null;
-
+    console.log("PAGE STRATEGIC RES:", JSON.stringify(strategicRes.value));
     return {
       city,
       allCities: citiesData.filter((c) => c.is_active),
@@ -70,6 +72,7 @@ export async function generateMetadata({ params }) {
   const city = data?.city;
 
   if (!city) {
+    console.log("PAGE STRATEGIC RES:", JSON.stringify(strategicRes.value));
     return {
       title: "City Services | Digital Nawab",
       description: "Leading digital marketing solutions across top Indian cities.",

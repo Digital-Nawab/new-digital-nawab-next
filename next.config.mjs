@@ -4,6 +4,15 @@ const nextConfig = {
   images: {
     domains: ["dashboard.digitalnawab.com", "images.unsplash.com"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/package",
+        destination: "/packages",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {

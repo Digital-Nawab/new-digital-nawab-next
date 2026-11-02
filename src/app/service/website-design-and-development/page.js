@@ -12,7 +12,7 @@ export const metadata = {
 const page = () => {
   return (
     <div>
-      <Technology />
+      <Technology isWebsiteDesignService={true} />
     </div>
   );
 };

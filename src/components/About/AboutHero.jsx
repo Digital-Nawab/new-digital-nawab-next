@@ -38,46 +38,50 @@ export default function AboutHero() {
           </span>
         </div>
 
-        {/* Floating Badge */}
+        {/* Eyebrow Badge */}
         <div className="flex justify-center mb-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-purple-500/15 via-pink-500/15 to-blue-500/15 border border-purple-500/30 text-purple-300 text-xs sm:text-sm font-semibold uppercase tracking-wider shadow-sm">
+          <div className="inline-flex items-center gap-2.5 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-purple-500/15 via-pink-500/15 to-blue-500/15 border border-purple-500/30 text-purple-300 text-xs sm:text-sm font-semibold uppercase tracking-wider shadow-sm backdrop-blur-md">
             <span className="w-2 h-2 rounded-full bg-[#C73673] animate-pulse" />
             <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-            <span>Digital Nawab • Est. 2015</span>
+            <span>ABOUT DIGITAL NAWAB | DIGITAL MARKETING AGENCY IN INDIA</span>
           </div>
         </div>
 
-        {/* Main Title */}
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.12] mb-6 max-w-4xl mx-auto">
-          Pioneering Digital Growth,{" "}
+        {/* Main Headline */}
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[62px] font-black text-white tracking-tight leading-[1.14] mb-6 max-w-5xl mx-auto">
+          More Than a Digital Marketing Agency —{" "}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#C73673] via-[#8F5AFF] to-[#FF6FD8]">
-            Empowering Modern Brands
+            Your Partner in Digital Growth
           </span>
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-gray-300 text-base sm:text-lg lg:text-xl font-light leading-relaxed max-w-3xl mx-auto mb-10">
-          We are Lucknow&apos;s leading performance-driven digital marketing agency.
-          We architect data-backed campaigns, high-ranking SEO strategies, and
-          scalable digital solutions that convert visitors into lifelong customers.
+        {/* Subtitle / Paragraph */}
+        <p className="text-gray-300 text-base sm:text-lg lg:text-xl font-normal leading-relaxed max-w-4xl mx-auto mb-10">
+          Digital Nawab is a Lucknow-based digital marketing agency helping
+          businesses build a stronger online presence, reach the right audiences
+          and achieve meaningful business growth. From SEO and Google Ads to
+          social media marketing and website development, we combine strategy,
+          creativity and technology to create digital solutions aligned with your
+          business goals.
         </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
           <Link
             href="/contact-us"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#C73673] via-[#8F5AFF] to-[#FF6FD8] text-white font-semibold text-sm sm:text-base transition-transform hover:scale-105 shadow-xl shadow-[#C73673]/30"
+            className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-[#C73673] via-[#8F5AFF] to-[#FF6FD8] text-white font-bold text-sm sm:text-base transition-all duration-300 hover:scale-105 shadow-xl shadow-[#C73673]/30 hover:shadow-[#8F5AFF]/40 cursor-pointer"
           >
-            <span>Partner With Us</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>Let&apos;s Discuss Your Goals</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
-          <a
-            href="#team"
-            className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 hover:border-purple-500/40 text-gray-200 hover:text-white font-medium text-sm sm:text-base transition-all backdrop-blur-md"
+          <Link
+            href="/packages"
+            className="group inline-flex items-center gap-2.5 px-7 py-4 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 hover:border-purple-500/40 text-gray-200 hover:text-white font-semibold text-sm sm:text-base transition-all backdrop-blur-md cursor-pointer"
           >
-            <Users className="w-4 h-4 text-purple-400" />
-            <span>Meet Our Team</span>
-          </a>
+            <Sparkles className="w-4 h-4 text-purple-400 group-hover:rotate-12 transition-transform" />
+            <span>Explore Our Services</span>
+            <ChevronRight className="w-4 h-4 text-gray-400 group-hover:translate-x-0.5 transition-transform" />
+          </Link>
         </div>
 
         {/* Quick Highlights / Stats Grid */}
@@ -87,7 +91,7 @@ export default function AboutHero() {
               <Award className="w-5 h-5" />
             </div>
             <div className="text-2xl sm:text-3xl font-extrabold text-white mb-1">
-              10+ Years
+              7+ Years
             </div>
             <div className="text-xs sm:text-sm text-gray-400 font-light">
               Digital Industry Experience

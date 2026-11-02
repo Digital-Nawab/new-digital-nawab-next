@@ -19,10 +19,10 @@ import WebsitePortfolioCaseStudies from "./WebsitePortfolioCaseStudies";
 import WebsiteFaqSection from "./WebsiteFaqSection";
 import WebsiteConsultationSection from "./WebsiteConsultationSection";
 
-const Technology = () => {
+const Technology = ({ isWebsiteDesignService = false }) => {
   return (
     <div>
-      <TechServicesHero />
+      <TechServicesHero isWebsiteDesignService={isWebsiteDesignService} />
       {/* <RotatingCircles/> */}
       {/* <OrbitingLogos/> */}
       {/* <TechServicesOverview /> */}

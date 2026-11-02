@@ -90,24 +90,8 @@ export default function StatsSection() {
 
             {/* Subtitle / Paragraph - High Contrast & Crisp Visibility */}
             <p className="max-w-xl text-base sm:text-lg lg:text-[19px] leading-relaxed text-slate-800 font-medium">
-              We help businesses grow with result-driven digital marketing
-              strategies including{" "}
-              <span className="text-slate-950 font-bold underline decoration-[#e60067]/40 decoration-2 underline-offset-4">
-                SEO
-              </span>
-              ,{" "}
-              <span className="text-slate-950 font-bold underline decoration-blue-500/40 decoration-2 underline-offset-4">
-                Google Ads
-              </span>
-              ,{" "}
-              <span className="text-slate-950 font-bold underline decoration-purple-500/40 decoration-2 underline-offset-4">
-                social media marketing
-              </span>{" "}
-              and{" "}
-              <span className="text-slate-950 font-bold underline decoration-emerald-500/40 decoration-2 underline-offset-4">
-                website development
-              </span>
-              .
+             Digital Nawab is a digital marketing agency in Lucknow helping businesses across India strengthen their online presence, reach the right audience and generate qualified leads.{" "}
+            
             </p>
 
             {/* Action Buttons with High-Contrast Primary & Secondary Pair */}

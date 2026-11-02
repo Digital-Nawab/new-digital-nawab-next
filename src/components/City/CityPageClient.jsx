@@ -62,6 +62,9 @@ const isGarbageText = (str) => {
     s === "test" ||
     s === "sdsads" ||
     s === "php artisan migrate" ||
+    s.includes("artisan") ||
+    s === "sunrise hospital" ||
+    s.includes("sunrise") ||
     s.length < 3
   );
 };
@@ -121,17 +124,23 @@ const WhatsAppIcon = ({ className = "w-4 h-4" }) => (
   </svg>
 );
 
-const StrategicIcon = ({ type, className = "w-6 h-6" }) => {
+const StrategicIcon = ({ type, className = "w-6 h-6", idx = 0 }) => {
+  const t = type?.toLowerCase()?.trim();
   const icons = {
     search: <Search className={className} />,
     target: <Target className={className} />,
     layers: <Layers className={className} />,
     trending: <TrendingUp className={className} />,
+    trendingup: <TrendingUp className={className} />,
     award: <Award className={className} />,
     shield: <ShieldCheck className={className} />,
     zap: <Zap className={className} />,
   };
-  return icons[type?.toLowerCase()] || <Search className={className} />;
+  if (t && icons[t] && t !== "search") return icons[t];
+  if (idx === 1) return <Target className={className} />;
+  if (idx === 2) return <Layers className={className} />;
+  if (idx === 3) return <TrendingUp className={className} />;
+  return <Search className={className} />;
 };
 
 export default function CityPageClient({
@@ -178,6 +187,15 @@ export default function CityPageClient({
   );
   const [openFaq, setOpenFaq] = useState(0);
   const [loading, setLoading] = useState(!initialCity);
+
+  // Sync state with incoming server props when page re-renders
+  useEffect(() => {
+    if (initialCity) setCity(initialCity);
+    if (initialStrategic) setStrategic(Array.isArray(initialStrategic) ? initialStrategic[0] : initialStrategic);
+    if (initialApproaches) setApproaches(Array.isArray(initialApproaches) ? initialApproaches[0] : initialApproaches);
+    if (initialServices) setServices(Array.isArray(initialServices) ? initialServices[0] : initialServices);
+    if (initialPricing) setPricing(Array.isArray(initialPricing) ? initialPricing[0] : initialPricing);
+  }, [initialCity, initialStrategic, initialApproaches, initialServices, initialPricing]);
 
   // Client-side fallback fetch if not provided via server
   useEffect(() => {
@@ -557,7 +575,7 @@ export default function CityPageClient({
       price: "9,999",
       price_suffix: "/Month",
       is_popular: false,
-      view_package_url: "/package",
+      view_package_url: "/packages",
       whatsapp_number: cleanWhatsapp,
       features: [
         "Google Business Profile Optimization & Audit",
@@ -575,7 +593,7 @@ export default function CityPageClient({
       price: "18,500",
       price_suffix: "/Month",
       is_popular: true,
-      view_package_url: "/package",
+      view_package_url: "/packages",
       whatsapp_number: cleanWhatsapp,
       features: [
         "Google Search & Performance Max Campaigns",
@@ -593,7 +611,7 @@ export default function CityPageClient({
       price: "34,999",
       price_suffix: "/Month",
       is_popular: false,
-      view_package_url: "/package",
+      view_package_url: "/packages",
       whatsapp_number: cleanWhatsapp,
       features: [
         "Complete Web App Development / Modern Redesign",
@@ -623,27 +641,46 @@ export default function CityPageClient({
   const defaultStrategic = [
     {
       icon: "search",
-      title: "Deep Market & Competitor Audit",
-      description: `We analyze your ${cityName} competitors, customer search patterns, and demand gaps before deploying a single rupee.`,
+      title: "Market Research & SEO Strategy",
+      description: `We understand your business, analyze the ${cityName} market, research competitors and identify relevant search opportunities. This helps us create a customized digital marketing and SEO strategy aligned with your target audience and business goals.`,
     },
     {
       icon: "target",
-      title: "Precision Audience Targeting",
-      description: "Laser-target active buyers across Google Search, Instagram, and local maps with high-intent commercial keywords.",
+      title: "Digital Advertising & Lead Generation",
+      description: "We create and manage targeted Google Ads and social media advertising campaigns to connect your business with potential customers, drive relevant website traffic and generate qualified enquiries.",
     },
     {
       icon: "layers",
-      title: "High-Converting Funnels",
-      description: "Build high-speed landing pages, compelling bilingual ad copies, and friction-free WhatsApp inquiry flows.",
+      title: "Website Optimization & Digital Presence",
+      description: "We optimize your website and online presence to improve search engine visibility, website performance and user experience, making it easier for potential customers to discover and connect with your business.",
     },
     {
       icon: "trending",
-      title: "Continuous Scaling & ROI",
-      description: "Daily negative keyword pruning, bid adjustments, and A/B creative testing to slash acquisition costs.",
+      title: "Performance Tracking & Growth Optimization",
+      description: "We continuously monitor campaign performance, analyze website traffic and track conversions to identify improvement opportunities and make your digital marketing efforts more effective.",
     },
   ];
 
-  const finalStrategic = parsedStrategic.length > 0 ? parsedStrategic : defaultStrategic;
+  const validAdminItems = parsedStrategic.filter(
+    (item) => item && !isGarbageText(item.title) && !isGarbageText(item.description)
+  );
+
+  const finalStrategic = validAdminItems.length > 0 ? validAdminItems : defaultStrategic;
+
+  const strategicHeading =
+    strategic?.heading && !isGarbageText(strategic.heading)
+      ? strategic.heading
+      : `Our 4-Step Digital Marketing Process for Businesses in ${cityName}`;
+
+  const strategicSubheading =
+    strategic?.subheading && !isGarbageText(strategic.subheading)
+      ? strategic.subheading
+      : `At Digital Nawab, we follow a strategic, data-driven approach to help businesses in ${cityName} build a strong online presence, reach their target audience and generate quality leads. From market research and digital marketing strategy to campaign execution and performance optimization, every step is designed to support measurable business growth.`;
+
+  const strategicBadge =
+    strategic?.badge_text && !isGarbageText(strategic.badge_text)
+      ? strategic.badge_text
+      : "Methodology";
 
   // Testimonials formatted
   const formattedTestimonials = testimonials.map((t) => ({
@@ -652,6 +689,75 @@ export default function CityPageClient({
     designation: t.designation || "",
     src: getImageUrl(t.image),
   }));
+
+  
+  // Smart Hero Headline Formatting (prevents duplicate city names and cleans up static strings)
+  const renderHeroHeadline = () => {
+    const prefix = city.heading_prefix?.trim();
+    const suffix = city.heading_suffix?.trim();
+
+    if (prefix && suffix) {
+      const cityRegex = new RegExp(`\\b${cityName}\\b`, "i");
+      if (cityRegex.test(suffix)) {
+        const parts = suffix.split(cityRegex);
+        return (
+          <>
+            <span>{prefix} </span>
+            <span>{parts[0]}</span>
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
+              {cityName}
+            </span>
+            <span>{parts.slice(1).join(cityName)}</span>
+          </>
+        );
+      }
+      if (cityRegex.test(prefix)) {
+        const parts = prefix.split(cityRegex);
+        return (
+          <>
+            <span>{parts[0]}</span>
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
+              {cityName}
+            </span>
+            <span>{parts.slice(1).join(cityName)} </span>
+            <span>{suffix}</span>
+          </>
+        );
+      }
+      return (
+        <>
+          <span>{prefix} </span>
+          <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
+            {cityName}
+          </span>{" "}
+          <span>{suffix}</span>
+        </>
+      );
+    }
+
+    if (prefix && !suffix) {
+      return (
+        <>
+          <span>{prefix} </span>
+          <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
+            {cityName}
+          </span>
+        </>
+      );
+    }
+
+    // Default Fallback
+    return (
+      <>
+        <span>Grow Your </span>
+        <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
+          {cityName}
+        </span>{" "}
+        <span>Business with </span>
+        <span className="block text-white">Digital Marketing That Works</span>
+      </>
+    );
+  };
 
   return (
     <main className="w-full relative overflow-x-hidden selection:bg-purple-600 selection:text-white">
@@ -707,12 +813,7 @@ export default function CityPageClient({
               {/* Main Headline */}
               <div className="space-y-3">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12]">
-                  {city.heading_prefix || "Grow Your"}{" "}
-                  <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
-                    {cityName}
-                  </span>{" "}
-                  {city.heading_suffix || "Business with"}{" "}
-                  <span className="block text-white">Digital Marketing That Works</span>
+                  {renderHeroHeadline()}
                 </h1>
                 <p className="text-zinc-300 text-sm sm:text-base md:text-lg leading-relaxed pt-2 max-w-2xl">
                   {cityDescription}
@@ -933,31 +1034,52 @@ export default function CityPageClient({
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {finalServices.map((srv, idx) => (
+            {finalStrategic.map((item, idx) => (
               <div
                 key={idx}
-                className="group rounded-2xl bg-zinc-900/60 border border-white/10 hover:border-purple-500/40 p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-950/30"
+                className="p-6 sm:p-7 rounded-2xl bg-white border border-zinc-200/90 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative group flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 p-0.5 mb-5 shadow-lg group-hover:scale-105 transition-transform">
-                    <div className="w-full h-full bg-zinc-950 rounded-[10px] flex items-center justify-center font-bold text-white text-base">
-                      0{idx + 1}
+                  {/* Top Row: Icon + Step Indicator */}
+                  <div className="flex items-center justify-between gap-2 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-purple-50 border border-purple-200/70 text-purple-700 flex items-center justify-center group-hover:scale-110 transition-transform shadow-xs">
+                      <StrategicIcon type={item.icon} idx={idx} className="w-6 h-6" />
                     </div>
+                    <span className="text-[11px] font-extrabold text-purple-700 bg-purple-100/70 border border-purple-200 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                      Step 0{idx + 1}
+                    </span>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
-                    {srv.title}
+
+                  {/* Optional Category Label if explicitly provided */}
+                  {item.category && (
+                    <div className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5">
+                      {item.category}
+                    </div>
+                  )}
+
+                  {/* Title */}
+                  <h3 className="text-base sm:text-lg font-extrabold text-zinc-900 mb-2.5 leading-snug">
+                    {item.title}
                   </h3>
-                  <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed">
-                    {srv.description}
+
+                  {/* Description */}
+                  <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed">
+                    {item.description}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-white/5">
-                  <ContactPopup
-                    buttonText="Inquire For This Service"
-                    buttonClassName="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 text-xs font-semibold transition-colors cursor-pointer text-center block"
-                  />
-                </div>
+                {/* Optional Key Focus Tag Footer if explicitly provided */}
+                {item.key_focus && (
+                  <div className="mt-5 pt-3.5 border-t border-zinc-100">
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-purple-800 mb-1 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-purple-600" />
+                      <span>Key Focus</span>
+                    </div>
+                    <p className="text-[11px] text-zinc-500 font-medium leading-normal">
+                      {item.key_focus}
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -1250,15 +1372,14 @@ export default function CityPageClient({
       <section className="bg-zinc-50 text-zinc-900 py-20 px-4 md:px-8 border-b border-zinc-200">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-100 border border-indigo-200 text-indigo-800 text-xs font-bold uppercase tracking-wider mb-3">
-              <Compass className="w-3.5 h-3.5" /> 4-Pillar Methodology
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-100 border border-purple-200 text-purple-800 text-xs font-bold uppercase tracking-wider mb-3">
+              <Compass className="w-3.5 h-3.5 text-purple-700" /> {strategicBadge}
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-zinc-900 tracking-tight">
-              {strategic?.heading || "Our Proven 4-Pillar Growth Framework"}
+              {strategicHeading}
             </h2>
-            <p className="text-zinc-600 text-base md:text-lg mt-3">
-              {strategic?.subheading ||
-                "A battle-tested process designed to turn local searchers into verified revenue."}
+            <p className="text-zinc-600 text-base md:text-lg mt-3 leading-relaxed">
+              {strategicSubheading}
             </p>
           </div>
 
@@ -1266,20 +1387,49 @@ export default function CityPageClient({
             {finalStrategic.map((item, idx) => (
               <div
                 key={idx}
-                className="p-7 rounded-2xl bg-white border border-zinc-200/80 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative group"
+                className="p-6 sm:p-7 rounded-2xl bg-white border border-zinc-200/90 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative group flex flex-col justify-between"
               >
-                <div className="w-12 h-12 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-700 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                  <StrategicIcon type={item.icon || "search"} className="w-6 h-6" />
+                <div>
+                  {/* Top Row: Icon + Step Indicator */}
+                  <div className="flex items-center justify-between gap-2 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-purple-50 border border-purple-200/70 text-purple-700 flex items-center justify-center group-hover:scale-110 transition-transform shadow-xs">
+                      <StrategicIcon type={item.icon} idx={idx} className="w-6 h-6" />
+                    </div>
+                    <span className="text-[11px] font-extrabold text-purple-700 bg-purple-100/70 border border-purple-200 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                      Step 0{idx + 1}
+                    </span>
+                  </div>
+
+                  {/* Optional Category Label if explicitly provided in data */}
+                  {item.category && (
+                    <div className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5">
+                      {item.category}
+                    </div>
+                  )}
+
+                  {/* Title */}
+                  <h3 className="text-base sm:text-lg font-extrabold text-zinc-900 mb-2.5 leading-snug">
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-                <div className="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-1">
-                  Pillar 0{idx + 1}
-                </div>
-                <h3 className="text-base sm:text-lg font-bold text-zinc-900 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed">
-                  {item.description}
-                </p>
+
+                {/* Optional Key Focus Tag Footer if explicitly provided in data */}
+                {item.key_focus && (
+                  <div className="mt-5 pt-3.5 border-t border-zinc-100">
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-purple-800 mb-1 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-purple-600" />
+                      <span>Key Focus</span>
+                    </div>
+                    <p className="text-[11px] text-zinc-500 font-medium leading-normal">
+                      {item.key_focus}
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -1354,7 +1504,7 @@ export default function CityPageClient({
                   {/* Actions */}
                   <div className="mt-8 pt-5 border-t border-white/10 space-y-3">
                     <Link
-                      href={pkg.view_package_url || "/package"}
+                      href={pkg.view_package_url || "/packages"}
                       className={`block w-full py-3 rounded-xl font-bold text-xs text-center transition-all ${
                         isPopular
                           ? "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white shadow-lg"
@@ -1365,15 +1515,11 @@ export default function CityPageClient({
                     </Link>
 
                     <a
-                      href={`https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent(
-                        `Hi Digital Nawab, I am interested in the ${pkg.title} (₹${pkg.price}) for my business in ${cityName}.`
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 text-xs font-semibold transition-colors"
+                      href={`tel:${cleanPhone || "8860757649"}`}
+                      className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-200 hover:text-white border border-white/15 hover:border-purple-400/50 text-xs font-semibold transition-all cursor-pointer"
                     >
-                      <WhatsAppIcon className="w-3.5 h-3.5" />
-                      <span>Inquire on WhatsApp</span>
+                      <Phone className="w-3.5 h-3.5 text-purple-400" />
+                      <span>Call {phoneNum || "8860757649"}</span>
                     </a>
                   </div>
                 </div>

@@ -177,7 +177,7 @@ const NavBar = () => {
 
                   {/* Package */}
                   <li>
-                    <ActiveLink href="/package">Package</ActiveLink>
+                    <ActiveLink href="/packages">Packages</ActiveLink>
                   </li>
 
                   {/* Blogs */}

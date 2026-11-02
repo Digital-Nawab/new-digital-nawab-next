@@ -1393,7 +1393,7 @@ const ContactUs = ({ isHomePage }) => {
           </div>
           <h2 className="text-3xl font-extrabold text-white">Our Head Office Location</h2>
           <p className="text-zinc-400 text-sm mt-1">
-            B12 A, L. Road, Mahanagar, Lucknow, Uttar Pradesh 226006
+            B12 A, L Road, Mahanagar, Lucknow, Uttar Pradesh 226006
           </p>
         </div>
 
