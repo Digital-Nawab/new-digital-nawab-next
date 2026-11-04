@@ -150,7 +150,7 @@ const LinkedInMarketingSection = () => {
                 {/* Visual Side */}
                 <div className={`${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
                   <div className="relative group overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-2xl">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={service.image}
                       alt={service.title}
                       className="w-full h-64 sm:h-80 object-cover object-center group-hover:scale-105 transition-transform duration-700"

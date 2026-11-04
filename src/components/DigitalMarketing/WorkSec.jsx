@@ -108,7 +108,7 @@ export default function LatestWorkSection() {
             <div key={project.id} className="group cursor-pointer">
               {/* Project Image */}
               <div className="relative overflow-hidden rounded-2xl mb-6 aspect-[4/3]">
-                <img
+                <img loading="lazy" decoding="async"
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"

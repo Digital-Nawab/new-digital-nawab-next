@@ -442,7 +442,7 @@ const LogoDesignSection = () => {
                   >
                     {/* Logo Display Area */}
                     <div className="absolute inset-0 flex items-center justify-center p-4">
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={logo.img}
                         alt={logo.title}
                         className="w-full h-full object-contain"

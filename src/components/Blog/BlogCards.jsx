@@ -6,6 +6,34 @@ import { ArrowUpRight } from "lucide-react";
 import axios from "axios";
 import Link from "next/link";
 
+// Clean HTML tags and entities to create clean plain text excerpt
+const getExcerpt = (blog, maxLen = 130) => {
+  if (!blog) return "";
+  let text = blog.description || "";
+  // Strip h1/h2 tags so heading is not repeated in excerpt
+  text = text.replace(/<h[1-2][^>]*>[\s\S]*?<\/h[1-2]>/gi, " ");
+  // Strip all HTML tags
+  text = text
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (!text && blog.meta_desc) {
+    text = blog.meta_desc.trim();
+  }
+
+  if (text.length > maxLen) {
+    return text.substring(0, maxLen).trim() + "...";
+  }
+  return text;
+};
+
 const BlogCards = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -97,6 +125,8 @@ const BlogCards = () => {
               <img
                 src={`https://dashboard.digitalnawab.com/${blog.card_img}`}
                 alt={blog.title}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-56 object-cover rounded-t-2xl"
                 onError={(e) => {
                   e.target.src = "/images/fallback.jpg"; // Fallback image if the API image fails
@@ -125,10 +155,8 @@ const BlogCards = () => {
                 </div>
 
                 {/* Excerpt */}
-                <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                  {blog.description.length > 100
-                    ? `${blog.description.substring(0, 100)}...`
-                    : blog.description}
+                <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
+                  {getExcerpt(blog, 130)}
                 </p>
 
                 <button className="inline-flex items-center gap-2 text-black font-semibold hover:gap-3 transition-all duration-300">

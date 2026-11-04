@@ -164,7 +164,7 @@ export const Lid = ({ scaleX, scaleY, rotate, translate, src }) => {
           alt="aceternity logo"
           className="absolute inset-0 h-full w-full rounded-lg object-cover "
         ></video>
-        {/* <img
+        {/* <img loading="lazy" decoding="async"
           src={src}
           alt="aceternity logo"
           className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top"

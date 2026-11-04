@@ -70,7 +70,7 @@ export const AnimatedTestimonials = ({
                     ease: "easeInOut",
                   }}
                   className="absolute inset-0 origin-bottom">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={testimonial.src}
                     alt={testimonial.name}
                     width={500}

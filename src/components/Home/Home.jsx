@@ -1,33 +1,43 @@
 "use client";
-import Image from 'next/image'
 
 import React from "react";
+import dynamic from "next/dynamic";
 
-// Sections
-// import HeroSection from "@/components/home/Hero";
-// import StatsSection from "@/components/home/AboutUsSec";
-// import WhyChooseUsSection from "@/components/home/WhychooseUs";
-// import VisionMissionSection from "@/components/home/Vision&Mission";
-// import { TimelineDemo } from "@/components/home/Timeline";
-// import ToolsAndTechnologies from "@/components/TechWeUse";
-// import { ThreeDMarqueeDemoSecond } from "@/components/home/ThreeDMarqueeDemoSecond";
-// import InnovateHero from "@/components/home/CatelystHero";
-// import ContactUs from "@/components/home/ContactUS";
+// Critical above-the-fold sections: imported directly for instant render
 import HeroSection from "./Hero";
-import { TimelineDemo } from "./Timeline";
-import ToolsAndTechnologies from "../../components/TechWeUse";
-
-import HappyPartners from "./HappyPartners";
-import Testimonial from "./Testimonial";
-import InnovateHero from "./CatelystHero";
-import FAQSection from "./FAQSec";
-import ContactUs from "./ContactUS";
-import VisionMissionSection from "./VIsion&Mission";
-import { ThreeDMarqueeDemoSecond } from "./ThreeDMarqueeDemoSecond";
+import StatsSection from "./AboutUsSec";
 import WhyChooseUsSection from "./WhychooseUs";
-import BlogSection from "./Blogs";
-import StatsSection from "./AboutUsSec"
-import MaksedVideo from "../MaskedVideo";
+import VisionMissionSection from "./VIsion&Mission";
+
+// Below-the-fold sections: dynamically loaded to code-split JS chunks and optimize TTI / LCP
+const TimelineDemo = dynamic(
+  () => import("./Timeline").then((mod) => mod.TimelineDemo),
+  { ssr: true }
+);
+
+const InnovateHero = dynamic(() => import("./CatelystHero"), {
+  ssr: true,
+});
+
+const ThreeDMarqueeDemoSecond = dynamic(
+  () => import("./ThreeDMarqueeDemoSecond").then((mod) => mod.ThreeDMarqueeDemoSecond),
+  {
+    ssr: false,
+    loading: () => <div className="min-h-[400px] w-full" />,
+  }
+);
+
+const ToolsAndTechnologies = dynamic(() => import("../../components/TechWeUse"), {
+  ssr: true,
+});
+
+const ContactUs = dynamic(() => import("./ContactUS"), {
+  ssr: true,
+});
+
+const FAQSection = dynamic(() => import("./FAQSec"), {
+  ssr: true,
+});
 
 const Home = () => {
   return (
@@ -36,16 +46,12 @@ const Home = () => {
       <StatsSection />
       <WhyChooseUsSection />
       <VisionMissionSection />
-      {/* <MaksedVideo /> */}
-      {/* <EnquiryModalDemo /> */}
       <TimelineDemo />
       <InnovateHero />
       <ThreeDMarqueeDemoSecond />
       <ToolsAndTechnologies />
-      {/* <Testimonial /> */}
       <ContactUs isHomePage={true} />
       <FAQSection />
-      {/* <BlogSection /> */}
     </>
   );
 };

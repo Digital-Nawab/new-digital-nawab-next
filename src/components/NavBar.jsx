@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/menubar";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { getActiveCities } from "@/lib/cities";
 
 // 🔗 ActiveLink wrapper
 function ActiveLink({ href, children }) {
@@ -41,21 +42,13 @@ const NavBar = () => {
   const [loadingCities, setLoadingCities] = useState(true);
 
   useEffect(() => {
-    const fetchCities = async () => {
-      try {
-        const response = await fetch("https://dashboard.digitalnawab.com/api/cities");
-        const result = await response.json();
-        if (result.status && Array.isArray(result.data)) {
-          setCities(result.data.filter((city) => city.is_active));
-        }
-      } catch (error) {
-        console.error("Failed to fetch cities:", error);
-      } finally {
+    getActiveCities()
+      .then((data) => {
+        setCities(data);
+      })
+      .finally(() => {
         setLoadingCities(false);
-      }
-    };
-
-    fetchCities();
+      });
   }, []);
 
   const handleBurgerClick = () => {
@@ -73,7 +66,7 @@ const NavBar = () => {
               className="max-w-[90px] flex justify-center items-center"
               rel="noopener noreferrer"
             >
-              <img loading="lazy" src="/assets/logo/logo.png" alt="Logo" />
+              <Image src="/assets/logo/logo.png" alt="Digital Nawab Logo" width={90} height={45} priority className="h-auto w-auto object-contain" />
             </Link>
 
             {/* Desktop / Mobile Nav */}

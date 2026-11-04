@@ -65,7 +65,7 @@ export default function WhyChooseUsSection() {
                     <span>Certified Professionals</span>
                   </div>
                 </div>
-                <img
+                <img loading="lazy" decoding="async"
                   src="https://ui.aceternity.com/linear.webp"
                   width={500}
                   height={500}
@@ -133,7 +133,7 @@ export default function WhyChooseUsSection() {
                     </div>
                   </div>
                 </div>
-                {/* <img
+                {/* <img loading="lazy" decoding="async"
                   src="https://ui.aceternity.com/linear.webp"
                   width={500}
                   height={500}

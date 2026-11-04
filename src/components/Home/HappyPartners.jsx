@@ -19,22 +19,22 @@ const HappyPartners = () => {
         <div className="space-y-14">
           {/* Row 1 */}
           <div className="flex justify-center items-center flex-wrap gap-8 sm:gap-12 lg:gap-20">
-            <img
+            <img loading="lazy" decoding="async"
               src="./assets/images/clients/6.webp"
               alt="EQ"
               className="h-14 sm:h-16 lg:h-20 object-contain"
             />
-            <img
+            <img loading="lazy" decoding="async"
               src="./assets/images/clients/7.webp"
               alt="Webexcellis"
               className="h-12 sm:h-14 lg:h-16 object-contain"
             />
-            <img
+            <img loading="lazy" decoding="async"
               src="./assets/images/clients/8.webp"
               alt="Bring"
               className="h-12 sm:h-14 lg:h-16 object-contain"
             />
-            <img
+            <img loading="lazy" decoding="async"
               src="./assets/images/clients/9.webp"
               alt="S"
               className="h-12 sm:h-14 lg:h-16 object-contain"
@@ -43,22 +43,22 @@ const HappyPartners = () => {
 
           {/* Row 2 */}
           <div className="flex justify-center items-center flex-wrap gap-8 sm:gap-12 lg:gap-20">
-            <img
+            <img loading="lazy" decoding="async"
               src="./assets/images/clients/2.webp"
               alt="JGM"
               className="h-12 sm:h-14 lg:h-16 object-contain"
             />
-            <img
+            <img loading="lazy" decoding="async"
               src="./assets/images/clients/3.webp"
               alt="The Tailors"
               className="h-12 sm:h-14 lg:h-16 object-contain"
             />
-            <img
+            <img loading="lazy" decoding="async"
               src="./assets/images/clients/4.webp"
               alt="Niransoft"
               className="h-12 sm:h-14 lg:h-16 object-contain"
             />
-            <img
+            <img loading="lazy" decoding="async"
               src="./assets/images/clients/5.webp"
               alt="Robox"
               className="h-12 sm:h-14 lg:h-16 object-contain"
@@ -67,7 +67,7 @@ const HappyPartners = () => {
 
           {/* Centered logo */}
           <div className="flex justify-center">
-            <img
+            <img loading="lazy" decoding="async"
               src="./assets/images/clients/1.webp"
               alt="A1"
               className="h-12 sm:h-14 lg:h-16 object-contain"

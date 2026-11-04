@@ -59,7 +59,7 @@ const TeamMemberCard = ({ member }) => {
             src={member.image}
             alt={member.name}
             className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-            loading="lazy"
+            loading="lazy" decoding="async"
             onError={(e) => {
               e.currentTarget.src =
                 "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80";

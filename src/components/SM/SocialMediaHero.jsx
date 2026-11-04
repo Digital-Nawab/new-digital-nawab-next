@@ -138,7 +138,7 @@ const SocialMediaHero = () => {
               className="grid grid-cols-2 gap-4"
             >
               {images.map((image, index) => (
-                <img 
+                <img loading="lazy" decoding="async" 
                   key={index}
                   src={image.src}
                   alt={image.alt}

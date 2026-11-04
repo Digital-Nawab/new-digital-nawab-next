@@ -172,7 +172,7 @@ const WhatWeAccomplishSection = () => {
                 )}
               </div>
               <div className="relative group">
-                <img 
+                <img loading="lazy" decoding="async" 
                   src={service.image} 
                   alt={service.title}
                   className="rounded-xl w-full transform transition-all duration-300 group-hover:scale-105"

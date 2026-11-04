@@ -102,7 +102,7 @@ const ContentPlaning = () => {
               {services.map((service, index) => (
                 <div key={index} className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900/50 rounded-xl"></div>
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src={service.image} 
                     alt={service.title}
                     className="w-full h-64 object-cover rounded-xl shadow-lg group-hover:scale-105 transition-transform duration-300"

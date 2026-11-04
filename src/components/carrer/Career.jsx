@@ -479,7 +479,7 @@ const Career = () => {
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/30 via-pink-600/20 to-indigo-600/30 rounded-3xl blur-2xl transform scale-95 pointer-events-none" />
 
               <div className="relative w-full max-w-md rounded-3xl overflow-hidden border border-white/15 bg-zinc-900 shadow-2xl group">
-                <img
+                <img loading="lazy" decoding="async"
                   src="/assets/images/about/team-office.jpg"
                   alt="Team Digital Nawab"
                   className="w-full h-[400px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
@@ -700,28 +700,28 @@ const Career = () => {
             {/* Visual Mosaic (6 cols) */}
             <div className="lg:col-span-6 grid grid-cols-2 gap-4">
               <div className="rounded-2xl overflow-hidden shadow-md">
-                <img
+                <img loading="lazy" decoding="async"
                   src="/assets/images/about/social-media.jpg"
                   alt="Team collaboration"
                   className="w-full h-52 object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="rounded-2xl overflow-hidden shadow-md mt-6">
-                <img
+                <img loading="lazy" decoding="async"
                   src="/assets/images/about/website-design.jpg"
                   alt="Design Sprints"
                   className="w-full h-52 object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="rounded-2xl overflow-hidden shadow-md">
-                <img
+                <img loading="lazy" decoding="async"
                   src="/assets/images/ppc/hero-expert.jpg"
                   alt="PPC & Strategy"
                   className="w-full h-52 object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="rounded-2xl overflow-hidden shadow-md mt-6">
-                <img
+                <img loading="lazy" decoding="async"
                   src="/assets/images/about/team-office.jpg"
                   alt="Lucknow Office"
                   className="w-full h-52 object-cover hover:scale-105 transition-transform duration-500"

@@ -54,7 +54,7 @@ const PricingSection = () => {
 
       <div className="max-w-7xl mx-auto text-center">
         {/* Header */}
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Invest in Your Growth</h1>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4">Invest in Your Growth</h2>
         <p className="text-lg md:text-xl text-gray-300 mb-12">
           Discover our competitively priced packages that offer comprehensive digital marketing solutions.
           Tailored to fit different needs and budgets, each plan is designed to maximize your growth.

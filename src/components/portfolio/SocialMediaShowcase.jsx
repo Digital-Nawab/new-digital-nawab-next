@@ -118,7 +118,7 @@ const SocialMediaShowcase = ({ creatives }) => {
                 onClick={() => openModal(project)}
               >
                 <div className="relative overflow-hidden ">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={`https://dashboard.digitalnawab.com/${project.image}`}
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
@@ -169,7 +169,7 @@ const SocialMediaShowcase = ({ creatives }) => {
             >
               <X size={20} />
             </button>
-            <img
+            <img loading="lazy" decoding="async"
               src={selectedImage.image}
               alt={selectedImage.title}
               className="w-full h-full object-contain"

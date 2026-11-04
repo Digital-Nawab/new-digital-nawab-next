@@ -238,12 +238,12 @@ const MotionGraphicsSection = () => {
                     Award Winning
                   </div>
                 </div>
-                <h1 className="text-5xl lg:text-7xl font-black text-white leading-tight">
+                <h2 className="text-5xl lg:text-7xl font-black text-white leading-tight">
                   Explainer
                   <span className="block bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
                     Videos
                   </span>
-                </h1>
+                </h2>
               </div>
             </div>
 
@@ -305,7 +305,7 @@ const MotionGraphicsSection = () => {
           >
             <div className="relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-3xl p-8 border border-purple-500/20 shadow-2xl backdrop-blur-sm hover:scale-105 transition-all duration-500">
               <div className="bg-black rounded-2xl aspect-video mb-6 relative overflow-hidden group cursor-pointer">
-                <img
+                <img loading="lazy" decoding="async"
                   src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&q=80"
                   alt="Video thumbnail"
                   className="w-full h-full object-cover"
@@ -375,7 +375,7 @@ const MotionGraphicsSection = () => {
               >
                 {/* Background Image */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={video.image}
                     alt={video.type}
                     className="w-full h-full object-cover rounded-3xl"

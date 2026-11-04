@@ -123,7 +123,7 @@ const GraphicPackages = () => {
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-2 mb-4">
           <Palette className="w-8 h-8 text-blue-600" />
-          <h1 className="text-4xl font-bold text-gray-900">Branding & Graphic Design Packages</h1>
+          <h2 className="text-4xl font-bold text-gray-900">Branding & Graphic Design Packages</h2>
         </div>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           Define your identity. Build brand recognition. Leave a lasting impression.

@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { getActiveCities } from "@/lib/cities";
 
 import React, { useState } from "react";
 import {
@@ -49,18 +50,7 @@ const FloatingDock = () => {
   const [cities, setCities] = useState([]);
 
   React.useEffect(() => {
-    const fetchCities = async () => {
-      try {
-        const res = await fetch("https://dashboard.digitalnawab.com/api/cities");
-        const json = await res.json();
-        if (json.status && Array.isArray(json.data)) {
-          setCities(json.data.filter((c) => c.is_active));
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    fetchCities();
+    getActiveCities().then(setCities);
   }, []);
 
   const services = [
@@ -163,7 +153,7 @@ const FloatingDock = () => {
               className="max-w-[90px] flex justify-center items-center"
               rel="noopener noreferrer"
             >
-              <img loading="lazy" src="/assets/logo/logo.png" alt="Logo" />
+              <Image src="/assets/logo/logo.png" alt="Digital Nawab Logo" width={90} height={45} priority className="h-auto w-auto object-contain" />
             </Link>
 
             

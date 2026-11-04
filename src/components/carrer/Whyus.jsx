@@ -8,7 +8,7 @@ const CompanyCultureSection = () => {
         {/* Image Section */}
         <div className="relative order-2 lg:order-1">
           <div className="rounded-2xl overflow-hidden shadow-xl">
-            <img
+            <img loading="lazy" decoding="async"
               src="/assets/images/career.png"
               alt="Team collaboration - two people working together at a whiteboard in a modern office"
               className="w-full h-full object-cover"

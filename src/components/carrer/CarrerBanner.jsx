@@ -65,7 +65,7 @@ const HiringCTASection = () => {
             <div className="relative">
               {/* First team image with "We Are Hiring!" bubble */}
               <div className="relative mb-6 transform rotate-3 hover:rotate-1 transition-transform duration-300">
-                <img 
+                <img loading="lazy" decoding="async" 
                   src="/assets/images/services/2.webp" 
                   alt="Team collaboration" 
                   className="rounded-2xl shadow-2xl h-[200px]"
@@ -81,7 +81,7 @@ const HiringCTASection = () => {
 
               {/* Second team image with "Open Position" bubble */}
               <div className="relative ml-16 transform -rotate-2 hover:rotate-0 transition-transform duration-300">
-                <img 
+                <img loading="lazy" decoding="async" 
                   src="/assets/images/services/1.webp" 
                   alt="Team working together" 
                   className="rounded-2xl shadow-2xl h-[200px]"
@@ -93,7 +93,7 @@ const HiringCTASection = () => {
 
               {/* Third team image with "Apply Now" bubble */}
               <div className="absolute top-32 right-0 transform rotate-1 hover:rotate-0 transition-transform duration-300">
-                <img 
+                <img loading="lazy" decoding="async" 
                   src="/assets/images/services/3.webp" 
                   alt="Team celebration" 
                   className="rounded-2xl shadow-2xl h-[150px]"

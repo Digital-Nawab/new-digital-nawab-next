@@ -55,9 +55,9 @@ const FooterSection = () => {
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
         {/* Left Side: Text and Buttons */}
         <div className="max-w-md space-y-6 z-10">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight">
             Creative Digital Marketing Agency
-          </h1>
+          </h2>
           <p className="text-gray-600">
             Lorem ip an dolos dt ahnet, sousetofer andyrweftag dim sonel annectetne oof votry saoy at anasans soripotetis tus emart parsethor sollyt soritr sarar.
           </p>
@@ -98,7 +98,7 @@ const FooterSection = () => {
             <circle cx="150" cy="150" r="150" fill="#92400E" />
             <circle cx="150" cy="150" r="140" fill="none" stroke="#92400E" strokeWidth="10" strokeDasharray="20 20" />
           </svg>
-          <img
+          <img loading="lazy" decoding="async"
             src="./assets/images/bg/man.png"
             alt="Person pointing"
             className="w-64 md:w-80 relative z-10"

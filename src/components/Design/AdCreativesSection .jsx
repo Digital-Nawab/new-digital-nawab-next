@@ -585,7 +585,7 @@ const AdCreativesSection = () => {
             <GlassCard className="overflow-hidden border-gray-200/50">
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="relative h-64 lg:h-96 overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={timelineItems[activeTimelineItem].image}
                     alt={timelineItems[activeTimelineItem].phase}
                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"

@@ -96,7 +96,7 @@ export function TimelineDemo() {
 
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2">
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/assets/images/services/1.webp"
                 alt="Social Media Ads"
                 className="h-40 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60"
@@ -106,7 +106,7 @@ export function TimelineDemo() {
               </h3>
             </div>
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/assets/images/services/2.webp"
                 alt="SEO Analytics"
                 className="h-40 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60"
@@ -116,7 +116,7 @@ export function TimelineDemo() {
               </h3>
             </div>
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/assets/images/services/3.webp"
                 alt="Email Marketing"
                 className="h-40 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60"
@@ -126,7 +126,7 @@ export function TimelineDemo() {
               </h3>
             </div>
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/assets/images/services/4.webp"
                 alt="Marketing Strategy"
                 className="h-40 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60"
@@ -185,7 +185,7 @@ export function TimelineDemo() {
           </p>
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2">
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/assets/images/services/8.webp"
                 alt="Branding Design"
                 className="h-40 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60"
@@ -195,7 +195,7 @@ export function TimelineDemo() {
               </h3>
             </div>
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/assets/images/services/7.webp"
                 alt="UI/UX Design"
                 className="h-40 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60"
@@ -205,7 +205,7 @@ export function TimelineDemo() {
               </h3>
             </div>
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/assets/images/services/5.webp"
                 alt="Video Production"
                 className="h-40 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60"
@@ -215,7 +215,7 @@ export function TimelineDemo() {
               </h3>
             </div>
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/assets/images/services/6.webp"
                 alt="Ad Creatives"
                 className="h-40 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60"
@@ -276,7 +276,7 @@ export function TimelineDemo() {
 
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2">
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Website Development"
                 className="h-40 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60"
@@ -286,7 +286,7 @@ export function TimelineDemo() {
               </h3>
             </div>
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/assets/images/services/mobile.png"
                 alt="Mobile App Development"
                 className="h-40 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60"
@@ -296,7 +296,7 @@ export function TimelineDemo() {
               </h3>
             </div>
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=500&auto=format&fit=crop"
                 alt="ReactJS Development"
                 className="h-40 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60"
@@ -306,7 +306,7 @@ export function TimelineDemo() {
               </h3>
             </div>
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=500&auto=format&fit=crop"
                 alt="Cloud Services"
                 className="h-40 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60"
@@ -331,7 +331,7 @@ export function TimelineDemo() {
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2">
           {service.subservices.map((subservice) => (
             <div key={subservice.id} className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src={subservice.image}
                 alt={subservice.name}
                 className="h-40 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60"

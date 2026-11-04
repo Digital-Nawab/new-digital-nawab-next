@@ -129,7 +129,7 @@ Social media marketing helps businesses connect with their target audience, buil
                 {/* Dynamic Image from Admin */}
                 {benefit.image && (
                   <div className="relative w-full h-52 sm:h-60 rounded-2xl overflow-hidden mb-5 bg-gray-100 border border-gray-200">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={benefit.image}
                       alt={benefit.title}
                       className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"

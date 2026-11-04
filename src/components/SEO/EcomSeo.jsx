@@ -79,7 +79,7 @@ const SeoPlanningProcess = () => {
             >
               {/* Placeholder for Image */}
               <div className="lg:w-1/2 w-full">
-                <img
+                <img loading="lazy" decoding="async"
                   src={step.image}
                   alt={step.title}
                   className="h-64 w-full object-cover rounded-lg shadow-lg"

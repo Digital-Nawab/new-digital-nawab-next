@@ -72,7 +72,7 @@ const RotatingCircles = () => {
           top: `calc(50% + ${y}px)`,
         }}
       >
-        <img src={icon.name} alt="" />
+        <img loading="lazy" decoding="async" src={icon.name} alt="" />
       </div>
     );
   };

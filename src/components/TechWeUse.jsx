@@ -11,7 +11,7 @@ const TechnologyCard = ({ tech }) => {
     <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100">
       <div className="mb-4 flex justify-center">
         {!error ? (
-          <img
+          <img loading="lazy" decoding="async"
             src={tech.logo}
             alt={tech.name}
             width={80}

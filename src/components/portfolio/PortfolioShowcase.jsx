@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -43,28 +42,30 @@ const PortfolioShowcase = () => {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <div className="text-center py-20">Loading...</div>;
-  }
-
-  if (error) {
-    return <div className="text-center py-20 text-red-500">{error}</div>;
-  }
-
   return (
     <div>
       <Banner
+        as="h1"
         title="Portfolio Showcase"
         subtitle="We'd love to hear from you!"
         breadcrumb={[
           { label: 'Home', href: '/' },
-          { label: 'Blog', href: '/blog' },
+          { label: 'Portfolio', href: '/portfolio' },
         ]}
       />
-      {/* <SEOShowcase /> */}
-      <PortfolioWebsite projects={data.websites} />
-      <SocialMediaShowcase creatives={data.creatives} />
-      <ReelsSection reels={data.reels} />
+
+      {loading ? (
+        <div className="text-center py-20 text-gray-500 font-medium">Loading portfolio projects...</div>
+      ) : error ? (
+        <div className="text-center py-20 text-red-500">{error}</div>
+      ) : (
+        <>
+          {/* <SEOShowcase /> */}
+          <PortfolioWebsite projects={data.websites} />
+          <SocialMediaShowcase creatives={data.creatives} />
+          <ReelsSection reels={data.reels} />
+        </>
+      )}
     </div>
   );
 };

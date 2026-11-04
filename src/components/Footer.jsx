@@ -16,7 +16,7 @@ const Footer = () => {
             <div>
               <div className="flex items-center mb-4">
                 <h3 className="text-xl custom-bold">
-                  <img src="/assets/logo/logo.png" alt="Digital Nawab logo" />
+                  <Image src="/assets/logo/logo.png" alt="Digital Nawab logo" width={120} height={55} loading="lazy" className="h-auto w-auto object-contain" />
                 </h3>
               </div>
               <p className="text-gray-300 text-sm leading-relaxed">

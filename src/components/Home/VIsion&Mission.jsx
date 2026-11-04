@@ -36,9 +36,9 @@ export default function VisionMissionSection() {
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               {/* Left Column - Heading and Description */}
               <div className="space-y-6">
-                <h1 className="text-3xl lg:text-5xl 2xl:text-5xl custom-bold text-gray-800 leading-tight">
+                <h2 className="text-3xl lg:text-5xl 2xl:text-5xl custom-bold text-gray-800 leading-tight">
                   {apiData.heading}
-                </h1>
+                </h2>
                 <p className="text-gray-600 text-lg leading-relaxed">
                   {apiData.para}
                 </p>
@@ -51,9 +51,9 @@ export default function VisionMissionSection() {
                   <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="flex justify-between items-start relative">
                     <div className="flex-1">
-                      <h2 className="text-2xl custom-bold text-white mb-4">
+                      <h3 className="text-2xl custom-bold text-white mb-4">
                         {apiData.vision_heading}
-                      </h2>
+                      </h3>
                       <p className="text-white/90 text-base leading-relaxed pr-4">
                         {apiData.vision_description}
                       </p>
@@ -71,9 +71,9 @@ export default function VisionMissionSection() {
                   <div className="absolute inset-0 bg-gradient-to-br from-[#FF1F6D]/10 to-[#C73673]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="flex justify-between items-start relative">
                     <div className="flex-1">
-                      <h2 className="text-2xl custom-bold text-white mb-4">
+                      <h3 className="text-2xl custom-bold text-white mb-4">
                         {apiData.mission_heading}
-                      </h2>
+                      </h3>
                       <p className="text-gray-300 text-base leading-relaxed pr-4">
                         {apiData.mission_description}
                       </p>

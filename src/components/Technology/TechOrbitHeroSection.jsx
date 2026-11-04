@@ -36,7 +36,7 @@ const OrbitingLogos = () => {
   return (
     <div className="relative w-full h-[500px] flex items-center justify-center overflow-hidden">
       <div className="absolute z-10">
-        <img
+        <img loading="lazy" decoding="async"
           src="https://img.icons8.com/ios-filled/100/000000/source-code.png"
           alt="Center Logo"
           width={100}
@@ -53,7 +53,7 @@ const OrbitingLogos = () => {
               transform: `rotate(${(360 / 7) * i}deg) translateX(150px)`,
             }}
           >
-            <img src={logo.src} alt={logo.alt} width={40} height={40} />
+            <img loading="lazy" decoding="async" src={logo.src} alt={logo.alt} width={40} height={40} />
           </div>
         ))}
       </div>
@@ -67,7 +67,7 @@ const OrbitingLogos = () => {
               transform: `rotate(${(360 / 7) * i}deg) translateX(210px)`,
             }}
           >
-            <img src={logo.src} alt={logo.alt} width={40} height={40} />
+            <img loading="lazy" decoding="async" src={logo.src} alt={logo.alt} width={40} height={40} />
           </div>
         ))}
       </div>

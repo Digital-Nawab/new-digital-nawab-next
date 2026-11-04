@@ -85,7 +85,9 @@ const HeroSection = () => {
           muted
           autoPlay
           loop
-          alt="Digital Nawab Hero Video"
+          playsInline
+          preload="metadata"
+          title="Digital Nawab Hero Video"
           className="h-screen w-full rounded-lg object-cover"
         ></video>
       </div>

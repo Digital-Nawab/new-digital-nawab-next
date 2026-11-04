@@ -259,7 +259,7 @@ export function NewHero() {
                       className={`w-full h-full bg-gradient-to-br ${slide.color} rounded-2xl p-1`}
                     >
                       <div className="w-full h-full bg-black rounded-xl overflow-hidden relative">
-                        <img
+                        <img loading="lazy" decoding="async"
                           src={slide.image}
                           alt={slide.title}
                           className="w-full h-full object-cover"

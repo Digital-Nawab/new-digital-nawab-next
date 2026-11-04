@@ -239,7 +239,7 @@ const OurProcessSection = () => {
                     className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
                   >
                     <div layoutId={`image-${active.title}-${id}`}>
-                      <img
+                      <img loading="lazy" decoding="async"
                         width={200}
                         height={200}
                         src={active.src}
@@ -303,7 +303,7 @@ const OurProcessSection = () => {
                 >
                   <div className="flex gap-4 flex-col w-full">
                     <div layoutId={`image-${card.title}-${id}`}>
-                      <img
+                      <img loading="lazy" decoding="async"
                         width={100}
                         height={100}
                         src={card.src}

@@ -19,7 +19,7 @@ function MobileBanner() {
           <div className="flex-1 flex justify-center relative">
             <div className="relative">
               {/* Main mobile image with increased size */}
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://www.digitalnawab.com/assets/images/1mobi.png"
                 alt="Mobile App"
                 className="w-80 h-auto sm:w-96 lg:w-[500px] drop-shadow-2xl animate-float z-10 relative"
@@ -32,7 +32,7 @@ function MobileBanner() {
             {/* Enhanced Floating Tech Icons with better positioning */}
             <div className="absolute top-8 left-8 animate-float-slow">
               <div className="w-16 h-16 bg-white rounded-2xl shadow-2xl p-3 hover:scale-110 transition-transform cursor-pointer">
-                <img
+                <img loading="lazy" decoding="async"
                   src="https://cdn.worldvectorlogo.com/logos/react-2.svg"
                   alt="React"
                   className="w-full h-full"
@@ -42,7 +42,7 @@ function MobileBanner() {
 
             <div className="absolute bottom-16 left-4 animate-float">
               <div className="w-14 h-14 bg-white rounded-2xl shadow-2xl p-2.5 hover:scale-110 transition-transform cursor-pointer">
-                <img
+                <img loading="lazy" decoding="async"
                   src="https://cdn.worldvectorlogo.com/logos/javascript-1.svg"
                   alt="JavaScript"
                   className="w-full h-full"
@@ -52,7 +52,7 @@ function MobileBanner() {
 
             <div className="absolute top-16 right-12 animate-float-slow">
               <div className="w-16 h-16 bg-white rounded-2xl shadow-2xl p-3 hover:scale-110 transition-transform cursor-pointer">
-                <img
+                <img loading="lazy" decoding="async"
                   src="https://cdn.worldvectorlogo.com/logos/tailwindcss.svg"
                   alt="Tailwind"
                   className="w-full h-full"
@@ -62,7 +62,7 @@ function MobileBanner() {
 
             <div className="absolute bottom-8 right-8 animate-float">
               <div className="w-14 h-14 bg-white rounded-2xl shadow-2xl p-2.5 hover:scale-110 transition-transform cursor-pointer">
-                <img
+                <img loading="lazy" decoding="async"
                   src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg"
                   alt="Node.js"
                   className="w-full h-full"

@@ -208,9 +208,9 @@ const ComboPackages = () => {
             Digital Transformation Packages
           </div>
           
-          <h1 className="text-4xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
+          <h2 className="text-4xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">>
             Complete Digital Solutions
-          </h1>
+          </h2>
           
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed">
             Transform your business with our comprehensive combo packages combining 

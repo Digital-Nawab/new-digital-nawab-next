@@ -266,7 +266,7 @@ export default function WebsitePortfolioCaseStudies() {
                         />
                       </video>
                     ) : (
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={project.poster}
                         alt={project.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"

@@ -736,7 +736,7 @@ function Ecommerce() {
             {/* Image Side */}
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden border border-white/70 shadow-2xl shadow-indigo-200/50">
-                <img
+                <img loading="lazy" decoding="async"
                   src="https://www.roihunt.in/wp-content/uploads/2020/09/desktop-and-phone.jpg-1-1-1.webp"
                   alt="Desktop and mobile marketplace advertising interface"
                   className="w-full h-auto object-cover"
@@ -935,7 +935,7 @@ function Ecommerce() {
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
-                <img
+                <img loading="lazy" decoding="async"
                   src={study.image}
                   alt={study.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

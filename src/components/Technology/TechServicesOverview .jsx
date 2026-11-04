@@ -131,7 +131,7 @@ const ServiceContent = ({ title, description, features, imageSrc }) => {
           </li>
         ))}
       </ul>
-      <img
+      <img loading="lazy" decoding="async"
         src={imageSrc}
         alt={`${title} mockup`}
         height="400"

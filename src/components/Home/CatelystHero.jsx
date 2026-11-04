@@ -14,11 +14,11 @@ const InnovateHero = () => {
         <div className="max-w-4xl mx-auto px-6 py-16">
           {/* Header text */}
           <div className="text-center mb-16">
-            <h1 className="lg:text-4xl text-3xl 2xl:text-6xl custom-bold text-black mb-4 lg:mb-8 tracking-tight">
+            <h2 className="lg:text-4xl text-3xl 2xl:text-6xl custom-bold text-black mb-4 lg:mb-8 tracking-tight">
               <span className="inline-block">Is It</span>
               <span className="text-pink-600 mx-4">✦</span>
               <span className="inline-block">You’re Looking For ?</span>
-            </h1>
+            </h2>
 
             {/* Decorative lines with star */}
             <div className="flex items-center justify-center mb-6 lg:mb-12">
@@ -30,7 +30,7 @@ const InnovateHero = () => {
 
           {/* Gray placeholder box */}
           <div className="w-full h-70 bg-gray-300 rounded-lg mb-8 overflow-hidden flex items-center justify-center">
-            <img src="/assets/images/cta.png" alt="" className="object-cover" />
+            <img loading="lazy" decoding="async" src="/assets/images/cta.png" alt="Digital Nawab Call To Action" className="object-cover" />
           </div>
 
           {/* Description text */}

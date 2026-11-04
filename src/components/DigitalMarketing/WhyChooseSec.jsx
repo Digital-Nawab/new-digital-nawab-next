@@ -20,7 +20,7 @@ const WhyChooseSection = () => {
             <div className="relative flex-1 max-w-lg">
               {/* Main person image */}
               <div className="relative py-6">
-                <img
+                <img loading="lazy" decoding="async"
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&crop=face"
                   alt="Professional man pointing"
                   className="w-full max-w-md rounded-3xl object-cover"
@@ -66,27 +66,27 @@ const WhyChooseSection = () => {
                 <p className="text-gray-300 mb-4">Our Customers</p>
                 <div className="flex items-center gap-2">
                   <div className="flex -space-x-2">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="https://images.unsplash.com/photo-1494790108755-2616b9c5e643?w=40&h=40&fit=crop&crop=face"
                       alt="Customer 1"
                       className="w-10 h-10 rounded-full border-2 border-white"
                     />
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
                       alt="Customer 2"
                       className="w-10 h-10 rounded-full border-2 border-white"
                     />
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face"
                       alt="Customer 3"
                       className="w-10 h-10 rounded-full border-2 border-white"
                     />
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
                       alt="Customer 4"
                       className="w-10 h-10 rounded-full border-2 border-white"
                     />
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face"
                       alt="Customer 5"
                       className="w-10 h-10 rounded-full border-2 border-white"
@@ -97,12 +97,12 @@ const WhyChooseSection = () => {
               </div>
 
               {/* Main heading */}
-              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <h2 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 Why{" "}
                 <span className="text-white font-bold">
                   <ColourfulText text="Digital Nawab ?" />
                 </span>
-              </h1>
+              </h2>
 
               {/* Description */}
               <p className="text-gray-300 text-lg mb-8 leading-relaxed">

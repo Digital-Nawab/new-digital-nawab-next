@@ -184,7 +184,7 @@ const AboutTimeline = () => {
                         src={item.image}
                         alt={`${item.year} - ${item.title}`}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        loading="lazy"
+                        loading="lazy" decoding="async"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#05040a] via-transparent to-transparent opacity-60" />
 

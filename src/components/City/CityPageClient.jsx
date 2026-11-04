@@ -291,7 +291,7 @@ export default function CityPageClient({
       <main className="bg-black min-h-screen text-white pt-36 pb-20 px-4 flex flex-col items-center justify-center text-center">
         <div className="max-w-xl mx-auto bg-zinc-900 p-8 rounded-3xl border border-white/10 shadow-2xl">
           <MapPin className="w-14 h-14 text-pink-400 mx-auto mb-4" />
-          <h1 className="text-3xl font-extrabold mb-3">City Not Found</h1>
+          <h2 className="text-3xl font-extrabold mb-3">City Not Found</h2>
           <p className="text-zinc-400 mb-6">
             We couldn&apos;t find details for &quot;{slug}&quot;. Explore our active locations below.
           </p>
@@ -1621,6 +1621,7 @@ export default function CityPageClient({
                         alt={proj.heading}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <div className="p-6">

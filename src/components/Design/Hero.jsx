@@ -141,7 +141,7 @@ const DesignServicesHero = () => {
 
             {/* Main Headline with Word Animation */}
             <div className="mb-4">
-              <div
+              <h1
                 className={`text-4xl lg:text-6xl 2xl:text-8xl font-black text-white leading-none mb-2 transform transition-all duration-300 delay-200 `}
               >
                 <div className="overflow-hidden ">
@@ -162,7 +162,7 @@ const DesignServicesHero = () => {
                 <div className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                   Communication
                 </div>
-              </div>
+              </h1>
             </div>
 
             {/* Description */}
@@ -257,7 +257,7 @@ const DesignServicesHero = () => {
                       className={`w-full h-96 bg-gradient-to-br ${slide.color} rounded-2xl p-1`}
                     >
                       <div className="w-full h-full bg-black rounded-xl overflow-hidden relative">
-                        <img
+                        <img loading="lazy" decoding="async"
                           src={slide.image}
                           alt={slide.title}
                           className="w-full h-full object-cover"

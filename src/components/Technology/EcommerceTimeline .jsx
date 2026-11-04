@@ -171,7 +171,7 @@ const EcommerceTimeline = () => {
                   <div className="flex-1">
                     <div className={`relative group overflow-hidden rounded-2xl ${index % 2 === 0 ? 'lg:ml-12' : 'lg:mr-12'}`}>
                       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-900/50 to-blue-900/50 backdrop-blur-sm border border-purple-500/20">
-                        <img
+                        <img loading="lazy" decoding="async"
                           src={service.image}
                           alt={service.title}
                           className="w-full h-64 md:h-80 object-cover transition-all duration-700 group-hover:scale-110"

@@ -244,7 +244,7 @@ export const BlurImage = ({
 }) => {
   const [isLoading, setLoading] = useState(true);
   return (
-    <img
+    <img loading="lazy" decoding="async"
       className={cn(
         "h-full w-full transition duration-300",
         isLoading ? "blur-sm" : "blur-0",

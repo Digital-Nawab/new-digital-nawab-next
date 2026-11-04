@@ -100,12 +100,12 @@ const PackagingDesignsSection = () => {
                 </Badge>
               </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
                 Package Designing
                 <span className="block bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                   Redefined
                 </span>
-              </h1>
+              </h2>
 
               <p className="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed">
                 Where strategic digital marketing meets innovative packaging
@@ -182,7 +182,7 @@ const PackagingDesignsSection = () => {
                 <div className="relative z-10 grid grid-cols-2 gap-4">
                   {/* Main Image */}
                   <div className="col-span-2 relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 p-1 hover:scale-105 transition-transform duration-500">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&q=80"
                       alt="Package Design Process"
                       className="w-full h-64 object-cover rounded-xl"
@@ -200,7 +200,7 @@ const PackagingDesignsSection = () => {
 
                   {/* Small Images */}
                   <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 p-1 hover:scale-105 transition-transform duration-500">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=300&q=80"
                       alt="Brand Strategy"
                       className="w-full h-32 object-cover rounded-lg"
@@ -208,7 +208,7 @@ const PackagingDesignsSection = () => {
                   </div>
 
                   <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 p-1 hover:scale-105 transition-transform duration-500">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80"
                       alt="Creative Design"
                       className="w-full h-32 object-cover rounded-lg"

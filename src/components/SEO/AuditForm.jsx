@@ -69,7 +69,7 @@ const AuditForm = () => {
         <div className="max-w-7xl mx-auto">
           <div className=" py-12 grid lg:grid-cols-2 gap-4 lg:gap-12 px-4 sm:px-6  lg:px-8">
             <div className="hidden lg:flex items-center justify-center">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/assets/images/audit.png"
                 className="w-full rounded-2xl"
                 alt=""

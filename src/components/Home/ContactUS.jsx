@@ -541,12 +541,21 @@ const ContactUs = ({ isHomePage }) => {
               </div>
 
               <div className="space-y-3">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
-                  HAVE{" "}
-                  <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
-                    QUESTIONS?
-                  </span>
-                </h1>
+                {isHome ? (
+                  <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
+                    HAVE{" "}
+                    <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
+                      QUESTIONS?
+                    </span>
+                  </h2>
+                ) : (
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
+                    HAVE{" "}
+                    <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
+                      QUESTIONS?
+                    </span>
+                  </h1>
+                )}
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-100">
                   WE'RE HERE TO HELP YOU WIN!
                 </h2>
@@ -614,7 +623,7 @@ const ContactUs = ({ isHomePage }) => {
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/30 via-pink-600/20 to-indigo-600/30 rounded-3xl blur-2xl transform scale-95 pointer-events-none" />
 
               <div className="relative w-full max-w-md rounded-3xl overflow-hidden border border-white/15 bg-zinc-900 shadow-2xl group">
-                <img
+                <img loading="lazy" decoding="async"
                   src="/assets/images/about/team-office.jpg"
                   alt="Digital Nawab Headquarters & Strategists"
                   className="w-full h-[400px] object-cover object-center group-hover:scale-105 transition-transform duration-700"

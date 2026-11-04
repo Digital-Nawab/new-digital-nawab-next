@@ -219,7 +219,7 @@ const AnalyticsIntegrationSection = () => {
 
               {/* Chart Placeholder */}
               <div className="relative h-64 bg-white/5 rounded-2xl border border-white/10 overflow-hidden">
-                <img 
+                <img loading="lazy" decoding="async" 
                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=300&fit=crop&auto=format" 
                   alt="Analytics chart"
                   className="w-full h-full object-cover opacity-60"
@@ -254,7 +254,7 @@ const AnalyticsIntegrationSection = () => {
               >
                 {/* Integration Image */}
                 <div className="relative h-48 overflow-hidden">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src={integration.image} 
                     alt={integration.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
@@ -309,7 +309,7 @@ const AnalyticsIntegrationSection = () => {
         {/* Benefits Section */}
         <div className={`mb-20 transition-all duration-300 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="relative overflow-hidden rounded-3xl border border-white/10">
-            <img 
+            <img loading="lazy" decoding="async" 
               src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&h=600&fit=crop&auto=format" 
               alt="Data analytics workspace"
               className="absolute inset-0 w-full h-full object-cover opacity-20"
@@ -383,7 +383,7 @@ const AnalyticsIntegrationSection = () => {
             ].map((step, index) => (
               <div key={index} className="relative text-center group">
                 <div className="relative mb-6 overflow-hidden rounded-2xl border border-white/10">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src={step.image} 
                     alt={step.title}
                     className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-500"

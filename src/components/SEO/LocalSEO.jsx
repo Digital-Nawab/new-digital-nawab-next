@@ -58,9 +58,9 @@ const LocalSEO = () => {
             <TrendingUp className="w-4 h-4" />
             Professional Digital Services
           </div>
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-slate-800 via-slate-700 to-slate-600 bg-clip-text text-transparent mb-6">
+          <h2 className="text-5xl font-bold bg-gradient-to-r from-slate-800 via-slate-700 to-slate-600 bg-clip-text text-transparent mb-6">
             Expert SEO & Digital Solutions
-          </h1>
+          </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Comprehensive digital marketing services designed to enhance your online presence and drive measurable results
           </p>

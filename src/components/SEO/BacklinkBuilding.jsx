@@ -811,7 +811,7 @@ const BacklinkBuilding = () => {
                       {/* Right: Dashboard Preview Image with Floating Stat */}
                       <div className="md:col-span-5 relative">
                         <div className="relative overflow-hidden rounded-2xl border border-slate-200/90 shadow-lg bg-slate-50 h-56 sm:h-64 md:h-72 flex items-center justify-center p-3 group">
-                          <img
+                          <img loading="lazy" decoding="async"
                             src={activeService.image}
                             alt={activeService.title}
                             className="w-full h-full object-contain rounded-xl transition-transform duration-500 group-hover:scale-105"
@@ -859,7 +859,7 @@ const BacklinkBuilding = () => {
                 >
                   {/* Top Image Preview */}
                   <div className="relative h-44 bg-slate-50 p-3 border-b border-slate-100 flex items-center justify-center overflow-hidden">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={srv.image}
                       alt={srv.title}
                       className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"

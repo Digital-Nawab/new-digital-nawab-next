@@ -6,10 +6,17 @@ import { Breadcrumb, BreadcrumbList, BreadcrumbItem } from "../components/ui/bre
 import { cn } from "@/lib/utils";
 import React from "react";
 
-export default function Banner({ title = "Connected World", subtitle = "", breadcrumb = [{
-  label:"",
-  href:"#"
-}] }) {
+export default function Banner({
+  title = "Connected World",
+  subtitle = "",
+  as = "p",
+  breadcrumb = [{
+    label: "",
+    href: "#"
+  }]
+}) {
+  const HeadingTag = as === "h1" ? "h1" : "p";
+
   return (
     <div className="relative flex h-[50vh] w-full items-center justify-center bg-white dark:bg-black">
       {/* Grid background */}
@@ -26,9 +33,9 @@ export default function Banner({ title = "Connected World", subtitle = "", bread
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center">
-        <p className="relative z-20 bg-gradient-to-b uppercase from-neutral-200 to-neutral-500 bg-clip-text py-8 text-4xl custom-black text-transparent 2xl:text-7xl">
+        <HeadingTag className="relative z-20 bg-gradient-to-b uppercase from-neutral-200 to-neutral-500 bg-clip-text py-8 text-4xl custom-black text-transparent 2xl:text-7xl">
           {title}
-        </p>
+        </HeadingTag>
 
         <Breadcrumb>
           <BreadcrumbList>

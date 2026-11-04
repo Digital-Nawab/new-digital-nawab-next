@@ -485,7 +485,7 @@ const PackagingAndPackagesSection = () => {
                 {/* Main Hero Card */}
                 <div className="relative rounded-3xl overflow-hidden border border-white/20 bg-gradient-to-b from-white/15 to-white/5 backdrop-blur-xl p-3 shadow-2xl">
                   <div className="relative h-72 sm:h-80 w-full rounded-2xl overflow-hidden">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src="/assets/images/services/service-packaging.jpg"
                       alt="Strategic Packaging Design by Digital Nawab"
                       className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
@@ -513,7 +513,7 @@ const PackagingAndPackagesSection = () => {
                   {/* Dual Grid Supporting Images */}
                   <div className="grid grid-cols-2 gap-3 mt-3">
                     <div className="relative h-28 rounded-xl overflow-hidden border border-white/10 group">
-                      <img
+                      <img loading="lazy" decoding="async"
                         src="/assets/images/services/service-logo-identity.jpg"
                         alt="Brand Strategy"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
@@ -530,7 +530,7 @@ const PackagingAndPackagesSection = () => {
                     </div>
 
                     <div className="relative h-28 rounded-xl overflow-hidden border border-white/10 group">
-                      <img
+                      <img loading="lazy" decoding="async"
                         src="/assets/images/services/service-social-creatives.jpg"
                         alt="Creative Design"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"

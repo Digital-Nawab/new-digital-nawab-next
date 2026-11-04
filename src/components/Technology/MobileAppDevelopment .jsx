@@ -308,7 +308,7 @@ const MobileAppDevelopment = () => {
                       <div className="absolute inset-0 bg-gradient-to-b from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl border-4 border-gray-700">
                         {/* Screen */}
                         <div className="absolute inset-4 bg-black rounded-[2.5rem] overflow-hidden">
-                          <img
+                          <img loading="lazy" decoding="async"
                             src={platform.image}
                             alt={platform.name}
                             className="w-full h-full object-cover"

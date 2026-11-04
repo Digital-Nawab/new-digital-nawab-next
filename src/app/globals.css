@@ -120,3 +120,235 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ========================================================================= */
+/* Blog Detail - CKEditor Content Typography & Rich Text Formatting */
+/* ========================================================================= */
+.blog-content,
+.ck-content {
+  color: #334155;
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  word-break: break-word;
+}
+
+.blog-content h1,
+.ck-content h1 {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #0f172a;
+  margin-top: 2.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.blog-content h1:first-child,
+.ck-content h1:first-child {
+  margin-top: 0;
+}
+
+.blog-content h2,
+.ck-content h2 {
+  display: block;
+  font-size: 1.625rem;
+  font-weight: 750;
+  line-height: 1.35;
+  color: #0f172a;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.blog-content h3,
+.ck-content h3 {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #1e293b;
+  margin-top: 1.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.blog-content h4,
+.ck-content h4,
+.blog-content h5,
+.ck-content h5,
+.blog-content h6,
+.ck-content h6 {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 650;
+  color: #1e293b;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.blog-content p,
+.ck-content p {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  color: #334155;
+  line-height: 1.85;
+}
+
+.blog-content strong,
+.ck-content strong,
+.blog-content b,
+.ck-content b {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.blog-content em,
+.ck-content em,
+.blog-content i,
+.ck-content i {
+  font-style: italic;
+}
+
+.blog-content ul,
+.ck-content ul {
+  display: block;
+  list-style-type: disc !important;
+  margin-top: 0.75rem;
+  margin-bottom: 1.35rem;
+  padding-left: 1.75rem !important;
+}
+
+.blog-content ol,
+.ck-content ol {
+  display: block;
+  list-style-type: decimal !important;
+  margin-top: 0.75rem;
+  margin-bottom: 1.35rem;
+  padding-left: 1.75rem !important;
+}
+
+.blog-content li,
+.ck-content li {
+  display: list-item !important;
+  margin-bottom: 0.5rem;
+  line-height: 1.75;
+  color: #334155;
+  padding-left: 0.25rem;
+}
+
+.blog-content li::marker,
+.ck-content li::marker {
+  color: #2563eb;
+  font-weight: bold;
+}
+
+.blog-content a,
+.ck-content a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.blog-content a:hover,
+.ck-content a:hover {
+  color: #1d4ed8;
+}
+
+.blog-content blockquote,
+.ck-content blockquote {
+  display: block;
+  border-left: 4px solid #3b82f6;
+  padding: 0.75rem 1.25rem;
+  margin: 1.5rem 0;
+  background-color: #f8fafc;
+  font-style: italic;
+  color: #475569;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.blog-content hr,
+.ck-content hr {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 2rem 0;
+}
+
+.blog-content table,
+.ck-content table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+}
+
+.blog-content th,
+.ck-content th,
+.blog-content td,
+.ck-content td {
+  border: 1px solid #cbd5e1;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.blog-content th,
+.ck-content th {
+  background-color: #f1f5f9;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.blog-content img,
+.ck-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.blog-content code,
+.ck-content code {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  font-family: monospace;
+}
+
+.blog-content pre,
+.ck-content pre {
+  background-color: #0f172a;
+  color: #f8fafc;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+/* ========================================================================= */
+/* Blog Detail - Sidebar Link & Text Visibility Overrides */
+/* ========================================================================= */
+.blog-sidebar-service-link {
+  color: #1e293b !important;
+}
+.blog-sidebar-service-link:hover {
+  color: #2563eb !important;
+}
+.blog-sidebar-service-link span {
+  color: #1e293b !important;
+}
+.blog-sidebar-service-link:hover span {
+  color: #2563eb !important;
+}
+.blog-sidebar-recent-link h4 {
+  color: #0f172a !important;
+}
+.blog-sidebar-recent-link:hover h4 {
+  color: #2563eb !important;
+}
+.blog-sidebar-recent-link span {
+  color: #64748b !important;
+}

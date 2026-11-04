@@ -174,7 +174,7 @@ const SeoAuditSection = () => {
         <div className="flex flex-col lg:flex-row gap-8 mb-20">
           {/* Left Side: Image */}
           <div className="lg:w-1/2 flex items-center justify-center">
-            <img 
+            <img loading="lazy" decoding="async" 
                   src="/assets/images/seo/audit.png" 
                   alt="SEO Analysis Dashboard" 
                   className="w-full h-auto rounded-lg shadow-md"

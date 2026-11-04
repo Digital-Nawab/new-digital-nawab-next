@@ -155,9 +155,9 @@ const GoogleAdsPackages = () => {
             Google Ads Management
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
             Get found. Get clicked. Get results.
-          </h1>
+          </h2>
           
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
             From high-intent search traffic to eye-catching video and shopping ads — we turn your ad spend into tangible business growth.

@@ -105,7 +105,7 @@ const AboutIntro = () => {
               {/* Outer decorative gradient border */}
               <div className="relative rounded-3xl p-1 bg-gradient-to-br from-[#C73673]/40 via-[#8F5AFF]/40 to-purple-200 shadow-2xl">
                 <div className="relative rounded-[22px] overflow-hidden bg-gray-100 aspect-[4/5]">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop"
                     alt="Digital Nawab Team Strategic Meeting"
                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
