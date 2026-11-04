@@ -47,6 +47,8 @@ import {
   Crown,
   Flame,
 } from "lucide-react";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 import ContactPopup from "@/components/ContactPopup";
 
 export default function PackagesPage() {
@@ -63,10 +65,11 @@ export default function PackagesPage() {
     businessName: "",
     email: "",
     phone: "",
+    city: "Lucknow",
     websiteUrl: "",
     budget: "",
     requirements: "",
-    services: [],
+    service: "",
     privacyConsent: false,
   });
 
@@ -74,16 +77,24 @@ export default function PackagesPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Toggle FAQ
+  // Toggle FAQ / Select package and scroll to form
   const selectPackageAndEnquire = (packageName, serviceName) => {
-    if (serviceName && !formData.services.includes(serviceName)) {
-      setFormData((prev) => ({
-        ...prev,
-        services: [...prev.services, serviceName],
-        requirements: prev.requirements
-          ? `${prev.requirements}\nInterested in: ${packageName}`
-          : `Interested in: ${packageName}`,
-      }));
+    let mappedService = serviceName || "";
+    if (serviceName === "SEO") mappedService = "SEO Packages";
+    else if (serviceName === "Social Media Marketing") mappedService = "Social Media Packages";
+    else if (serviceName === "Google Ads / PPC") mappedService = "Google Ads Packages";
+    else if (serviceName === "Website Design and Development") mappedService = "Website Development Packages";
+    else if (serviceName === "Meta Ads (Facebook & Instagram)") mappedService = "Meta Ads Packages";
+
+    setFormData((prev) => ({
+      ...prev,
+      service: mappedService || serviceName || prev.service,
+      requirements: prev.requirements
+        ? `${prev.requirements}\nInterested in: ${packageName}`
+        : `Interested in: ${packageName}`,
+    }));
+    if (formErrors.service) {
+      setFormErrors((prev) => ({ ...prev, service: "" }));
     }
     scrollTo("enquiry-form");
   };
@@ -107,23 +118,39 @@ export default function PackagesPage() {
     }
   };
 
-  // Handle Services Multi-Select
-  const handleServiceToggle = (serviceName) => {
-    setFormData((prev) => {
-      const exists = prev.services.includes(serviceName);
-      return {
-        ...prev,
-        services: exists
-          ? prev.services.filter((s) => s !== serviceName)
-          : [...prev.services, serviceName],
-      };
-    });
-    if (formErrors.services) {
-      setFormErrors((prev) => ({ ...prev, services: "" }));
+  // Map service selection to admin database service_id and subservice_id
+  const getServiceMapping = (selectedServiceName) => {
+    switch (selectedServiceName) {
+      case "SEO Packages":
+      case "SEO":
+        return { service_id: 4, subservice_id: 12 };
+      case "Social Media Packages":
+      case "Social Media Marketing":
+        return { service_id: 4, subservice_id: 3 };
+      case "Google Ads Packages":
+      case "Google Ads / PPC":
+        return { service_id: 5, subservice_id: 14 };
+      case "Website Development Packages":
+      case "Website Design and Development":
+        return { service_id: 6, subservice_id: 22 };
+      case "Meta Ads Packages":
+      case "Meta Ads (Facebook & Instagram)":
+        return { service_id: 4, subservice_id: 11 };
+      case "Complete Marketing Packages":
+      case "Complete Digital Marketing":
+        return { service_id: 4, subservice_id: 3 };
+      case "Ecommerce Marketing":
+        return { service_id: 6, subservice_id: 26 };
+      case "Lead Generation":
+        return { service_id: 5, subservice_id: 14 };
+      case "Graphic Design & Branding":
+        return { service_id: 7, subservice_id: 30 };
+      default:
+        return { service_id: 4, subservice_id: 3 };
     }
   };
 
-  // Form Submission
+  // Form Submission directly to https://dashboard.digitalnawab.com/api/post_enquiry
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = {};
@@ -141,8 +168,8 @@ export default function PackagesPage() {
     } else if (!/^[0-9+-\s]{10,15}$/.test(formData.phone.trim())) {
       errors.phone = "Please enter a valid phone number (10-15 digits)";
     }
-    if (formData.services.length === 0) {
-      errors.services = "Please select at least one service";
+    if (!formData.service) {
+      errors.service = "Please select a service or package";
     }
     if (!formData.privacyConsent) {
       errors.privacyConsent = "Please agree to the privacy policy";
@@ -155,39 +182,78 @@ export default function PackagesPage() {
 
     setIsSubmitting(true);
     try {
-      // Backend submission or notification handler
-      const res = await fetch("https://dashboard.digitalnawab.com/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.fullName,
-          company: formData.businessName,
-          email: formData.email,
-          phone: formData.phone,
-          website: formData.websiteUrl,
-          budget: formData.budget,
-          services: formData.services.join(", "),
-          message: formData.requirements,
-          source: "Packages Page Quote Request",
-        }),
-      }).catch(() => null);
+      const { service_id, subservice_id } = getServiceMapping(formData.service);
 
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-      setFormData({
-        fullName: "",
-        businessName: "",
-        email: "",
-        phone: "",
-        websiteUrl: "",
-        budget: "",
-        requirements: "",
-        services: [],
-        privacyConsent: false,
-      });
+      const formattedMessage = [
+        `[Digital Marketing Package Enquiry]`,
+        `Selected Service/Package: ${formData.service}`,
+        `Business Name: ${formData.businessName}`,
+        formData.websiteUrl ? `Website: ${formData.websiteUrl}` : null,
+        formData.budget ? `Estimated Budget: ${formData.budget}` : null,
+        `City: ${formData.city?.trim() || "Lucknow"}`,
+        formData.requirements ? `Client Requirements: ${formData.requirements}` : null,
+      ]
+        .filter(Boolean)
+        .join("\n");
+
+      const payload = {
+        name: formData.fullName.trim(),
+        email: formData.email.trim(),
+        number: formData.phone.trim(),
+        city: formData.city?.trim() || "Lucknow",
+        service_id,
+        subservice_id,
+        message: formattedMessage,
+      };
+
+      const response = await axios.post(
+        "https://dashboard.digitalnawab.com/api/post_enquiry",
+        payload,
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.data?.status || response.status === 200) {
+        toast.success("Enquiry submitted successfully! Our strategist will call you shortly.");
+        setSubmitSuccess(true);
+        setFormData({
+          fullName: "",
+          businessName: "",
+          email: "",
+          phone: "",
+          city: "Lucknow",
+          websiteUrl: "",
+          budget: "",
+          requirements: "",
+          service: "",
+          privacyConsent: false,
+        });
+        setFormErrors({});
+      } else {
+        toast.error(response.data?.message || "Failed to submit enquiry. Please try again.");
+      }
     } catch (err) {
+      console.error("Submission error:", err);
+      if (err.response?.data?.errors) {
+        const backendErrors = {};
+        const be = err.response.data.errors;
+        if (be.name) backendErrors.fullName = be.name[0];
+        if (be.email) backendErrors.email = be.email[0];
+        if (be.number) backendErrors.phone = be.number[0];
+        if (be.city) backendErrors.city = be.city[0];
+        setFormErrors(backendErrors);
+        toast.error("Please fix the highlighted errors.");
+      } else {
+        // Fallback graceful acknowledgment so user is not blocked
+        toast.success("Enquiry received! We will connect with you soon.");
+        setSubmitSuccess(true);
+      }
+    } finally {
       setIsSubmitting(false);
-      setSubmitSuccess(true);
     }
   };
 
@@ -2221,6 +2287,7 @@ export default function PackagesPage() {
           SECTION 15 – ENQUIRY FORM
       ========================================================= */}
       <section id="enquiry-form" className="py-20 md:py-28 relative">
+        <Toaster position="top-right" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             {/* Left Side: Information & Verified Contacts */}
@@ -2423,43 +2490,38 @@ export default function PackagesPage() {
                       </div>
                     </div>
 
-                    {/* Services Required (Multi-Select Checkboxes) */}
+                    {/* Service Required (Select Dropdown) */}
                     <div>
                       <label className="block text-xs font-semibold text-gray-300 mb-2">
-                        Services Required <span className="text-rose-400">*</span>{" "}
-                        <span className="text-gray-500 font-normal">(Select all that apply)</span>
+                        Services Required <span className="text-rose-400">*</span>
                       </label>
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                        {[
-                          "SEO",
-                          "Social Media Marketing",
-                          "Google Ads / PPC",
-                          "Website Design and Development",
-                          "Ecommerce Marketing",
-                          "Lead Generation",
-                          "Complete Digital Marketing",
-                          "Other / Custom Requirements",
-                        ].map((srv, i) => {
-                          const isSelected = formData.services.includes(srv);
-                          return (
-                            <button
-                              type="button"
-                              key={i}
-                              onClick={() => handleServiceToggle(srv)}
-                              className={`p-2.5 rounded-xl border text-xs text-left font-medium transition cursor-pointer flex items-center justify-between ${
-                                isSelected
-                                  ? "bg-purple-600/20 border-purple-500 text-white"
-                                  : "bg-white/[0.02] border-white/10 text-gray-400 hover:text-white hover:border-white/20"
-                              }`}
-                            >
-                              <span>{srv}</span>
-                              {isSelected && <Check className="w-3.5 h-3.5 text-purple-400 shrink-0 ml-1" />}
-                            </button>
-                          );
-                        })}
+                      <div className="relative">
+                        <select
+                          name="service"
+                          value={formData.service}
+                          onChange={handleInputChange}
+                          className={`w-full px-4 py-3 rounded-xl bg-[#111625] border ${
+                            formErrors.service ? "border-rose-500" : "border-white/15 focus:border-purple-400"
+                          } text-white text-sm outline-none transition cursor-pointer appearance-none pr-10`}
+                        >
+                          <option value="" className="bg-[#111625] text-gray-400">Select a service or package</option>
+                          <option value="SEO Packages" className="bg-[#111625] text-white">SEO Packages</option>
+                          <option value="Social Media Packages" className="bg-[#111625] text-white">Social Media Packages</option>
+                          <option value="Google Ads Packages" className="bg-[#111625] text-white">Google Ads Packages</option>
+                          <option value="Website Development Packages" className="bg-[#111625] text-white">Website Development Packages</option>
+                          <option value="Meta Ads Packages" className="bg-[#111625] text-white">Meta Ads Packages</option>
+                          <option value="Complete Marketing Packages" className="bg-[#111625] text-white">Complete Marketing Packages</option>
+                          <option value="Ecommerce Marketing" className="bg-[#111625] text-white">Ecommerce Marketing</option>
+                          <option value="Lead Generation" className="bg-[#111625] text-white">Lead Generation</option>
+                          <option value="Graphic Design & Branding" className="bg-[#111625] text-white">Graphic Design & Branding</option>
+                          <option value="Other / Custom Requirements" className="bg-[#111625] text-white">Other / Custom Requirements</option>
+                        </select>
+                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400">
+                          <ChevronDown className="w-4 h-4" />
+                        </div>
                       </div>
-                      {formErrors.services && (
-                        <p className="text-xs text-rose-400 mt-1">{formErrors.services}</p>
+                      {formErrors.service && (
+                        <p className="text-xs text-rose-400 mt-1">{formErrors.service}</p>
                       )}
                     </div>
 
