@@ -49,9 +49,9 @@ export default function AboutHero() {
 
         {/* Main Headline */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[62px] font-black text-white tracking-tight leading-[1.14] mb-6 max-w-5xl mx-auto">
-          More Than a Digital Marketing Agency —{" "}
+          Your Trusted Partner for{" "}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#C73673] via-[#8F5AFF] to-[#FF6FD8]">
-            Your Partner in Digital Growth
+            Digital Marketing and Business Growth
           </span>
         </h1>
 

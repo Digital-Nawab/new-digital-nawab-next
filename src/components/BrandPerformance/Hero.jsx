@@ -167,24 +167,29 @@ const BrandPerformanceHero = () => {
 
             {/* Main Headline */}
             <motion.h1
-              className="text-4xl sm:text-5xl lg:text-[54px] xl:text-[60px] font-extrabold text-white leading-[1.14] tracking-tight custom-bold"
+              className="text-4xl sm:text-5xl lg:text-[50px] xl:text-[56px] font-extrabold text-white leading-[1.15] tracking-tight custom-bold"
               variants={fadeInUp}
             >
-              Drive More Customers <br className="hidden sm:inline" />
-              with{" "}
+              PPC Services in Lucknow to Reach the{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
-                Google Ads
+                Right Customers
               </span>
             </motion.h1>
+
+            {/* Supporting Heading */}
+            <motion.p
+              className="text-lg sm:text-xl font-semibold text-purple-200 leading-snug"
+              variants={fadeInUp}
+            >
+              Get More Leads with Strategic Google Ads Management
+            </motion.p>
 
             {/* Subtitle / Paragraph */}
             <motion.p
               className="text-slate-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed"
               variants={fadeInUp}
             >
-              Strategic PPC campaigns that bring high-quality traffic, generate
-              qualified leads, and grow your business in Lucknow and across India
-              with maximized return on ad spend.
+              Reach potential customers, increase your online visibility and generate qualified enquiries with result-focused PPC campaigns. Digital Nawab helps businesses plan, manage and optimise Google Ads campaigns through audience targeting, keyword research, compelling ad creatives and conversion tracking.
             </motion.p>
 
             {/* Feature Checklist Tags (2x2 Grid) */}

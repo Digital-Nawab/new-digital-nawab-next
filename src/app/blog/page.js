@@ -1,18 +1,20 @@
 import Image from 'next/image'
 import { BlogPage } from '@/components/Blog/Blog'
 import React from 'react'
+
 export const metadata = {
-  title: 'Digital Marketing Blogs | Tips & Strategies to Grow Your Business Online',
+  title: 'Digital Marketing Insights, SEO Guides & AI Search Strategies | Digital Nawab',
   description:
-    'Explore Digital Nawab’s expert blogs on SEO, Social Media, PPC & Web Marketing. Learn actionable strategies to increase website traffic, improve ROI, and grow your business online.',
+    'Explore the Digital Nawab blog for practical insights, expert guidance and actionable strategies covering SEO, Google Ads, social media, web development, and AI-powered search.',
   alternates: {
     canonical: 'https://www.digitalnawab.com/blog',
   },
 }
+
 const page = () => {
   return (
     <div>
-        <BlogPage/>
+      <BlogPage />
     </div>
   )
 }

@@ -1,18 +1,20 @@
 import Image from 'next/image'
 import Career from '@/components/carrer/Career'
 import React from 'react'
+
 export const metadata = {
-  title: 'Digital Marketing Jobs in Lucknow | SEO, PPC, Social Media & Web Careers',
+  title: 'Build Your Career with Digital Nawab | Careers & Opportunities',
   description:
-    'Build your career in digital marketing with Digital Nawab – Lucknow’s top agency. Apply now for SEO, PPC, Social Media & Web development jobs. Send your resume today!',
+    'Explore career opportunities at Digital Nawab. Join our team of passionate digital marketing, SEO, web development, and design professionals to grow your skills and create digital impact.',
   alternates: {
     canonical: 'https://www.digitalnawab.com/career',
   },
 }
+
 const page = () => {
   return (
     <div>
-        <Career/>
+      <Career />
     </div>
   )
 }

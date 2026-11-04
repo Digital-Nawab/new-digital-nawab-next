@@ -81,12 +81,12 @@ export default function StatsSection() {
             </div>
 
             {/* Main Headline */}
-            <h2 className="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] leading-[1.18]">
+            <h1 className="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] leading-[1.18]">
               Digital Marketing Agency in Lucknow for{" "}
               <span className="bg-gradient-to-r from-[#e60067] via-[#eb1c78] to-[#d81b60] bg-clip-text text-transparent">
                 Business Growth
               </span>
-            </h2>
+            </h1>
 
             {/* Subtitle / Paragraph - High Contrast & Crisp Visibility */}
             <p className="max-w-xl text-base sm:text-lg lg:text-[19px] leading-relaxed text-slate-800 font-medium">

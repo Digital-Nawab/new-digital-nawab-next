@@ -1,17 +1,18 @@
 import Image from 'next/image'
 import Design from "@/components/Design/Design";
 import React from "react";
+
 export const metadata = {
-  title: 'Graphic Design Services in Lucknow | Digital Nawab',
+  title: 'Graphic Designing Services in Lucknow | Digital Nawab',
   description:
-    'Need graphic design services in Lucknow? Get logo design, branding, social media creatives, advertising graphics and packaging design from Digital Nawab.',
+    'Get professional graphic designing services in Lucknow from Digital Nawab. From logo design and branding to social media creatives, brochures and packaging, we create designs that help businesses stand out.',
   alternates: {
     canonical: 'https://www.digitalnawab.com/service/graphic-designing-services',
   },
   openGraph: {
-    title: 'Graphic Design Services in Lucknow | Digital Nawab',
+    title: 'Graphic Designing Services in Lucknow | Digital Nawab',
     description:
-      'Need graphic design services in Lucknow? Get logo design, branding, social media creatives, advertising graphics and packaging design from Digital Nawab.',
+      'Get professional graphic designing services in Lucknow from Digital Nawab. From logo design and branding to social media creatives, brochures and packaging, we create designs that help businesses stand out.',
     url: 'https://www.digitalnawab.com/service/graphic-designing-services',
     siteName: 'Digital Nawab',
     type: 'website',
@@ -21,7 +22,7 @@ export const metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Graphic Design Services in Lucknow',
+  name: 'Graphic Designing Services in Lucknow',
   provider: {
     '@type': 'Organization',
     name: 'Digital Nawab',
@@ -40,7 +41,7 @@ const jsonLd = {
     name: 'Lucknow',
   },
   description:
-    'Need graphic design services in Lucknow? Get logo design, branding, social media creatives, advertising graphics and packaging design from Digital Nawab.',
+    'Get professional graphic designing services in Lucknow from Digital Nawab. From logo design and branding to social media creatives, brochures and packaging, we create designs that help businesses stand out.',
 };
 
 const page = () => {
@@ -56,4 +57,3 @@ const page = () => {
 };
 
 export default page;
-

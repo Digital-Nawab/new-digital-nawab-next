@@ -273,29 +273,29 @@ export default function MobileAppPage() {
 
               {/* Headline */}
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.15]">
-                Engineering Intuitive,{" "}
+                Mobile App Development Company for{" "}
                 <span className="bg-gradient-to-r from-indigo-400 via-purple-300 to-cyan-400 bg-clip-text text-transparent">
-                  High-Performance Mobile Apps
+                  Custom Business Applications
                 </span>
               </h1>
 
               {/* Subheading */}
               <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                Transform your visionary concept into a polished iOS or Android application. We architect custom native and cross-platform mobile solutions engineered for blistering speed, human-centered UX, and limitless cloud scalability.
+                Turn your business ideas into powerful mobile applications with Digital Nawab. We provide custom mobile app development services for Android, iOS and cross-platform applications, helping startups, growing businesses and enterprises create seamless digital experiences, improve customer engagement and support business growth across India.
               </p>
 
               {/* CTA Buttons */}
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <ContactPopup
-                  buttonText="Schedule Technical Consultation"
+                  buttonText="Get a Free Consultation"
                   buttonClassName="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 text-white font-semibold hover:opacity-95 transition-all shadow-[0_0_25px_rgba(99,102,241,0.35)] cursor-pointer text-sm sm:text-base"
                 />
 
                 <Link
-                  href="/packages"
+                  href="/contact-us"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-white font-medium transition-all text-sm sm:text-base"
                 >
-                  <span>View Development Packages</span>
+                  <span>Discuss Your App Idea</span>
                   <ArrowRight className="w-4 h-4 text-indigo-400" />
                 </Link>
               </div>

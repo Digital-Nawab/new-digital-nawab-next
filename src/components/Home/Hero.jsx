@@ -53,12 +53,12 @@ const HeroSection = () => {
               title={
                 <div className="mx-auto text-center h-full flex flex-col items-center justify-center gap-6">
                   {/* Logo-style Header */}
-                  <h1 className="text-4xl sm:text-5xl font-bold flex flex-wrap items-center justify-center gap-2">
+                  <h2 className="text-4xl sm:text-5xl font-bold flex flex-wrap items-center justify-center gap-2">
                     <span className="bg-lime-400 px-4 py-1 custom-black rounded-md text-black font-bold">
                       DIGITAL
                     </span>
                     <span className="text-white custom-black">NAWAB</span>
-                  </h1>
+                  </h2>
 
                   {/* Subheading */}
                   <h2 className="mt-4 text-2xl sm:text-3xl font-semibold">

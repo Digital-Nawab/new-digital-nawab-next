@@ -293,53 +293,52 @@ export default function EcommerceMarketingPage() {
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-xs sm:text-sm font-medium text-cyan-300">
                 <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-                <span>Performance-Driven Ecommerce Agency</span>
+                <span>ECOMMERCE GROWTH • DIGITAL MARKETING SOLUTIONS</span>
                 <Sparkles className="w-4 h-4 text-cyan-400" />
               </div>
 
               {/* Headline */}
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.15]">
-                Turn Browsers into Buyers with{" "}
+                Ecommerce Marketing Agency for{" "}
                 <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent">
-                  Data-Driven Ecommerce Marketing
+                  Online Business Growth
                 </span>
               </h1>
 
               {/* Description */}
-              <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                Scale your online store with full-funnel digital marketing. From top-ranking Ecommerce SEO and high-ROAS Google Shopping to automated email retention and marketplace advertising — we engineer measurable sales growth for ambitious brands.
+              <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                Grow your online store with strategic ecommerce marketing services designed to attract the right audience, increase product visibility and generate more sales. Digital Nawab combines ecommerce SEO, Google Ads, social media marketing and conversion optimization to help online businesses build a stronger digital presence and achieve sustainable growth.
               </p>
 
               {/* CTAs */}
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <ContactPopup
-                  buttonText="Get Free Ecommerce Audit"
+                  buttonText="Get Free Consultation"
                   buttonClassName="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-cyan-500 via-teal-400 to-indigo-500 text-black font-semibold hover:opacity-95 transition-all shadow-[0_0_25px_rgba(6,182,212,0.35)] cursor-pointer text-sm sm:text-base"
                 />
 
                 <Link
-                  href="/packages"
+                  href="#services-grid"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-white font-medium transition-all text-sm sm:text-base"
                 >
-                  <span>Explore Pricing Packages</span>
+                  <span>Explore Our Services</span>
                   <ArrowRight className="w-4 h-4 text-cyan-400" />
                 </Link>
               </div>
 
-              {/* Platform Highlights */}
-              <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-gray-400">
-                <span className="text-gray-500 font-semibold tracking-wider uppercase">Platforms We Scale:</span>
+              {/* Supporting trust points */}
+              <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 text-xs text-gray-300">
                 <span className="flex items-center gap-1.5 hover:text-white transition">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" /> Shopify & Plus
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" /> Customized Ecommerce Marketing Strategies
                 </span>
                 <span className="flex items-center gap-1.5 hover:text-white transition">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" /> WooCommerce
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" /> Data-Driven Campaign Optimization
                 </span>
                 <span className="flex items-center gap-1.5 hover:text-white transition">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" /> Amazon & Marketplaces
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" /> SEO and Paid Advertising Solutions
                 </span>
                 <span className="flex items-center gap-1.5 hover:text-white transition">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" /> Headless / Next.js
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" /> Marketing for Growing Online Businesses
                 </span>
               </div>
             </motion.div>
@@ -463,13 +462,13 @@ export default function EcommerceMarketingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-4">
             <span className="text-xs font-semibold tracking-widest text-cyan-400 uppercase">
-              Understanding Ecommerce Growth
+              GROW YOUR ONLINE BUSINESS
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
-              What Are Ecommerce Marketing Services?
+              Ecommerce Digital Marketing Services That Drive Business Growth
             </h2>
             <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-              Ecommerce marketing is far more than just running sporadic social ads. It is an end-to-end commercial strategy designed to guide shoppers through every step of their purchasing journey — from brand awareness to checkout and loyal repeat purchases.
+              Running an online store requires more than just listing products on a website. You need a strategic approach to reach potential customers, build brand awareness, attract relevant traffic and turn visitors into buyers.
             </p>
           </div>
 
@@ -480,10 +479,10 @@ export default function EcommerceMarketingPage() {
                 <Store className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold text-white mb-3">
-                Powering Both Pure-Play & Physical Retailers
+                Full-Funnel Growth Across Channels
               </h3>
               <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                Over <strong className="text-white">56% of businesses</strong> employing ecommerce digital marketing also maintain brick-and-mortar storefronts. Ecommerce marketing empowers physical retailers to break geographical limitations, unlock national customer demand, and serve multi-location shoppers seamlessly.
+                Digital Nawab provides ecommerce digital marketing services that help online retailers, D2C brands, startups and established businesses improve their online visibility and marketing performance. From ecommerce SEO and paid advertising to social media campaigns and customer retention strategies, we bring different digital marketing channels together to support your business goals.
               </p>
             </div>
 
@@ -492,12 +491,25 @@ export default function EcommerceMarketingPage() {
                 <Layers className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold text-white mb-3">
-                Digital Nawab's 360° Full-Service Approach
+                Tailored for Every Platform &amp; Journey
               </h3>
               <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                Unlike siloed freelancers, Digital Nawab unites <strong className="text-white">Strategy, Creative, Performance Marketing, and Technology</strong> under one roof. We eliminate fragmented agency handoffs so your advertising campaigns, product pages, and technical integrations work in total harmony.
+                Whether you operate a Shopify store, WooCommerce website or a custom ecommerce platform, our approach focuses on understanding your products, target audience, competition and customer journey before developing a marketing strategy.
               </p>
             </div>
+          </div>
+
+          {/* Goal & CTA Banner */}
+          <div className="mt-10 rounded-2xl p-8 bg-gradient-to-r from-cyan-950/40 via-blue-950/30 to-purple-950/40 border border-cyan-500/20 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="max-w-2xl text-center md:text-left">
+              <p className="text-base sm:text-lg text-white font-medium leading-relaxed">
+                Our goal is simple: Help your ecommerce business reach more relevant customers, improve conversions and build long-term online growth.
+              </p>
+            </div>
+            <ContactPopup
+              buttonText="Discuss Your Ecommerce Growth"
+              buttonClassName="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-cyan-500 to-teal-400 text-black font-bold text-sm sm:text-base shadow-xl shadow-cyan-500/20 hover:opacity-95 transition-all cursor-pointer whitespace-nowrap"
+            />
           </div>
         </div>
       </section>
@@ -505,7 +517,7 @@ export default function EcommerceMarketingPage() {
       {/* =========================================================
           SERVICES GRID SECTION
       ========================================================= */}
-      <section className="py-20 md:py-28 bg-[#0a0d16] border-y border-white/5 relative">
+      <section id="services-grid" className="py-20 md:py-28 bg-[#0a0d16] border-y border-white/5 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
             <span className="text-xs font-semibold tracking-widest text-cyan-400 uppercase">

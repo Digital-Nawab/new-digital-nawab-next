@@ -409,19 +409,24 @@ const Career = () => {
                 </span>
               </div>
 
-              <div className="space-y-3">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
-                  WHERE AMBITION MEETS{" "}
+              <div className="space-y-4">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
+                  Build Your Career with{" "}
                   <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
-                    CREATIVE EXCELLENCE
+                    Digital Nawab
                   </span>
                 </h1>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-200">
-                  BUILD PRODUCTS THAT REACH MILLIONS.
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-200">
+                  Grow Your Skills. Explore New Opportunities. Create Digital Impact.
                 </h2>
-                <p className="text-zinc-400 text-sm sm:text-base md:text-lg leading-relaxed pt-1 max-w-xl">
-                  Digital Nawab is where top engineers, media buyers, SEO strategists, and UI/UX designers come to do their career-defining work. High autonomy, top compensation, zero micromanagement.
-                </p>
+                <div className="space-y-3 pt-1 max-w-2xl text-zinc-300 text-sm sm:text-base leading-relaxed">
+                  <p>
+                    At Digital Nawab, we believe great digital experiences start with talented people and creative thinking. We bring together professionals passionate about digital marketing, SEO, web development, social media, and design to help businesses grow in the digital world.
+                  </p>
+                  <p className="text-zinc-400">
+                    Explore career opportunities, develop your skills, and become part of a team that values creativity, collaboration, learning, and professional growth.
+                  </p>
+                </div>
               </div>
 
               {/* Action Buttons */}
@@ -431,7 +436,7 @@ const Career = () => {
                   className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold shadow-xl shadow-purple-600/25 hover:shadow-purple-600/40 transform hover:-translate-y-0.5 transition-all flex items-center gap-2 text-sm cursor-pointer"
                 >
                   <Briefcase className="w-4 h-4" />
-                  <span>View Open Positions</span>
+                  <span>Explore Open Positions</span>
                 </button>
 
                 <button
@@ -439,7 +444,7 @@ const Career = () => {
                   className="px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-200 border border-white/10 font-semibold backdrop-blur-md transform hover:-translate-y-0.5 transition-all flex items-center gap-2 text-sm cursor-pointer"
                 >
                   <FileText className="w-4 h-4 text-purple-400" />
-                  <span>Drop General Resume</span>
+                  <span>Submit Your Resume</span>
                 </button>
 
                 <a

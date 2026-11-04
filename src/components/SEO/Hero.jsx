@@ -111,9 +111,7 @@ const HeroSection = () => {
 
               {/* Subtitle Description */}
               <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-                We help businesses in Lucknow and across India rank higher on
-                Google, get more organic traffic and generate quality leads
-                through result-driven SEO strategies.
+                Build search visibility with an SEO strategy tailored to your website, audience, and business goals. Digital Nawab helps businesses improve technical website health, target relevant keywords, strengthen local search visibility, and turn relevant organic traffic into meaningful enquiries.
               </p>
 
               {/* Action Buttons */}
