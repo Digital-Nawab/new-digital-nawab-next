@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   MapPin,
   Phone,
   MessageCircle,
@@ -553,7 +555,7 @@ export default function CityPageClient({
 
   const finalServices = parsedServices.length > 0 ? parsedServices : defaultServices;
 
-  // Parse Pricing Packages
+  // Parse Services / Solutions Packages STRICTLY from API
   let parsedPackages = [];
   if (pricing) {
     if (Array.isArray(pricing.packages)) {
@@ -566,64 +568,221 @@ export default function CityPageClient({
     }
   }
 
-  const defaultPackages = [
-    {
-      icon: "Search",
-      color: "pink",
-      badge_label: "Local Domination",
-      title: "Local SEO & Google Maps",
-      price: "9,999",
-      price_suffix: "/Month",
-      is_popular: false,
-      view_package_url: "/packages",
-      whatsapp_number: cleanWhatsapp,
-      features: [
-        "Google Business Profile Optimization & Audit",
-        "Local Keyword Research & Tracking (15 Keywords)",
-        "Citation Building across Top Local Directories",
-        "Review Generation & Reputation Strategy",
-        "Monthly Ranking & Footfall Analytics Report",
-      ],
-    },
-    {
-      icon: "Target",
-      color: "purple",
-      badge_label: "High Conversion",
-      title: "Performance Ads & Lead Gen",
-      price: "18,500",
-      price_suffix: "/Month",
-      is_popular: true,
-      view_package_url: "/packages",
-      whatsapp_number: cleanWhatsapp,
-      features: [
-        "Google Search & Performance Max Campaigns",
-        "High-ROAS Meta Ads (Instagram & Facebook)",
-        "Custom High-Converting Landing Page Design",
-        "GTM, Meta Pixel & WhatsApp Lead Tracking",
-        "Weekly Budget Optimization & A/B Testing",
-      ],
-    },
-    {
-      icon: "Laptop",
-      color: "gold",
-      badge_label: "Complete Scale",
-      title: "Full-Stack Brand Expansion",
-      price: "34,999",
-      price_suffix: "/Month",
-      is_popular: false,
-      view_package_url: "/packages",
-      whatsapp_number: cleanWhatsapp,
-      features: [
-        "Complete Web App Development / Modern Redesign",
-        "Omnichannel Ads (Google + Meta + YouTube)",
-        "Aggressive National & International SEO",
-        "High-Quality Ad Creatives & Video Production",
-        "Dedicated Senior Account Director & 24/7 Support",
-      ],
-    },
-  ];
+  // Icon mapper for service cards
+  const getPackageIcon = (iconName, idx = 0) => {
+    switch ((iconName || "").toLowerCase()) {
+      case "monitor":
+      case "laptop":
+      case "code":
+        return Laptop;
+      case "search":
+      case "seo":
+        return Search;
+      case "target":
+      case "ads":
+      case "ppc":
+        return Target;
+      case "trendingup":
+      case "growth":
+      case "marketing":
+        return TrendingUp;
+      case "award":
+      case "crown":
+        return Award;
+      default:
+        return [Laptop, Search, Target, TrendingUp][idx % 4] || Sparkles;
+    }
+  };
 
-  const finalPackages = parsedPackages.length > 0 ? parsedPackages : defaultPackages;
+  // Pure API-driven packages (NO dummy cards, NO fake features)
+  const finalPackages = (parsedPackages || []).map((pkg, idx) => {
+    const rawFeatures = Array.isArray(pkg.features)
+      ? pkg.features
+      : typeof pkg.features === "string"
+      ? [pkg.features]
+      : [];
+
+    // Filter clean non-empty features strictly from API
+    const cleanFeatures = rawFeatures
+      .map((f) => String(f || "").trim())
+      .filter(Boolean);
+
+    // Direct WhatsApp number from API
+    const rawWhatsapp = pkg.whatsapp_number
+      ? String(pkg.whatsapp_number).trim()
+      : city?.whatsapp_number || cleanWhatsapp || "8860757649";
+    const cleanPkgWhatsapp = rawWhatsapp.replace(/[^0-9]/g, "") || cleanWhatsapp || "8860757649";
+
+    // Direct View Package URL from API for redirecting to service page
+    let redirectUrl = (pkg.view_package_url || "").trim();
+    if (!redirectUrl) redirectUrl = "/packages";
+    if (!redirectUrl.startsWith("http") && !redirectUrl.startsWith("/")) {
+      redirectUrl = "/" + redirectUrl;
+    }
+
+    return {
+      ...pkg,
+      title: pkg.title || "Web Designing Package",
+      badge_label: pkg.badge_label || "Web Packages",
+      features: cleanFeatures,
+      whatsapp_number: rawWhatsapp,
+      clean_whatsapp: cleanPkgWhatsapp,
+      view_package_url: redirectUrl,
+      is_popular: !!pkg.is_popular,
+      icon: pkg.icon || "Monitor",
+    };
+  });
+
+  // Package Slider state when finalPackages.length > 4
+  const [packageSlideIndex, setPackageSlideIndex] = useState(0);
+  const [isPackageSliderPaused, setIsPackageSliderPaused] = useState(false);
+  const [packageVisibleCount, setPackageVisibleCount] = useState(4);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window === "undefined") return;
+      if (window.innerWidth >= 1024) {
+        setPackageVisibleCount(4);
+      } else if (window.innerWidth >= 640) {
+        setPackageVisibleCount(2);
+      } else {
+        setPackageVisibleCount(1);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const maxPackageSlide = Math.max(0, finalPackages.length - packageVisibleCount);
+
+  // Auto-slide effect when packages > 4 (every 3.5s, pauses on hover)
+  useEffect(() => {
+    if (finalPackages.length <= 4 || isPackageSliderPaused || maxPackageSlide <= 0) return;
+    const interval = setInterval(() => {
+      setPackageSlideIndex((prev) => (prev >= maxPackageSlide ? 0 : prev + 1));
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [finalPackages.length, isPackageSliderPaused, maxPackageSlide]);
+
+  const handleNextPackageSlide = () => {
+    setPackageSlideIndex((prev) => (prev >= maxPackageSlide ? 0 : prev + 1));
+  };
+
+  const handlePrevPackageSlide = () => {
+    setPackageSlideIndex((prev) => (prev <= 0 ? maxPackageSlide : prev - 1));
+  };
+
+  // Reusable Package Card Renderer
+  const renderPackageCard = (pkg, idx) => {
+    const IconComp = getPackageIcon(pkg.icon, idx);
+    const isPopular = pkg.is_popular;
+    return (
+      <div
+        key={idx}
+        className={`rounded-3xl p-7 sm:p-9 flex flex-col justify-between transition-all duration-300 relative group h-full ${
+          isPopular
+            ? "bg-gradient-to-b from-[#141226] via-[#0d0f1b] to-[#090b14] border-2 border-purple-500 shadow-2xl shadow-purple-950/50 ring-1 ring-purple-500/30"
+            : "bg-gradient-to-b from-[#121524]/90 via-[#0d101d]/90 to-[#080a14]/90 backdrop-blur-xl border border-white/10 hover:border-purple-500/40 shadow-xl hover:shadow-2xl hover:shadow-purple-950/30"
+        }`}
+      >
+        {isPopular && (
+          <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-[10px] font-extrabold uppercase tracking-widest shadow-lg z-20">
+            Recommended
+          </span>
+        )}
+
+        <div className="space-y-6">
+          {/* Top Header: Icon + Category Badge */}
+          <div className="flex items-center justify-between gap-4">
+            <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/15 border border-purple-500/30 text-purple-300 flex items-center justify-center group-hover:scale-105 transition-transform shadow-inner">
+              <IconComp className="w-6 h-6" />
+            </div>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-purple-300 bg-purple-500/10 px-3 py-1 rounded-full border border-purple-500/20">
+              {pkg.badge_label}
+            </span>
+          </div>
+
+          {/* Title */}
+          <div>
+            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight group-hover:text-purple-200 transition-colors">
+              {pkg.title}
+            </h3>
+            {pkg.description && (
+              <p className="text-sm text-zinc-400 mt-2 leading-relaxed">
+                {pkg.description}
+              </p>
+            )}
+          </div>
+
+          {/* Inclusions / Features List strictly from API */}
+          {pkg.features && pkg.features.length > 0 && (
+            <div className="pt-5 border-t border-white/10">
+              <div className="text-[11px] font-bold uppercase tracking-wider text-purple-300/90 mb-3 flex items-center gap-1.5">
+                <BadgeCheck className="w-4 h-4 text-purple-400" />
+                <span>Service Inclusions</span>
+              </div>
+              <ul className="space-y-2.5">
+                {pkg.features.map((feat, fIdx) => (
+                  <li
+                    key={fIdx}
+                    className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300 leading-snug"
+                  >
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+
+        {/* Bottom Actions - Redirect to View Package URL (Service Page) + WhatsApp from API */}
+        <div className="mt-8 pt-6 border-t border-white/10 space-y-3">
+          {/* Primary Button: Dynamic View Package URL from Admin API */}
+          {pkg.view_package_url?.startsWith("http") ? (
+            <a
+              href={pkg.view_package_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-purple-600/25 flex items-center justify-center gap-2 transition-all cursor-pointer group/btn"
+            >
+              <span>View Package Details</span>
+              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+            </a>
+          ) : (
+            <Link
+              href={pkg.view_package_url}
+              className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-purple-600/25 flex items-center justify-center gap-2 transition-all cursor-pointer group/btn"
+            >
+              <span>View Package Details</span>
+              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+            </Link>
+          )}
+
+          {/* Secondary Row: Free Consultation + WhatsApp (using API's whatsapp_number) */}
+          <div className="grid grid-cols-2 gap-2.5">
+            <ContactPopup
+              buttonText="Get Free Quote"
+              buttonClassName="w-full py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/15 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer text-center"
+            />
+
+            <a
+              href={`https://wa.me/${pkg.clean_whatsapp}?text=${encodeURIComponent(
+                `Hello Digital Nawab Team, I am inquiring about ${pkg.title} in ${cityName}.`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-2.5 px-3 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/20 text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer text-center"
+            >
+              <MessageCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+              <span className="truncate">WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   // Parse Strategic Framework Steps
   let parsedStrategic = [];
@@ -1034,54 +1193,30 @@ export default function CityPageClient({
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {finalStrategic.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-6 sm:p-7 rounded-2xl bg-white border border-zinc-200/90 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative group flex flex-col justify-between"
-              >
-                <div>
-                  {/* Top Row: Icon + Step Indicator */}
-                  <div className="flex items-center justify-between gap-2 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-purple-50 border border-purple-200/70 text-purple-700 flex items-center justify-center group-hover:scale-110 transition-transform shadow-xs">
-                      <StrategicIcon type={item.icon} idx={idx} className="w-6 h-6" />
+            {finalServices.map((item, idx) => {
+              const ServiceIcon =
+                [Search, Target, MessageCircle, Laptop, Globe, TrendingUp, Award, Zap][
+                  idx % 8
+                ] || Sparkles;
+              return (
+                <div
+                  key={idx}
+                  className="p-6 sm:p-7 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-pink-500/40 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative group flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 text-pink-400 flex items-center justify-center group-hover:scale-110 transition-transform mb-4">
+                      <ServiceIcon className="w-6 h-6" />
                     </div>
-                    <span className="text-[11px] font-extrabold text-purple-700 bg-purple-100/70 border border-purple-200 px-2.5 py-1 rounded-full uppercase tracking-wider">
-                      Step 0{idx + 1}
-                    </span>
-                  </div>
-
-                  {/* Optional Category Label if explicitly provided */}
-                  {item.category && (
-                    <div className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5">
-                      {item.category}
-                    </div>
-                  )}
-
-                  {/* Title */}
-                  <h3 className="text-base sm:text-lg font-extrabold text-zinc-900 mb-2.5 leading-snug">
-                    {item.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-
-                {/* Optional Key Focus Tag Footer if explicitly provided */}
-                {item.key_focus && (
-                  <div className="mt-5 pt-3.5 border-t border-zinc-100">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-purple-800 mb-1 flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-purple-600" />
-                      <span>Key Focus</span>
-                    </div>
-                    <p className="text-[11px] text-zinc-500 font-medium leading-normal">
-                      {item.key_focus}
+                    <h3 className="text-base sm:text-lg font-bold text-white mb-2 leading-snug group-hover:text-pink-300 transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed">
+                      {item.description}
                     </p>
                   </div>
-                )}
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -1437,97 +1572,122 @@ export default function CityPageClient({
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 7: ROI-DRIVEN PRICING PACKAGES (DARK BACKGROUND) */}
+      {/* SECTION 7: SERVICES WE OFFER (PURE API DRIVEN - CLEAN & SPACIOUS UI) */}
       {/* ========================================================================= */}
-      <section className="bg-black text-white py-20 px-4 md:px-8 border-b border-white/5">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-semibold uppercase tracking-wider mb-3">
-              <Sparkles className="w-3.5 h-3.5" /> Transparent Investment
+      {finalPackages.length > 0 && (
+        <section className="bg-gradient-to-b from-black via-[#080b14] to-black text-white py-20 px-4 md:px-8 border-b border-white/5 relative overflow-hidden">
+          {/* Subtle Ambient Glow behind */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="max-w-6xl mx-auto relative z-10">
+            {/* Header */}
+            <div className="text-center max-w-3xl mx-auto mb-14">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-semibold uppercase tracking-wider mb-3">
+                <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+                <span>{pricing?.badge_text || "Core Services & Solutions"}</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
+                {pricing?.heading || `Service We Offer You`}
+              </h2>
+              <p className="text-zinc-400 text-base md:text-lg mt-3 leading-relaxed">
+                {pricing?.subheading ||
+                  `Expert digital marketing solutions to grow your business with straightforward, measurable deliverables.`}
+              </p>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white">
-              {pricing?.heading || `Affordable Growth Packages for ${cityName} Businesses`}
-            </h2>
-            <p className="text-zinc-400 text-base md:text-lg mt-3">
-              {pricing?.subheading ||
-                "Transparent monthly retainers engineered for measurable lead generation and revenue expansion."}
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-            {finalPackages.map((pkg, idx) => {
-              const isPopular = pkg.is_popular;
-              return (
-                <div
-                  key={idx}
-                  className={`rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 relative ${
-                    isPopular
-                      ? "bg-gradient-to-b from-purple-950/60 via-zinc-900 to-black border-2 border-purple-500 shadow-2xl shadow-purple-950/50 md:-translate-y-2"
-                      : "bg-zinc-950/80 border border-white/10 hover:border-white/20"
-                  }`}
-                >
-                  {isPopular && (
-                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-[11px] font-extrabold uppercase tracking-wider shadow-lg">
-                      Most Popular
-                    </span>
-                  )}
-
-                  <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-purple-400">
-                      {pkg.badge_label || "Growth Tier"}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white mt-1">
-                      {pkg.title}
-                    </h3>
-
-                    {/* Price */}
-                    <div className="mt-5 pb-5 border-b border-white/10">
-                      <span className="text-3xl sm:text-4xl font-black text-white">
-                        ₹{pkg.price}
-                      </span>
-                      <span className="text-xs text-zinc-400 ml-1.5 font-medium">
-                        {pkg.price_suffix || "/Month"}
-                      </span>
-                    </div>
-
-                    {/* Features List */}
-                    <ul className="mt-6 space-y-3">
-                      {(pkg.features || []).map((feat, fIdx) => (
-                        <li key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
+            {/* When <= 4 packages: Clean Grid Layout */}
+            {finalPackages.length <= 4 ? (
+              <div
+                className={`mx-auto ${
+                  finalPackages.length === 1
+                    ? "max-w-md"
+                    : finalPackages.length === 2
+                    ? "max-w-4xl grid md:grid-cols-2 gap-8 items-stretch"
+                    : finalPackages.length === 3
+                    ? "max-w-6xl grid md:grid-cols-3 gap-8 items-stretch"
+                    : "max-w-7xl grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch"
+                }`}
+              >
+                {finalPackages.map((pkg, idx) => (
+                  <div key={idx} className="h-full">
+                    {renderPackageCard(pkg, idx)}
                   </div>
-
-                  {/* Actions */}
-                  <div className="mt-8 pt-5 border-t border-white/10 space-y-3">
-                    <Link
-                      href={pkg.view_package_url || "/packages"}
-                      className={`block w-full py-3 rounded-xl font-bold text-xs text-center transition-all ${
-                        isPopular
-                          ? "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white shadow-lg"
-                          : "bg-white/10 hover:bg-white/15 text-white"
-                      }`}
+                ))}
+              </div>
+            ) : (
+              /* When > 4 packages: Auto-slide Carousel / Slider (4 per view on desktop) */
+              <div
+                className="relative max-w-7xl mx-auto"
+                onMouseEnter={() => setIsPackageSliderPaused(true)}
+                onMouseLeave={() => setIsPackageSliderPaused(false)}
+              >
+                {/* Navigation Controls top right */}
+                <div className="flex items-center justify-between mb-6 px-3">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-xs text-zinc-400 font-medium">
+                      Showing {packageSlideIndex + 1} - {Math.min(packageSlideIndex + packageVisibleCount, finalPackages.length)} of {finalPackages.length} packages
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={handlePrevPackageSlide}
+                      className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95 shadow-md"
+                      aria-label="Previous Slide"
                     >
-                      View Full Details
-                    </Link>
-
-                    <a
-                      href={`tel:${cleanPhone || "8860757649"}`}
-                      className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-200 hover:text-white border border-white/15 hover:border-purple-400/50 text-xs font-semibold transition-all cursor-pointer"
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={handleNextPackageSlide}
+                      className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95 shadow-md"
+                      aria-label="Next Slide"
                     >
-                      <Phone className="w-3.5 h-3.5 text-purple-400" />
-                      <span>Call {phoneNum || "8860757649"}</span>
-                    </a>
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
                   </div>
                 </div>
-              );
-            })}
+
+                {/* Slider Viewport & Track */}
+                <div className="overflow-hidden py-4 -my-4">
+                  <div
+                    className="flex transition-transform duration-500 ease-out"
+                    style={{
+                      transform: `translateX(-${packageSlideIndex * (100 / packageVisibleCount)}%)`,
+                    }}
+                  >
+                    {finalPackages.map((pkg, idx) => (
+                      <div
+                        key={idx}
+                        className="w-full sm:w-1/2 lg:w-1/4 shrink-0 px-3 flex flex-col"
+                      >
+                        {renderPackageCard(pkg, idx)}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Dot Indicators */}
+                <div className="flex items-center justify-center gap-2 mt-8">
+                  {Array.from({
+                    length: Math.max(0, finalPackages.length - packageVisibleCount) + 1,
+                  }).map((_, dIdx) => (
+                    <button
+                      key={dIdx}
+                      onClick={() => setPackageSlideIndex(dIdx)}
+                      className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                        packageSlideIndex === dIdx
+                          ? "w-7 bg-gradient-to-r from-purple-500 to-pink-500"
+                          : "w-2 bg-white/20 hover:bg-white/40"
+                      }`}
+                      aria-label={`Go to slide ${dIdx + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ========================================================================= */}
       {/* SECTION 8: HOW WE WORK (LIGHT BACKGROUND) */}

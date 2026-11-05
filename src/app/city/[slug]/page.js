@@ -1,14 +1,28 @@
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 import React from "react";
 import CityPageClient from "@/components/City/CityPageClient";
 
-const API_BASE = "https://dashboard.digitalnawab.com/api";
+const LOCAL_API_BASE = "http://127.0.0.1:8000/api";
+const PROD_API_BASE = "https://dashboard.digitalnawab.com/api";
+
+async function getActiveApiBase() {
+  try {
+    const res = await fetch(`${LOCAL_API_BASE}/cities`, {
+      cache: "no-store",
+      signal: AbortSignal.timeout(600),
+    });
+    if (res.ok) return LOCAL_API_BASE;
+  } catch (e) {}
+  return PROD_API_BASE;
+}
 
 // Fetch complete city data dynamically from API
 async function getCityCompleteData(slug) {
   try {
     const citySlug = slug?.toLowerCase() || "agra";
+    const API_BASE = await getActiveApiBase();
 
     const [
       citiesRes,
