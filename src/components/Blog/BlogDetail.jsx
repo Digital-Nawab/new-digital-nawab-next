@@ -109,13 +109,19 @@ export default function BlogDetailPage({ params }) {
   }, [data?.published]);
 
   const bannerImageUrl = useMemo(() => {
-    const raw = data?.banner_img || data?.card_img;
-    if (!raw) return null;
-    if (raw.startsWith("http://") || raw.startsWith("https://")) {
-      return raw;
+    if (!data) return null;
+    const raw = data.banner_img;
+    if (!raw) return "/images/fallback.jpg";
+    const full =
+      raw.startsWith("http://") || raw.startsWith("https://")
+        ? raw
+        : `https://dashboard.digitalnawab.com/${raw.replace(/^\/+/, "")}`;
+    try {
+      return encodeURI(decodeURI(full));
+    } catch {
+      return encodeURI(full);
     }
-    return `https://dashboard.digitalnawab.com/${raw.replace(/^\/+/, "")}`;
-  }, [data?.banner_img, data?.card_img]);
+  }, [data]);
 
   // Filter other blogs for sidebar
   const otherBlogs = useMemo(() => {
@@ -221,15 +227,6 @@ export default function BlogDetailPage({ params }) {
                     decoding="async"
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.01]"
                     onError={(e) => {
-                      if (data?.card_img) {
-                        const fallbackCard = data.card_img.startsWith("http")
-                          ? data.card_img
-                          : `https://dashboard.digitalnawab.com/${data.card_img.replace(/^\/+/, "")}`;
-                        if (e.currentTarget.src !== fallbackCard) {
-                          e.currentTarget.src = fallbackCard;
-                          return;
-                        }
-                      }
                       e.currentTarget.src = "/images/fallback.jpg";
                     }}
                   />
@@ -331,7 +328,7 @@ export default function BlogDetailPage({ params }) {
                         return (
                           <Link
                             key={b.id || b.url}
-                            href={`/blog-detail/${b.url}`}
+                            href={`/blog/${b.url}`}
                             className="blog-sidebar-recent-link group flex gap-3 items-center p-2 rounded-xl hover:bg-blue-50/70 transition-all duration-200"
                           >
                             <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-slate-100 border border-slate-200">
