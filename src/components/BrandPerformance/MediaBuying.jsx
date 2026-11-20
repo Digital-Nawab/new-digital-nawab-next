@@ -114,7 +114,7 @@ const MediaBuyingSection = ({ theme = "dark" }) => {
     const fetchMediaChannels = async () => {
       try {
         const res = await fetch(
-          "https://dashboard.digitalnawab.com/api/googlemedia"
+          "/api/googlemedia"
         );
         const json = await res.json();
         if (json?.data?.length) {

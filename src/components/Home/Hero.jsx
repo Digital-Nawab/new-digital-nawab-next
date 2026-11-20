@@ -12,7 +12,7 @@ const HeroSection = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: "https://dashboard.digitalnawab.com/api/gethero",
+      url: "/api/gethero",
       headers: {},
     };
 

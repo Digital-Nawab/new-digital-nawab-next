@@ -121,7 +121,7 @@ const Career = () => {
     const fetchCareers = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("https://dashboard.digitalnawab.com/api/getcareer");
+        const res = await axios.get("/api/getcareer");
         const list = res.data?.data || res.data || [];
         if (Array.isArray(list) && list.length > 0) {
           setJobs(list);
@@ -142,7 +142,7 @@ const Career = () => {
   useEffect(() => {
     const fetchTeam = async () => {
       try {
-        const res = await axios.get("https://dashboard.digitalnawab.com/api/getourteam");
+        const res = await axios.get("/api/getourteam");
         const list = res.data?.data || [];
         if (Array.isArray(list) && list.length > 0) {
           setTeamMembers(list.slice(0, 4));
@@ -279,7 +279,7 @@ const Career = () => {
         data.append("resume", formData.resume);
       }
 
-      await axios.post("https://dashboard.digitalnawab.com/api/career_form", data, {
+      await axios.post("/api/career_form", data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

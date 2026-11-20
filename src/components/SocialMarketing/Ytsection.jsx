@@ -7,7 +7,7 @@ const ServicesSection = () => {
  useEffect(() => {
     const fetchServices = async () => {
       try {
-        const res = await fetch("https://dashboard.digitalnawab.com/api/getsmmService");
+        const res = await fetch("/api/getsmmService");
         const json = await res.json();
         if (json?.data) {
           const formattedServices = json.data.map((item) => ({

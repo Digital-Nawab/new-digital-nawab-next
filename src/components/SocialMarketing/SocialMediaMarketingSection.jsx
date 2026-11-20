@@ -24,7 +24,7 @@ const DigitalNawabSections = () => {
   useEffect(() => {
     const fetchBenefits = async () => {
       try {
-        const res = await fetch("https://dashboard.digitalnawab.com/api/getsmmbenefit");
+        const res = await fetch("/api/getsmmbenefit");
         const json = await res.json();
 
         if (json?.data) {

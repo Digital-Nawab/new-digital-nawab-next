@@ -40,7 +40,7 @@ export default function BlogDetailPageClient({
       setError("");
       try {
         const res = await axios.get(
-          `https://dashboard.digitalnawab.com/api/blogdetail`,
+          `/api/blogdetail`,
           { params: { url: slug } }
         );
         if (!cancelled) setData(res?.data?.data || null);
@@ -66,7 +66,7 @@ export default function BlogDetailPageClient({
     const fetchRecent = async () => {
       try {
         const res = await axios.get(
-          `https://dashboard.digitalnawab.com/api/getblog`
+          `/api/getblog`
         );
         if (!cancelled && Array.isArray(res?.data)) {
           setRecentBlogs(res.data);

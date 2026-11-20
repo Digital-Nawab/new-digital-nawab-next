@@ -24,6 +24,7 @@ const ContactPopup = ({
   buttonText = "Contact Us",
   buttonClassName = "bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg",
 }) => {
+  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -39,6 +40,11 @@ const ContactPopup = ({
   const [services, setServices] = useState([]);
   const [subServices, setSubServices] = useState([]);
 
+  // Mount state to prevent hydration ID mismatch between server and client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Fetch services from API
   useEffect(() => {
     const fetchServices = async () => {
@@ -46,7 +52,7 @@ const ContactPopup = ({
         const config = {
           method: "get",
           maxBodyLength: Infinity,
-          url: "https://dashboard.digitalnawab.com/api/get_service",
+          url: "/api/get_service",
           headers: {},
         };
         const response = await axios.request(config);
@@ -168,7 +174,7 @@ const ContactPopup = ({
       };
 
       const response = await axios.post(
-        "https://dashboard.digitalnawab.com/api/post_enquiry",
+        "/api/post_enquiry",
         payload,
         {
           headers: {
@@ -213,6 +219,20 @@ const ContactPopup = ({
     setErrors({});
   };
 
+  if (!mounted) {
+    return (
+      <motion.button
+        suppressHydrationWarning
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className={buttonClassName}
+        onClick={() => setIsOpen(true)}
+      >
+        {buttonText}
+      </motion.button>
+    );
+  }
+
   return (
     <>
       <Toaster position="top-right" />
@@ -225,6 +245,7 @@ const ContactPopup = ({
       >
         <DialogTrigger asChild>
           <motion.button
+            suppressHydrationWarning
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className={buttonClassName}

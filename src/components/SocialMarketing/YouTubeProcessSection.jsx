@@ -34,8 +34,8 @@ const YouTubeProcessSection = () => {
     const fetchData = async () => {
       try {
         const [ytRes, srvRes] = await Promise.all([
-          fetch("https://dashboard.digitalnawab.com/api/getsmmyoutube"),
-          fetch("https://dashboard.digitalnawab.com/api/getsmmService")
+          fetch("/api/getsmmyoutube"),
+          fetch("/api/getsmmService")
         ]);
 
         const ytData = await ytRes.json();

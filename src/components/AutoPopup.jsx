@@ -173,7 +173,7 @@ export default function AutoPopup() {
       const selectedSub = selectedCat?.subServices?.find((s) => s.name === formData.subService);
 
       await axios.post(
-        "https://dashboard.digitalnawab.com/api/post_enquiry",
+        "/api/post_enquiry",
         {
           name: formData.name,
           email: formData.email,

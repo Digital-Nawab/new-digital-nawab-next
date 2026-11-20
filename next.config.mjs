@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  serverExternalPackages: ['mysql2', 'bcryptjs'],
   images: {
     formats: ["image/avif", "image/webp"],
     domains: [
@@ -61,14 +62,6 @@ const nextConfig = {
         source: "/package",
         destination: "/packages",
         permanent: true,
-      },
-    ];
-  },
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: "https://dashboard.digitalnawab.com/api/:path*",
       },
     ];
   },

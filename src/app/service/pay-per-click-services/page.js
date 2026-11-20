@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 import React from "react";
 import BrandPerformanceHero from "@/components/BrandPerformance/Hero";
 import WhatIsPPC from "@/components/BrandPerformance/WhatIsPPC";
@@ -7,15 +10,11 @@ import MediaBuyingSection from "@/components/BrandPerformance/MediaBuying";
 import HowPPCWorks from "@/components/BrandPerformance/HowPPCWorks";
 import ABTestingSection from "@/components/BrandPerformance/Testing";
 import PPCAuditCTA from "@/components/BrandPerformance/PPCAuditCTA";
+import { getPageMeta } from '@/lib/getPageMeta';
 
-export const metadata = {
-  title: "PPC Services in Lucknow | Google Ads & Paid Campaign Experts",
-  description:
-    "Maximize ROI with expert PPC services in Lucknow. Target quality leads, appear on Google’s 1st page, and achieve cost-effective results with our paid marketing solutions.",
-  alternates: {
-    canonical: "https://www.digitalnawab.com/service/pay-per-click-services",
-  },
-};
+export async function generateMetadata() {
+  return await getPageMeta('/service/pay-per-click-services');
+}
 
 const page = () => {
   return (

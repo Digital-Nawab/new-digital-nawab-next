@@ -104,7 +104,7 @@ const SeoService = () => {
     const fetchServices = async () => {
       try {
         const response = await fetch(
-          "https://dashboard.digitalnawab.com/api/getseodigital"
+          "/api/getseodigital"
         );
         const result = await response.json();
         if (result?.data && Array.isArray(result.data) && result.data.length > 0) {

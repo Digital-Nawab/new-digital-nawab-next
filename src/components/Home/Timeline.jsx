@@ -34,7 +34,7 @@ export function TimelineDemo() {
         const config = {
           method: "get",
           maxBodyLength: Infinity,
-          url: "https://dashboard.digitalnawab.com/api/get_service",
+          url: "/api/get_service",
           headers: {},
         };
 

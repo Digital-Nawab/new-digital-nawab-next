@@ -91,7 +91,7 @@ const PPCServicesSection = () => {
   useEffect(() => {
     const fetchAdsData = async () => {
       try {
-        const res = await fetch("https://dashboard.digitalnawab.com/api/googleppc");
+        const res = await fetch("/api/googleppc");
         const data = await res.json();
         console.log("Fetched PPC services data:", data);
         if (data?.data) {

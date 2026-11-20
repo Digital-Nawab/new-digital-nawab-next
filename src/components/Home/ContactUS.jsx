@@ -109,7 +109,7 @@ const ContactUs = ({ isHomePage }) => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get("https://dashboard.digitalnawab.com/api/get_service");
+        const response = await axios.get("/api/get_service");
         if (Array.isArray(response.data)) {
           setServices(response.data);
         }
@@ -124,7 +124,7 @@ const ContactUs = ({ isHomePage }) => {
   useEffect(() => {
     const fetchContactDetails = async () => {
       try {
-        const response = await axios.get("https://dashboard.digitalnawab.com/api/getcontactdetail");
+        const response = await axios.get("/api/getcontactdetail");
         const data = response.data?.data?.[0];
         if (data) {
           setContactInfo({
@@ -145,7 +145,7 @@ const ContactUs = ({ isHomePage }) => {
   useEffect(() => {
     const fetchFaqs = async () => {
       try {
-        const response = await axios.get("https://dashboard.digitalnawab.com/api/getfaq");
+        const response = await axios.get("/api/getfaq");
         const data = response.data?.data || response.data || [];
         if (Array.isArray(data) && data.length > 0) {
           setFaqs(data);
@@ -293,7 +293,7 @@ const ContactUs = ({ isHomePage }) => {
           message: formData.message,
         };
 
-        await axios.post("https://dashboard.digitalnawab.com/api/post_enquiry", payload, {
+        await axios.post("/api/post_enquiry", payload, {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",

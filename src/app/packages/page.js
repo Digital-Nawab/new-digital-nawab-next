@@ -1,29 +1,13 @@
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 import PackagesPage from "@/components/packages/PackagesPage";
 import React from "react";
+import { getPageMeta } from '@/lib/getPageMeta';
 
-export const metadata = {
-  title: "Digital Marketing Packages & Pricing in India | Digital Nawab",
-  description:
-    "Explore digital marketing packages for SEO, social media, Google Ads and business growth. Compare services and get a customised quote from Digital Nawab.",
-  alternates: {
-    canonical: "https://www.digitalnawab.com/packages",
-  },
-  openGraph: {
-    title: "Digital Marketing Packages & Pricing in India | Digital Nawab",
-    description:
-      "Explore digital marketing packages for SEO, social media, Google Ads and business growth. Compare services and get a customised quote from Digital Nawab.",
-    url: "https://www.digitalnawab.com/packages",
-    siteName: "Digital Nawab",
-    type: "website",
-    locale: "en_IN",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Digital Marketing Packages & Pricing in India | Digital Nawab",
-    description:
-      "Explore digital marketing packages for SEO, social media, Google Ads and business growth. Compare services and get a customised quote from Digital Nawab.",
-  },
-};
+export async function generateMetadata() {
+  return await getPageMeta('/packages');
+}
 
 const jsonLdWebPage = {
   "@context": "https://schema.org",

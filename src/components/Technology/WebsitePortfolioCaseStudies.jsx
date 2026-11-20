@@ -129,7 +129,7 @@ export default function WebsitePortfolioCaseStudies() {
   useEffect(() => {
     const fetchApiProjects = async () => {
       try {
-        const res = await fetch("https://dashboard.digitalnawab.com/api/getproject");
+        const res = await fetch("/api/getproject");
         const json = await res.json();
         if (json?.websites && json.websites.length > 0) {
           // Merge API data with rich verified outcomes

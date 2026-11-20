@@ -1,28 +1,30 @@
-// ✅ this file is still a Server Component by default
-import axios from "axios";
 import BlogDetailPageClient from "./BlogDetailPageClient";
+import { getBlogByUrl, getRecentBlogs } from "@/../backend/services/pageService.js";
+import { getPageMeta } from '@/lib/getPageMeta';
 
 // --- Metadata for SEO ---
 export async function generateMetadata({ params }) {
   try {
     const resolvedParams = await params;
     const slug = resolvedParams?.slug;
-    const res = await axios.get(
-      `https://dashboard.digitalnawab.com/api/blogdetail`,
-      { params: { url: slug } }
-    );
 
-    const data = res?.data?.data;
+    // Check if an admin tag exists for this specific blog page
+    const adminMeta = await getPageMeta(`/blog/${slug}`);
+    if (adminMeta && (adminMeta.title || adminMeta.description)) {
+      return adminMeta;
+    }
+
+    const data = await getBlogByUrl(slug);
 
     if (!data) {
       return {
-        title: "Blog | Digital Nawab",
-        description: "Read the latest blogs from Digital Nawab.",
+        title: "",
+        description: "",
       };
     }
 
     const bannerUrl = data.banner_img
-      ? `https://dashboard.digitalnawab.com/${data.banner_img.replace(/^\/+/, "")}`
+      ? `/${data.banner_img.replace(/^\/+/, "")}`
       : "/images/fallback.jpg";
 
     return {
@@ -74,24 +76,11 @@ export async function generateMetadata({ params }) {
 export default async function BlogDetailWrapper({ params }) {
   const resolvedParams = await params;
   const slug = resolvedParams?.slug;
-  let initialData = null;
-  let initialRecentBlogs = [];
 
-  try {
-    const [detailRes, blogsRes] = await Promise.allSettled([
-      axios.get(`https://dashboard.digitalnawab.com/api/blogdetail`, {
-        params: { url: slug },
-      }),
-      axios.get(`https://dashboard.digitalnawab.com/api/getblog`),
-    ]);
-
-    if (detailRes.status === "fulfilled") {
-      initialData = detailRes.value?.data?.data || null;
-    }
-    if (blogsRes.status === "fulfilled" && Array.isArray(blogsRes.value?.data)) {
-      initialRecentBlogs = blogsRes.value.data;
-    }
-  } catch (err) {}
+  const [initialData, initialRecentBlogs] = await Promise.all([
+    getBlogByUrl(slug),
+    getRecentBlogs(10),
+  ]);
 
   return (
     <BlogDetailPageClient

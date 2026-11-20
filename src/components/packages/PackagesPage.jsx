@@ -150,7 +150,7 @@ export default function PackagesPage() {
     }
   };
 
-  // Form Submission directly to https://dashboard.digitalnawab.com/api/post_enquiry
+  // Form Submission directly to /api/post_enquiry
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = {};
@@ -207,7 +207,7 @@ export default function PackagesPage() {
       };
 
       const response = await axios.post(
-        "https://dashboard.digitalnawab.com/api/post_enquiry",
+        "/api/post_enquiry",
         payload,
         {
           headers: {

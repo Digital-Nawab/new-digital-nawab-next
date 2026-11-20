@@ -52,7 +52,7 @@ const JobDetailPage = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `https://dashboard.digitalnawab.com/api/careerdetail/${
+      url: `/api/careerdetail/${
         location?.pathname?.split("/")[2]
       }`,
       headers: {},

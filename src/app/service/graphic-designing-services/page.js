@@ -1,23 +1,14 @@
-import Image from 'next/image'
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+import Image from 'next/image';
 import Design from "@/components/Design/Design";
 import React from "react";
+import { getPageMeta } from '@/lib/getPageMeta';
 
-export const metadata = {
-  title: 'Graphic Designing Services in Lucknow | Digital Nawab',
-  description:
-    'Get professional graphic designing services in Lucknow from Digital Nawab. From logo design and branding to social media creatives, brochures and packaging, we create designs that help businesses stand out.',
-  alternates: {
-    canonical: 'https://www.digitalnawab.com/service/graphic-designing-services',
-  },
-  openGraph: {
-    title: 'Graphic Designing Services in Lucknow | Digital Nawab',
-    description:
-      'Get professional graphic designing services in Lucknow from Digital Nawab. From logo design and branding to social media creatives, brochures and packaging, we create designs that help businesses stand out.',
-    url: 'https://www.digitalnawab.com/service/graphic-designing-services',
-    siteName: 'Digital Nawab',
-    type: 'website',
-  },
-};
+export async function generateMetadata() {
+  return await getPageMeta('/service/graphic-designing-services');
+}
 
 const jsonLd = {
   '@context': 'https://schema.org',

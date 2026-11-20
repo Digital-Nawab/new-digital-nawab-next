@@ -9,7 +9,7 @@ export default function VisionMissionSection() {
   const { data, loading, error, fetchData } = useApi();
 
   useEffect(() => {
-    fetchData("https://dashboard.digitalnawab.com/api/getvision_mission", "GET");
+    fetchData("/api/getvision_mission", "GET");
   }, [fetchData]);
 
   // Extract the first item from the API response data array

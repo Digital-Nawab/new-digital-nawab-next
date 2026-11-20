@@ -37,7 +37,7 @@ const ToolsAndTechnologies = () => {
   const { data, loading, error, fetchData } = useApi();
 
   useEffect(() => {
-    fetchData("https://dashboard.digitalnawab.com/api/gettechnlogies", "GET");
+    fetchData("/api/gettechnlogies", "GET");
   }, [fetchData]);
 
   // Group data into rows of 8

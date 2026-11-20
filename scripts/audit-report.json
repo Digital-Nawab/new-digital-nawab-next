@@ -1,0 +1,723 @@
+{
+  "models": [
+    {
+      "name": "Api",
+      "file": "Api.php",
+      "table": null,
+      "fillable": []
+    },
+    {
+      "name": "Approach",
+      "file": "Approach.php",
+      "table": null,
+      "fillable": [
+        "city_id",
+        "heading",
+        "items"
+      ]
+    },
+    {
+      "name": "Blog",
+      "file": "Blog.php",
+      "table": "blogs",
+      "fillable": [
+        "meta_key",
+        "meta_desc",
+        "title",
+        "url",
+        "keyword",
+        "description",
+        "author",
+        "published",
+        "card_img",
+        "banner_img"
+      ]
+    },
+    {
+      "name": "Career",
+      "file": "Career.php",
+      "table": "careers",
+      "fillable": [
+        "desig",
+        "title",
+        "city",
+        "job_type",
+        "work_mode",
+        "about_role",
+        "responsibilities",
+        "requirements",
+        "benefits_perks"
+      ]
+    },
+    {
+      "name": "CareerForm",
+      "file": "CareerForm.php",
+      "table": "careerform",
+      "fillable": [
+        "name",
+        "email",
+        "address",
+        "year_of_experience",
+        "career_id",
+        "resume",
+        "contact_number",
+        "skills",
+        "project_link",
+        "message",
+        "status"
+      ]
+    },
+    {
+      "name": "City",
+      "file": "City.php",
+      "table": null,
+      "fillable": [
+        "name",
+        "slug",
+        "badge_text",
+        "heading_prefix",
+        "heading_suffix",
+        "description",
+        "phone_number",
+        "whatsapp_number",
+        "meta_title",
+        "meta_description",
+        "is_active",
+        "stat_years_value",
+        "stat_campaigns_value",
+        "stat_clients_value",
+        "stat_retention_value",
+        "stat_support_value",
+        "stat_reporting_value",
+        "market_description",
+        "market_areas"
+      ]
+    },
+    {
+      "name": "CityFaq",
+      "file": "CityFaq.php",
+      "table": null,
+      "fillable": [
+        "city_id",
+        "heading",
+        "faqs"
+      ]
+    },
+    {
+      "name": "CityProject",
+      "file": "CityProject.php",
+      "table": null,
+      "fillable": [
+        "city_id",
+        "tag",
+        "heading",
+        "sub_heading",
+        "image",
+        "button_text",
+        "button_url",
+        "color",
+        "sort_order"
+      ]
+    },
+    {
+      "name": "CityService",
+      "file": "CityService.php",
+      "table": null,
+      "fillable": [
+        "city_id",
+        "badge_text",
+        "heading",
+        "subheading",
+        "items"
+      ]
+    },
+    {
+      "name": "CityTestimonial",
+      "file": "CityTestimonial.php",
+      "table": null,
+      "fillable": [
+        "city_id",
+        "name",
+        "designation",
+        "quote",
+        "image",
+        "sort_order"
+      ]
+    },
+    {
+      "name": "ContactDetail",
+      "file": "ContactDetail.php",
+      "table": "contact_details",
+      "fillable": [
+        "email",
+        "phone_no",
+        "whatsapp_no",
+        "location"
+      ]
+    },
+    {
+      "name": "Creative",
+      "file": "Creative.php",
+      "table": "creatives",
+      "fillable": [
+        "image"
+      ]
+    },
+    {
+      "name": "Dev_Commerce",
+      "file": "Dev_Commerce.php",
+      "table": "dev_commerces",
+      "fillable": [
+        "tag",
+        "image",
+        "heading",
+        "description",
+        "skills",
+        "label"
+      ]
+    },
+    {
+      "name": "Dev_Cornerstone",
+      "file": "Dev_Cornerstone.php",
+      "table": "dev_cornerstones",
+      "fillable": [
+        "icon",
+        "heading",
+        "description"
+      ]
+    },
+    {
+      "name": "Dev_Innovation",
+      "file": "Dev_Innovation.php",
+      "table": "dev_innovations",
+      "fillable": [
+        "icon",
+        "heading",
+        "sub_heading",
+        "description",
+        "features"
+      ]
+    },
+    {
+      "name": "Dev_Maintain",
+      "file": "Dev_Maintain.php",
+      "table": "dev_maintains",
+      "fillable": [
+        "icon",
+        "heading",
+        "description",
+        "priority",
+        "availability",
+        "features"
+      ]
+    },
+    {
+      "name": "Dev_Step",
+      "file": "Dev_Step.php",
+      "table": "dev_steps",
+      "fillable": [
+        "icon",
+        "heading",
+        "description"
+      ]
+    },
+    {
+      "name": "Enquiry",
+      "file": "Enquiry.php",
+      "table": "enquiries",
+      "fillable": [
+        "name",
+        "email",
+        "number",
+        "city",
+        "service_id",
+        "subservice_id",
+        "message",
+        "isDeleted",
+        "status",
+        "addedBy",
+        "source"
+      ]
+    },
+    {
+      "name": "FAQ",
+      "file": "FAQ.php",
+      "table": "faqs",
+      "fillable": [
+        "question",
+        "answer"
+      ]
+    },
+    {
+      "name": "Google_Compaigns",
+      "file": "Google_Compaigns.php",
+      "table": "google_compaigns",
+      "fillable": []
+    },
+    {
+      "name": "Google_Media",
+      "file": "Google_Media.php",
+      "table": "google_media",
+      "fillable": []
+    },
+    {
+      "name": "Google_Ppc",
+      "file": "Google_Ppc.php",
+      "table": "google_ppc",
+      "fillable": []
+    },
+    {
+      "name": "Graphics_logo",
+      "file": "Graphics_logo.php",
+      "table": "graphic_logo",
+      "fillable": []
+    },
+    {
+      "name": "Hero",
+      "file": "Hero.php",
+      "table": "home_heros",
+      "fillable": [
+        "video_type",
+        "video"
+      ]
+    },
+    {
+      "name": "HomeAbout",
+      "file": "HomeAbout.php",
+      "table": "home_abouts",
+      "fillable": [
+        "tag",
+        "heading",
+        "sub_heading",
+        "image",
+        "content",
+        "button_text",
+        "button_url"
+      ]
+    },
+    {
+      "name": "HowWeWork",
+      "file": "HowWeWork.php",
+      "table": "how_we_works",
+      "fillable": [
+        "city_id",
+        "heading",
+        "subheading",
+        "steps"
+      ]
+    },
+    {
+      "name": "our_team",
+      "file": "our_team.php",
+      "table": "our_team",
+      "fillable": [
+        "name",
+        "designation",
+        "img",
+        "joining_date"
+      ]
+    },
+    {
+      "name": "Package",
+      "file": "Package.php",
+      "table": null,
+      "fillable": [
+        "icon",
+        "package_for",
+        "package_name",
+        "price",
+        "description",
+        "label",
+        "audience"
+      ]
+    },
+    {
+      "name": "Package_Feature",
+      "file": "Package_Feature.php",
+      "table": "package_features",
+      "fillable": [
+        "package_id",
+        "feature_key",
+        "feature_value"
+      ]
+    },
+    {
+      "name": "PricingSection",
+      "file": "PricingSection.php",
+      "table": null,
+      "fillable": [
+        "city_id",
+        "badge_text",
+        "heading",
+        "subheading",
+        "packages"
+      ]
+    },
+    {
+      "name": "Project",
+      "file": "Project.php",
+      "table": "projects",
+      "fillable": [
+        "type",
+        "title",
+        "image",
+        "video",
+        "description",
+        "duration",
+        "tech_used",
+        "url",
+        "starting_date",
+        "//<--yeaddkaroending_date",
+        "//<--yeaddkaro"
+      ]
+    },
+    {
+      "name": "Seo_Digital",
+      "file": "Seo_Digital.php",
+      "table": "seo_digital",
+      "fillable": [
+        "icon",
+        "heading",
+        "description"
+      ]
+    },
+    {
+      "name": "SEO_Form",
+      "file": "SEO_Form.php",
+      "table": "seo_forms",
+      "fillable": [
+        "image",
+        "name",
+        "website_url",
+        "email",
+        "current_traffic",
+        "message",
+        "button"
+      ]
+    },
+    {
+      "name": "SEO_Highlight",
+      "file": "SEO_Highlight.php",
+      "table": "seo_highlights",
+      "fillable": [
+        "image",
+        "heading",
+        "description"
+      ]
+    },
+    {
+      "name": "Seo_Optimization",
+      "file": "Seo_Optimization.php",
+      "table": "seo_optimizations",
+      "fillable": [
+        "icon",
+        "heading",
+        "description"
+      ]
+    },
+    {
+      "name": "Seo_Process",
+      "file": "Seo_Process.php",
+      "table": "seo_processes",
+      "fillable": [
+        "icon",
+        "heading",
+        "description"
+      ]
+    },
+    {
+      "name": "Seo_Service",
+      "file": "Seo_Service.php",
+      "table": "seo_services",
+      "fillable": [
+        "image",
+        "heading",
+        "subheading",
+        "description",
+        "features"
+      ]
+    },
+    {
+      "name": "Seo_Strategy",
+      "file": "Seo_Strategy.php",
+      "table": "seo_strategies",
+      "fillable": [
+        "image",
+        "heading",
+        "description"
+      ]
+    },
+    {
+      "name": "Service",
+      "file": "Service.php",
+      "table": "services",
+      "fillable": [
+        "name",
+        "description",
+        "image",
+        "is_deleted"
+      ]
+    },
+    {
+      "name": "Sm_Benefit",
+      "file": "Sm_Benefit.php",
+      "table": "sm_benefits",
+      "fillable": [
+        "heading",
+        "description",
+        "image"
+      ]
+    },
+    {
+      "name": "Sm_Facebook",
+      "file": "Sm_Facebook.php",
+      "table": "sm_facebook",
+      "fillable": [
+        "icon",
+        "heading",
+        "description"
+      ]
+    },
+    {
+      "name": "Sm_Youtube",
+      "file": "Sm_Youtube.php",
+      "table": "sm_youtube",
+      "fillable": [
+        "heading",
+        "description",
+        "image",
+        "features"
+      ]
+    },
+    {
+      "name": "SocialService",
+      "file": "SocialService.php",
+      "table": "social_our_service",
+      "fillable": []
+    },
+    {
+      "name": "StrategicApproach",
+      "file": "StrategicApproach.php",
+      "table": null,
+      "fillable": [
+        "city_id",
+        "badge_text",
+        "heading",
+        "subheading",
+        "items"
+      ]
+    },
+    {
+      "name": "SubService",
+      "file": "SubService.php",
+      "table": "subservices",
+      "fillable": [
+        "service_id",
+        "name",
+        "description",
+        "image",
+        "is_deleted"
+      ]
+    },
+    {
+      "name": "Tag",
+      "file": "Tag.php",
+      "table": "tags",
+      "fillable": [
+        "title",
+        "description",
+        "keyword",
+        "page_url",
+        "image"
+      ]
+    },
+    {
+      "name": "technology",
+      "file": "technology.php",
+      "table": "technology",
+      "fillable": [
+        "img",
+        "heading"
+      ]
+    },
+    {
+      "name": "User",
+      "file": "User.php",
+      "table": null,
+      "fillable": [
+        "name",
+        "email",
+        "password"
+      ]
+    },
+    {
+      "name": "vision_mission",
+      "file": "vision_mission.php",
+      "table": "vision_mission",
+      "fillable": [
+        "heading",
+        "para",
+        "vision_heading",
+        "vision_description",
+        "mission_heading",
+        "mission_description"
+      ]
+    },
+    {
+      "name": "WhyChooseUs",
+      "file": "WhyChooseUs.php",
+      "table": "why_choose_us",
+      "fillable": [
+        "city_id",
+        "heading",
+        "reasons"
+      ]
+    }
+  ],
+  "controllers": [
+    "Admin/UserController.php",
+    "AdminController.php",
+    "Api/ApiController.php",
+    "Api/ApproachController.php",
+    "Api/BlogController.php",
+    "Api/CareerController.php",
+    "Api/CareerFormController.php",
+    "Api/CityController.php",
+    "Api/CityFaqController.php",
+    "Api/CityProjectController.php",
+    "Api/CityServiceController.php",
+    "Api/CityTestimonialController.php",
+    "Api/ContactDetailController.php",
+    "Api/CreativesController.php",
+    "Api/DevCommerceController.php",
+    "Api/DevCornerstoneController.php",
+    "Api/DevInnovationController.php",
+    "Api/DevMaintainController.php",
+    "Api/DevStepController.php",
+    "Api/EnquiryController.php",
+    "Api/FAQController.php",
+    "Api/GoogleCompaignsController.php",
+    "Api/GoogleMediaController.php",
+    "Api/GooglePpcController.php",
+    "Api/GraphicsLogoController.php",
+    "Api/HeroController.php",
+    "Api/HomeAboutController.php",
+    "Api/HowWeWorkController.php",
+    "Api/our_teamcontroller.php",
+    "Api/packagecontroller.php",
+    "Api/PackageFeatureController.php",
+    "Api/PricingSectionController.php",
+    "Api/ProjectController.php",
+    "Api/SeoDigitalController.php",
+    "Api/SeoFormController.php",
+    "Api/SeoHighlightController.php",
+    "Api/SeoOptimizationController.php",
+    "Api/SeoProcessController.php",
+    "Api/SeoServiceController.php",
+    "Api/SeoStrategyController.php",
+    "Api/ServiceController.php",
+    "Api/SmmBenefitController.php",
+    "Api/SmmFacebookController.php",
+    "Api/SmmYoutubeController.php",
+    "Api/SocialServiceController.php",
+    "Api/StrategicApproachController.php",
+    "Api/SubServiceController.php",
+    "Api/TagController.php",
+    "Api/TechnologyController.php",
+    "Api/vision_missioncontroller.php",
+    "Api/WhyChooseUsController.php",
+    "Auth/AuthenticatedSessionController.php",
+    "Auth/ConfirmablePasswordController.php",
+    "Auth/EmailVerificationNotificationController.php",
+    "Auth/EmailVerificationPromptController.php",
+    "Auth/NewPasswordController.php",
+    "Auth/PasswordController.php",
+    "Auth/PasswordResetLinkController.php",
+    "Auth/RegisteredUserController.php",
+    "Auth/VerifyEmailController.php",
+    "Controller.php",
+    "PermissionController.php",
+    "ProfileController.php",
+    "RevokePermissionController.php",
+    "RoleController.php",
+    "UserController.php"
+  ],
+  "adminPages": [
+    "Admin/City/Approach.jsx",
+    "Admin/City/City.jsx",
+    "Admin/City/Faq.jsx",
+    "Admin/City/HowWeWork.jsx",
+    "Admin/City/PricingSection.jsx",
+    "Admin/City/Project.jsx",
+    "Admin/City/Services.jsx",
+    "Admin/City/StrategicApproach.jsx",
+    "Admin/City/Testimonial.jsx",
+    "Admin/City/WhyChooseUs.jsx",
+    "Admin/Dashboard.jsx",
+    "Admin/Dev/DevCommerce.jsx",
+    "Admin/Dev/DevCornerstone.jsx",
+    "Admin/Dev/DevInnovation.jsx",
+    "Admin/Dev/DevMaintain.jsx",
+    "Admin/Dev/DevStep.jsx",
+    "Admin/Enquiry/Leads.jsx",
+    "Admin/Google/GoogleCampaigns.jsx",
+    "Admin/Google/GoogleMedia.jsx",
+    "Admin/Google/GooglePpc.jsx",
+    "Admin/HomePage/About.jsx",
+    "Admin/HomePage/FAQPage.jsx",
+    "Admin/HomePage/Hero.jsx",
+    "Admin/HomePage/ToolsPage.jsx",
+    "Admin/HomePage/VisionMissionPage.jsx",
+    "Admin/Other/ApplyForm.jsx",
+    "Admin/Other/Blog.jsx",
+    "Admin/Other/Career.jsx",
+    "Admin/Other/ContactDetail.jsx",
+    "Admin/Other/CreativesManager.jsx",
+    "Admin/Other/GraphicsLogo.jsx",
+    "Admin/Other/OurTeam.jsx",
+    "Admin/Other/Package.jsx",
+    "Admin/Other/Projects.jsx",
+    "Admin/Other/TagManagement.jsx",
+    "Admin/Other/Test.jsx",
+    "Admin/SEO/Highlight.jsx",
+    "Admin/SEO/SeoDigital.jsx",
+    "Admin/SEO/SEOForm.jsx",
+    "Admin/SEO/SeoOptimization.jsx",
+    "Admin/SEO/SeoProcesses.jsx",
+    "Admin/SEO/SeoStrategy.jsx",
+    "Admin/SEO/Service.jsx",
+    "Admin/Services/Services.jsx",
+    "Admin/SMM/SmmBenefit.jsx",
+    "Admin/SMM/SmmFacebook.jsx",
+    "Admin/SMM/SmmYoutube.jsx",
+    "Admin/SMM/SocialService.jsx",
+    "Application.jsx",
+    "Auth/ConfirmPassword.jsx",
+    "Auth/ForgotPassword.jsx",
+    "Auth/Login.jsx",
+    "Auth/Register.jsx",
+    "Auth/ResetPassword.jsx",
+    "Auth/VerifyEmail.jsx",
+    "Check.jsx",
+    "Dashboard.jsx",
+    "Permissions/PermissionCreate.jsx",
+    "Permissions/PermissionEdit.jsx",
+    "Permissions/PermissionIndex.jsx",
+    "Permissions/PermissionShow.jsx",
+    "Profile/Edit.jsx",
+    "Profile/Partials/DeleteUserForm.jsx",
+    "Profile/Partials/UpdatePasswordForm.jsx",
+    "Profile/Partials/UpdateProfileInformationForm.jsx",
+    "Roles/RoleCreate.jsx",
+    "Roles/RoleEdit.jsx",
+    "Roles/RoleIndex.jsx",
+    "Roles/RoleShow.jsx",
+    "Test.jsx",
+    "Users/UserCreate.jsx",
+    "Users/UserEdit.jsx",
+    "Users/UserIndex.jsx",
+    "Users/UserShow.jsx",
+    "utils/ShowImg.jsx",
+    "Welcome.jsx"
+  ]
+}

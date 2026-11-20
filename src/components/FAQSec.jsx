@@ -93,13 +93,13 @@ const FAQSection = () => {
   // Initially no FAQ is open - opens only when clicked
   const [openIds, setOpenIds] = useState({});
 
-  // Fetch live FAQs from API: https://dashboard.digitalnawab.com/api/getfaq
+  // Fetch live FAQs from API: /api/getfaq
   useEffect(() => {
     let isMounted = true;
     const fetchFaqs = async () => {
       try {
         const response = await axios.get(
-          "https://dashboard.digitalnawab.com/api/getfaq",
+          "/api/getfaq",
           { timeout: 7000 }
         );
 

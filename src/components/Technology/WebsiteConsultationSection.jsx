@@ -92,7 +92,7 @@ export default function WebsiteConsultationSection() {
       };
 
       await axios.post(
-        "https://dashboard.digitalnawab.com/api/post_enquiry",
+        "/api/post_enquiry",
         payload,
         {
           headers: {

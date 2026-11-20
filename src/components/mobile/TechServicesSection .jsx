@@ -36,7 +36,7 @@ const TechServicesSection = () => {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          "https://dashboard.digitalnawab.com/api/getdev_innovation"
+          "/api/getdev_innovation"
         );
         const json = await res.json();
         if (json.data) {

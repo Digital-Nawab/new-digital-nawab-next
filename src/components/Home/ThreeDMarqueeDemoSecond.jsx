@@ -15,7 +15,7 @@ export function ThreeDMarqueeDemoSecond() {
         const config = {
           method: 'get',
           maxBodyLength: Infinity,
-          url: 'https://dashboard.digitalnawab.com/api/getcreatives',
+          url: '/api/getcreatives',
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',

@@ -39,14 +39,14 @@ import WavyPattern from "@/components/WaveyPattern";
 import { HeroHighlight } from "@/components/ui/hero-highlight";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
-const API_BASE = "https://dashboard.digitalnawab.com/api";
-const IMAGE_BASE = "https://dashboard.digitalnawab.com";
+const API_BASE = "/api";
+const IMAGE_BASE = "";
 
 const getImageUrl = (img) => {
   if (!img) return "/assets/images/about/team-office.jpg";
   if (img.startsWith("http")) return img;
   if (img.startsWith("/")) return img;
-  return `${IMAGE_BASE}/${img.replace(/^\//, "")}`;
+  return `/${img.replace(/^\//, "")}`;
 };
 
 // Check if string is a placeholder/test string

@@ -17,7 +17,7 @@ import "./app.css";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
-
+  const isAdmin = pathname?.startsWith('/admin');
 
   useEffect(() => {
     if (window.location.hash) {
@@ -72,22 +72,30 @@ export default function RootLayout({ children }) {
         </noscript>
 
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-          <div className="lg:block hidden">
-            <NavBar />
-          </div>
+          {!isAdmin && (
+            <>
+              <div className="lg:block hidden">
+                <NavBar />
+              </div>
 
-          <div className="lg:hidden block">
-            {/* Your mobile header */}
-            <div className="fixed top-0 left-0 w-full z-50 flex justify-center items-center p-1">
-              {/* ... your header code ... */}
-            </div>
-            <FloatingDock />
-          </div>
+              <div className="lg:hidden block">
+                {/* Your mobile header */}
+                <div className="fixed top-0 left-0 w-full z-50 flex justify-center items-center p-1">
+                  {/* ... your header code ... */}
+                </div>
+                <FloatingDock />
+              </div>
+            </>
+          )}
 
           {children}
 
-          <Footer />
-          <AutoPopup />
+          {!isAdmin && (
+            <>
+              <Footer />
+              <AutoPopup />
+            </>
+          )}
         </ThemeProvider>
       </body>
     </html>

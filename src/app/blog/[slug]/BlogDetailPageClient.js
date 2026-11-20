@@ -40,7 +40,7 @@ export default function BlogDetailPageClient({
       setError("");
       try {
         const res = await axios.get(
-          `https://dashboard.digitalnawab.com/api/blogdetail`,
+          `/api/blogdetail`,
           { params: { url: slug } }
         );
         if (!cancelled) setData(res?.data?.data || null);
@@ -66,7 +66,7 @@ export default function BlogDetailPageClient({
     const fetchRecent = async () => {
       try {
         const res = await axios.get(
-          `https://dashboard.digitalnawab.com/api/getblog`
+          `/api/getblog`
         );
         if (!cancelled && Array.isArray(res?.data)) {
           setRecentBlogs(res.data);
@@ -104,19 +104,21 @@ export default function BlogDetailPageClient({
   }, [data?.published]);
 
   const bannerImageUrl = useMemo(() => {
-    if (!data) return null;
+    if (!data?.banner_img) return null;
     const raw = data.banner_img;
-    if (!raw) return "/images/fallback.jpg";
-    const full =
-      raw.startsWith("http://") || raw.startsWith("https://")
-        ? raw
-        : `https://dashboard.digitalnawab.com/${raw.replace(/^\/+/, "")}`;
-    try {
-      return encodeURI(decodeURI(full));
-    } catch {
-      return encodeURI(full);
+    if (raw.startsWith("http://") || raw.startsWith("https://")) {
+      return raw;
     }
+    const clean = raw.replace(/^\/+/, "");
+    return `/${clean}`;
   }, [data]);
+
+  const getSidebarImg = (b) => {
+    const raw = b.card_img || b.banner_img;
+    if (!raw) return "/assets/logo.png";
+    if (raw.startsWith("http://") || raw.startsWith("https://")) return raw;
+    return `/${raw.replace(/^\/+/, "")}`;
+  };
 
   // Filter other blogs for sidebar
   const otherBlogs = useMemo(() => {
@@ -128,16 +130,25 @@ export default function BlogDetailPageClient({
   // Extract tags from keywords
   const tags = useMemo(() => {
     if (!data?.keyword) return [];
-    const rawList = Array.isArray(data.keyword) ? data.keyword : [data.keyword];
+    let list = [];
+    if (Array.isArray(data.keyword)) {
+      list = data.keyword;
+    } else if (typeof data.keyword === "string") {
+      try {
+        const parsed = JSON.parse(data.keyword);
+        if (Array.isArray(parsed)) list = parsed;
+        else list = [parsed];
+      } catch {
+        list = data.keyword.split(",");
+      }
+    }
     const extracted = [];
-    rawList.forEach((item) => {
+    list.forEach((item) => {
       if (typeof item === "string") {
-        item.split(",").forEach((t) => {
-          const trimmed = t.trim();
-          if (trimmed && !extracted.includes(trimmed)) {
-            extracted.push(trimmed);
-          }
-        });
+        const clean = item.replace(/[\[\]"']/g, "").trim();
+        if (clean && !extracted.includes(clean)) {
+          extracted.push(clean);
+        }
       }
     });
     return extracted.slice(0, 8);
@@ -222,7 +233,13 @@ export default function BlogDetailPageClient({
                     decoding="async"
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.01]"
                     onError={(e) => {
-                      e.currentTarget.src = "/images/fallback.jpg";
+                      if (!e.currentTarget.dataset.triedRemote && data?.banner_img) {
+                        e.currentTarget.dataset.triedRemote = "true";
+                        const clean = data.banner_img.replace(/^\/+/, "");
+                        e.currentTarget.src = `https://dashboard.digitalnawab.com/${clean}`;
+                      } else {
+                        e.currentTarget.src = "/assets/logo.png";
+                      }
                     }}
                   />
                 </div>
@@ -297,13 +314,6 @@ export default function BlogDetailPageClient({
                     </div>
                     <div className="space-y-4">
                       {otherBlogs.map((b) => {
-                        const imgUrl = b.card_img || b.banner_img;
-                        const fullImg = imgUrl
-                          ? imgUrl.startsWith("http")
-                            ? imgUrl
-                            : `https://dashboard.digitalnawab.com/${imgUrl.replace(/^\/+/, "")}`
-                          : "/images/fallback.jpg";
-
                         let dateStr = "";
                         if (b.published) {
                           try {
@@ -328,13 +338,20 @@ export default function BlogDetailPageClient({
                           >
                             <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-slate-100 border border-slate-200">
                               <img
-                                src={fullImg}
+                                src={getSidebarImg(b)}
                                 alt={b.title}
                                 loading="lazy"
                                 decoding="async"
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 onError={(e) => {
-                                  e.currentTarget.src = "/images/fallback.jpg";
+                                  const raw = b.card_img || b.banner_img;
+                                  if (!e.currentTarget.dataset.triedRemote && raw) {
+                                    e.currentTarget.dataset.triedRemote = "true";
+                                    const clean = raw.replace(/^\/+/, "");
+                                    e.currentTarget.src = `https://dashboard.digitalnawab.com/${clean}`;
+                                  } else {
+                                    e.currentTarget.src = "/assets/logo.png";
+                                  }
                                 }}
                               />
                             </div>

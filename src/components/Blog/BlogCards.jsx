@@ -44,7 +44,7 @@ const BlogCards = () => {
       const config = {
         method: "get",
         maxBodyLength: Infinity,
-        url: "https://dashboard.digitalnawab.com/api/getblog",
+        url: "/api/getblog",
         headers: {},
       };
 
@@ -64,18 +64,54 @@ const BlogCards = () => {
 
   console.log("blogs Cards Data:", blogs);
 
-  // Define category colors (you can customize these based on your needs)
-  const getCategoryColor = (category) => {
-    switch (category?.toLowerCase()) {
-      case "technology":
-        return "bg-blue-100 text-blue-800";
-      case "design":
-        return "bg-purple-100 text-purple-800";
-      case "marketing":
-        return "bg-green-100 text-green-800";
-      default:
-        return "bg-gray-100 text-gray-800";
+  // Extract primary tag/category cleanly from keyword
+  const getBlogTag = (blog) => {
+    if (!blog?.keyword) return "Digital Marketing";
+    let list = [];
+    if (Array.isArray(blog.keyword)) {
+      list = blog.keyword;
+    } else if (typeof blog.keyword === "string") {
+      try {
+        const parsed = JSON.parse(blog.keyword);
+        if (Array.isArray(parsed)) list = parsed;
+        else list = [parsed];
+      } catch {
+        list = blog.keyword.split(",");
+      }
     }
+    const clean = list
+      .map((k) => (typeof k === "string" ? k.replace(/[\[\]"']/g, "").trim() : ""))
+      .filter(Boolean);
+    return clean.length > 0 ? clean[0] : "Digital Marketing";
+  };
+
+  // Define category colors based on tag keywords
+  const getCategoryColor = (category) => {
+    const cat = (category || "").toLowerCase();
+    if (cat.includes("tech") || cat.includes("web") || cat.includes("dev")) {
+      return "bg-blue-100 text-blue-800";
+    }
+    if (cat.includes("design") || cat.includes("creative") || cat.includes("brand")) {
+      return "bg-purple-100 text-purple-800";
+    }
+    if (cat.includes("seo") || cat.includes("growth") || cat.includes("traffic") || cat.includes("online")) {
+      return "bg-emerald-100 text-emerald-800";
+    }
+    if (cat.includes("ai")) {
+      return "bg-indigo-100 text-indigo-800";
+    }
+    if (cat.includes("market") || cat.includes("ad") || cat.includes("social")) {
+      return "bg-amber-100 text-amber-800";
+    }
+    return "bg-blue-50 text-blue-700";
+  };
+
+  const getBlogCardImg = (card_img) => {
+    if (!card_img) return "/assets/logo.png";
+    if (card_img.startsWith("http://") || card_img.startsWith("https://")) {
+      return card_img;
+    }
+    return `/${card_img.replace(/^\/+/, "")}`;
   };
 
   if (loading) {
@@ -116,31 +152,39 @@ const BlogCards = () => {
 
         {/* Blog Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogs.map((blog) => (
-            <Link
-              href={`/blog/${blog.url}`}
-              key={blog.id}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <img
-                src={`https://dashboard.digitalnawab.com/${blog.card_img}`}
-                alt={blog.title}
-                loading="lazy"
-                decoding="async"
-                className="w-full h-56 object-cover rounded-t-2xl"
-                onError={(e) => {
-                  e.target.src = "/images/fallback.jpg"; // Fallback image if the API image fails
-                }}
-              />
-              <div className="p-6">
-                {/* Category */}
-                <div
-                  className={`inline-block ${getCategoryColor(
-                    blog.keyword?.[2] || "Technology" // Assuming keyword[2] is the category, e.g., "Web Development"
-                  )} px-3 py-1 rounded-full text-sm font-medium mb-4`}
-                >
-                  {blog.keyword?.[2] || "Technology"} {/* Fallback to "Technology" if no category */}
-                </div>
+          {blogs.map((blog) => {
+            const tag = getBlogTag(blog);
+            return (
+              <Link
+                href={`/blog/${blog.url}`}
+                key={blog.id}
+                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <img
+                  src={getBlogCardImg(blog.card_img)}
+                  alt={blog.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-56 object-cover rounded-t-2xl"
+                  onError={(e) => {
+                    if (!e.currentTarget.dataset.triedRemote && blog.card_img) {
+                      e.currentTarget.dataset.triedRemote = "true";
+                      const clean = blog.card_img.replace(/^\/+/, "");
+                      e.currentTarget.src = `https://dashboard.digitalnawab.com/${clean}`;
+                    } else {
+                      e.currentTarget.src = "/assets/logo.png";
+                    }
+                  }}
+                />
+                <div className="p-6">
+                  {/* Category */}
+                  <div
+                    className={`inline-block ${getCategoryColor(
+                      tag
+                    )} px-3 py-1 rounded-full text-sm font-medium mb-4 max-w-full truncate`}
+                  >
+                    {tag}
+                  </div>
 
                 {/* Title */}
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -164,8 +208,9 @@ const BlogCards = () => {
                   <ArrowUpRight className="w-4 h-4" />
                 </button>
               </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>
