@@ -66,7 +66,7 @@ const NavBar = () => {
               className="max-w-[90px] flex justify-center items-center"
               rel="noopener noreferrer"
             >
-              <Image src="/assets/logo/logo.png" alt="Digital Nawab Logo" width={90} height={45} priority className="h-auto w-auto object-contain" />
+              <img src="/assets/logo.png" alt="Digital Nawab Logo" width={90} height={45} className="h-auto w-auto object-contain" />
             </Link>
 
             {/* Desktop / Mobile Nav */}

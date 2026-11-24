@@ -22,7 +22,7 @@ const jsonLdWebPage = {
     "@type": "Organization",
     name: "Digital Nawab",
     url: "https://www.digitalnawab.com/",
-    logo: "https://www.digitalnawab.com/logo.png",
+    logo: "https://www.digitalnawab.com/assets/logo.png",
   },
 };
 
