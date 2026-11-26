@@ -54,7 +54,7 @@ export default function AboutHero() {
             Digital Marketing and Business Growth
           </span>
         </h1>
-
+        
         {/* Subtitle / Paragraph */}
         <p className="text-gray-300 text-base sm:text-lg lg:text-xl font-normal leading-relaxed max-w-4xl mx-auto mb-10">
           Digital Nawab is a Lucknow-based digital marketing agency helping
