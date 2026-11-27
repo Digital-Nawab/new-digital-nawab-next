@@ -184,11 +184,12 @@ const ContactPopup = ({
         }
       );
 
-      toast.success("Enquiry submitted successfully!");
-
-      // Reset form + close popup
+      // Reset form + close popup and redirect
       resetForm();
       setIsOpen(false);
+      if (typeof window !== "undefined") {
+        window.location.replace("/thank-you");
+      }
     } catch (error) {
       if (error.response && error.response.data.errors) {
         // backend validation errors

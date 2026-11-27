@@ -176,8 +176,8 @@ const Footer = () => {
                   <div className="w-6 h-6 bg-[#b7337c] rounded-full flex items-center justify-center mr-3 flex-shrink-0">
                     <Phone className="text-black w-3 h-3" />
                   </div>
-                  <a href="tel:+919335621987" className="text-gray-300 hover:text-white">
-                    +91 93356 21987
+                  <a href="tel:+918860757649" className="text-gray-300 hover:text-white">
+                    +91 8860757649
                   </a>
                 </div>
 
@@ -185,8 +185,8 @@ const Footer = () => {
                   <div className="w-6 h-6 bg-[#b7337c] rounded-full flex items-center justify-center mr-3 flex-shrink-0">
                     <Smartphone className="text-black w-3 h-3" />
                   </div>
-                  <a href="tel:+919335621987" className="text-gray-300 hover:text-white">
-                    +91 93356 21987
+                  <a href="tel:+919936663337" className="text-gray-300 hover:text-white">
+                    +91 99366 63337
                   </a>
                 </div>
 
@@ -194,12 +194,20 @@ const Footer = () => {
                   <div className="w-6 h-6 bg-[#b7337c] rounded-full flex items-center justify-center mr-3 flex-shrink-0">
                     <Mail className="text-black w-3 h-3" />
                   </div>
-                  <a
-                    href="mailto:wedigitalnawab@gmail.com"
-                    className="text-gray-300 hover:text-white"
-                  >
-                    wedigitalnawab@gmail.com
-                  </a>
+                  <div className="flex flex-col">
+                    <a
+                      href="mailto:wedigitalnawab@gmail.com"
+                      className="text-gray-300 hover:text-white"
+                    >
+                      wedigitalnawab@gmail.com
+                    </a>
+                    <a
+                      href="mailto:hello@digitalnawab.com"
+                      className="text-gray-300 hover:text-white"
+                    >
+                      hello@digitalnawab.com
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

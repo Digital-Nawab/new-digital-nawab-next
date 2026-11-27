@@ -80,7 +80,7 @@ const NawabMap = () => {
       <div className="relative w-full h-[360px] sm:h-[440px] md:h-[480px]">
         <iframe
           title="Digital Nawab Office Location"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.558359578144!2d80.9474055!3d26.8781754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd9af7a6c9cf%3A0x2a177e11f1dc6954!2sL%20Rd%2C%20Mahanagar%2C%20Lucknow%2C%20Uttar%20Pradesh%20226006!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+          src="https://maps.google.com/maps?q=Digital+Nawab%2C+B12+A%2C+L+Road%2C+Mahanagar%2C+Lucknow%2C+Uttar+Pradesh+226006&t=&z=16&ie=UTF8&iwloc=&output=embed"
           width="100%"
           height="100%"
           className="w-full h-full border-0"
@@ -90,10 +90,31 @@ const NawabMap = () => {
           referrerPolicy="no-referrer-when-downgrade"
         />
 
-        {/* Floating badge top-left on desktop */}
-        <div className="absolute top-4 left-4 hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-950/85 backdrop-blur-md border border-white/10 text-white text-xs font-medium shadow-lg pointer-events-none">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>Head Office • Mahanagar, Lucknow</span>
+        {/* Floating office card top-left */}
+        <div className="absolute top-4 left-4 z-20 flex items-start gap-3 p-3.5 sm:p-4 rounded-2xl bg-zinc-950/95 backdrop-blur-md border border-white/15 text-white shadow-2xl max-w-[340px]">
+          <div className="w-8 h-8 rounded-xl bg-pink-500/20 border border-pink-500/30 flex items-center justify-center shrink-0 text-pink-400 mt-0.5">
+            <MapPin className="w-4 h-4" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <h3 className="font-bold text-white text-sm leading-tight">Digital Nawab Office</h3>
+            </div>
+            <div className="text-emerald-400 text-xs font-medium mt-0.5">Mahanagar Branch</div>
+            <p className="text-gray-300 text-xs mt-1 leading-snug">
+              B12 A, L Road, Mahanagar, Lucknow, Uttar Pradesh 226006
+            </p>
+            <div className="mt-2.5 flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handleOpenGoogleMaps}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm transition-colors cursor-pointer"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>Open in Maps</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 

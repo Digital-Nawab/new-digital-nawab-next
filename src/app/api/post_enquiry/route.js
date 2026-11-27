@@ -16,16 +16,24 @@ export async function POST(req) {
 
     const contactNumber = number || phone || '';
 
+    let finalServiceId = service_id ? Number(service_id) : 4;
+    let finalSubserviceId = subservice_id ? Number(subservice_id) : 3;
+    if (isNaN(finalServiceId) || finalServiceId <= 0) finalServiceId = 4;
+    if (isNaN(finalSubserviceId) || finalSubserviceId <= 0) finalSubserviceId = 3;
+
+    const safeMessage = (message || '').slice(0, 250);
+
     const id = await insert('enquiries', {
       name: name || '',
       email: email || '',
       number: contactNumber,
-      city: city || '',
-      service_id: service_id ? Number(service_id) : null,
-      subservice_id: subservice_id ? Number(subservice_id) : null,
-      message: message || '',
-      source: source || 'Website Enquiry',
-      status: 'new',
+      city: city || 'Lucknow',
+      service_id: finalServiceId,
+      subservice_id: finalSubserviceId,
+      message: safeMessage,
+      source: source || 'Website',
+      status: 'new_lead',
+      addedBy: 'User',
       isDeleted: 0,
       created_at: new Date(),
       updated_at: new Date(),

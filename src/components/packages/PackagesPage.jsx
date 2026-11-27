@@ -218,7 +218,6 @@ export default function PackagesPage() {
       );
 
       if (response.data?.status || response.status === 200) {
-        toast.success("Enquiry submitted successfully! Our strategist will call you shortly.");
         setSubmitSuccess(true);
         setFormData({
           fullName: "",
@@ -233,6 +232,9 @@ export default function PackagesPage() {
           privacyConsent: false,
         });
         setFormErrors({});
+        if (typeof window !== "undefined") {
+          window.location.replace("/thank-you");
+        }
       } else {
         toast.error(response.data?.message || "Failed to submit enquiry. Please try again.");
       }

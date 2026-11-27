@@ -3,7 +3,7 @@ import { createCrudItemHandlers } from '@/../backend/helpers/crud-route.js';
 const handlers = createCrudItemHandlers({
   table: 'our_team',
   jsonFields: [],
-  fileFields: [{"name":"img","dir":"assets/images/team"}],
+  fileFields: [{"name":"img","dir":"assets/images/our_team"}],
   allowedRoles: ["admin"],
 });
 

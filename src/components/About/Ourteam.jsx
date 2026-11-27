@@ -20,27 +20,36 @@ const defaultTeam = [
     id: 4,
     name: "Navyanshi Gulati",
     designation: "Junior Social Media Manager",
-    image:
-      "https://dashboard.digitalnawab.com/assets/images/our_team/1759126276_68da2304df5ca.webp",
+    image: "/assets/images/our_team/1759126276_68da2304df5ca.webp",
+    rawImg: "assets/images/our_team/1759126276_68da2304df5ca.webp",
     joining_date: "2025-07-11",
   },
   {
     id: 6,
     name: "Tanu Kashyap",
     designation: "Junior Web Developer",
-    image:
-      "https://dashboard.digitalnawab.com/assets/images/our_team/1759129939_68da315325e80.webp",
+    image: "/assets/images/our_team/1759129939_68da315325e80.webp",
+    rawImg: "assets/images/our_team/1759129939_68da315325e80.webp",
     joining_date: "2025-09-06",
   },
   {
     id: 9,
     name: "Monika Singh",
     designation: "Full Stack Developer",
-    image:
-      "https://dashboard.digitalnawab.com/assets/images/our_team/1784719423_6a60a83fd16e0.webp",
+    image: "/assets/images/our_team/1784719423_6a60a83fd16e0.webp",
+    rawImg: "assets/images/our_team/1784719423_6a60a83fd16e0.webp",
     joining_date: "2026-07-22",
   },
 ];
+
+const resolveTeamImg = (img) => {
+  if (!img) return "/assets/logo.png";
+  if (img.startsWith("http://") || img.startsWith("https://")) {
+    return img;
+  }
+  const clean = img.replace(/^\/+/, "");
+  return `/${clean}`;
+};
 
 const TeamMemberCard = ({ member }) => {
   const yearJoined = member.joining_date
@@ -61,8 +70,14 @@ const TeamMemberCard = ({ member }) => {
             className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
             loading="lazy" decoding="async"
             onError={(e) => {
-              e.currentTarget.src =
-                "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80";
+              if (!e.currentTarget.dataset.triedRemote && member.rawImg && !member.rawImg.startsWith("http")) {
+                e.currentTarget.dataset.triedRemote = "true";
+                const clean = member.rawImg.replace(/^\/+/, "");
+                e.currentTarget.src = `https://dashboard.digitalnawab.com/${clean}`;
+              } else if (!e.currentTarget.dataset.triedFallback) {
+                e.currentTarget.dataset.triedFallback = "true";
+                e.currentTarget.src = "/assets/logo.png";
+              }
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
@@ -144,11 +159,10 @@ const TeamSection = () => {
         ) {
           const mapped = response.data.data.map((m) => ({
             id: m.id,
-            name: m.name.replace(/test$/i, "").trim(),
+            name: (m.name || "").replace(/test$/i, "").trim() || "Team Member",
             designation: m.designation || "Digital Strategist",
-            image: m.img
-              ? `https://dashboard.digitalnawab.com/${m.img}`
-              : "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80",
+            image: resolveTeamImg(m.img),
+            rawImg: m.img || "",
             joining_date: m.joining_date,
           }));
           setTeamMembers(mapped);

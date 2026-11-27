@@ -79,7 +79,10 @@ export default function OurTeamPage() {
       joining_date: member.joining_date ? member.joining_date.split('T')[0] : '',
     });
     setImageFile(null);
-    setImagePreview(member.img ? `/${member.img.replace(/^\/+/, '')}` : '');
+    const cleanImg = member.img
+      ? (member.img.startsWith('http') ? member.img : `/${member.img.replace(/^\/+/, '')}`)
+      : '';
+    setImagePreview(cleanImg);
     document.getElementById('teamForm')?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -259,6 +262,15 @@ export default function OurTeamPage() {
                     src={imagePreview}
                     alt="Preview"
                     className="w-12 h-12 rounded-full object-cover border-2 border-blue-500 shrink-0"
+                    onError={(e) => {
+                      if (!e.currentTarget.dataset.triedRemote && editingMember?.img && !editingMember.img.startsWith('http')) {
+                        e.currentTarget.dataset.triedRemote = 'true';
+                        e.currentTarget.src = `https://dashboard.digitalnawab.com/${editingMember.img.replace(/^\/+/, '')}`;
+                      } else if (!e.currentTarget.dataset.triedFallback) {
+                        e.currentTarget.dataset.triedFallback = 'true';
+                        e.currentTarget.src = '/assets/logo.png';
+                      }
+                    }}
                   />
                 )}
               </div>
@@ -307,9 +319,18 @@ export default function OurTeamPage() {
                 <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-100 border-2 border-gray-200 mb-4 shadow-xs">
                   {member.img ? (
                     <img
-                      src={`/${member.img.replace(/^\/+/, '')}`}
+                      src={member.img.startsWith('http') ? member.img : `/${member.img.replace(/^\/+/, '')}`}
                       alt={member.name}
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        if (!e.currentTarget.dataset.triedRemote && member.img && !member.img.startsWith('http')) {
+                          e.currentTarget.dataset.triedRemote = 'true';
+                          e.currentTarget.src = `https://dashboard.digitalnawab.com/${member.img.replace(/^\/+/, '')}`;
+                        } else if (!e.currentTarget.dataset.triedFallback) {
+                          e.currentTarget.dataset.triedFallback = 'true';
+                          e.currentTarget.src = '/assets/logo.png';
+                        }
+                      }}
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-400">

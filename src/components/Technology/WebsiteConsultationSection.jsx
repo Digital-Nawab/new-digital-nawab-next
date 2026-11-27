@@ -103,7 +103,6 @@ export default function WebsiteConsultationSection() {
       );
 
       setIsSuccess(true);
-      toast.success("Consultation request submitted successfully!");
       setFormData({
         name: "",
         phone: "",
@@ -113,6 +112,9 @@ export default function WebsiteConsultationSection() {
         budget: "₹25,000 - ₹50,000",
         message: "",
       });
+      if (typeof window !== "undefined") {
+        window.location.replace("/thank-you");
+      }
     } catch (err) {
       console.error("Submission error:", err);
       // Fallback gracious acknowledgment

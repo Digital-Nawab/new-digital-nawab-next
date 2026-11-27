@@ -4,7 +4,7 @@ const handlers = createCrudHandlers({
   table: 'our_team',
   orderBy: 'id DESC',
   jsonFields: [],
-  fileFields: [{"name":"img","dir":"assets/images/team"}],
+  fileFields: [{"name":"img","dir":"assets/images/our_team"}],
   allowedRoles: ["admin"],
 });
 

@@ -15,6 +15,7 @@ import {
   TrendingUp,
   Star,
   Users,
+  PhoneCall,
 } from "lucide-react";
 
 export default function StatsSection() {
@@ -104,13 +105,13 @@ export default function StatsSection() {
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
 
-              <Link
-                href="/service"
+              <a
+                href="tel:+919936663337"
                 className="group inline-flex items-center justify-center gap-2 rounded-full border-2 border-slate-900 bg-slate-900 hover:bg-slate-800 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-bold text-white shadow-md shadow-slate-900/15 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
               >
-                <span className="text-white font-bold">Explore Services</span>
-                <ArrowRight className="h-4 w-4 text-white transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
+                <PhoneCall className="h-4 w-4 text-[#eb1c78] transition-transform duration-300 group-hover:scale-110" />
+                <span className="text-white font-bold">Call Now</span>
+              </a>
             </div>
 
             {/* Feature Highlights (4 Pillars) Upgraded to Sleek Micro-Cards */}

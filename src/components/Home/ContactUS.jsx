@@ -300,7 +300,6 @@ const ContactUs = ({ isHomePage }) => {
           },
         });
 
-        toast.success("Enquiry submitted successfully! Our strategist will call you shortly.");
         setFormData({
           name: "",
           phone: "",
@@ -310,6 +309,10 @@ const ContactUs = ({ isHomePage }) => {
           subService: "",
           message: "",
         });
+
+        if (typeof window !== "undefined") {
+          window.location.replace("/thank-you");
+        }
       } catch (error) {
         toast.error("Failed to submit enquiry. Please try again or call us directly.");
         console.error(error);

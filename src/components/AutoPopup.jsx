@@ -190,6 +190,11 @@ export default function AutoPopup() {
           },
         }
       );
+      setIsOpen(false);
+      if (typeof window !== "undefined") {
+        window.location.replace("/thank-you");
+      }
+      return;
     } catch (err) {
       console.warn("API post_enquiry error (fallback to local success):", err);
     } finally {

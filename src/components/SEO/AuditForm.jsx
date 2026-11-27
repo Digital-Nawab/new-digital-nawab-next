@@ -45,6 +45,9 @@ const AuditForm = () => {
       );
 
       setResponse(res.data);
+      if ((res.data?.status || res.status === 200) && typeof window !== "undefined") {
+        window.location.replace("/thank-you");
+      }
     } catch (error) {
       console.error(error);
       setResponse({ error: "Something went wrong!" });
