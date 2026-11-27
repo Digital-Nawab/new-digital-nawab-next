@@ -34,6 +34,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Favicon & App Icons */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+
         {/* Preconnect to external critical domains */}
         <link rel="preconnect" href="https://dashboard.digitalnawab.com" />
         <link rel="dns-prefetch" href="https://dashboard.digitalnawab.com" />

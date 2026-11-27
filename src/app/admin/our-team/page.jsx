@@ -35,7 +35,7 @@ export default function OurTeamPage() {
   const fetchTeam = async () => {
     setLoading(true);
     try {
-      const res = await fetch('/api/admin/our-team');
+      const res = await fetch(`/api/admin/our-team?t=${Date.now()}`, { cache: 'no-store' });
       const json = await res.json();
       if (json.status && Array.isArray(json.data)) {
         setTeamMembers(json.data);

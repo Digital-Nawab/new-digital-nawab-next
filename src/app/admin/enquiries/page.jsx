@@ -104,8 +104,8 @@ export default function AdminEnquiriesPage() {
     setLoading(true);
     try {
       const [enqRes, svcRes] = await Promise.all([
-        fetch('/api/admin/enquiries').then((r) => r.json()),
-        fetch('/api/admin/services').then((r) => r.json()).catch(() => ({ data: [] })),
+        fetch(`/api/admin/enquiries?t=${Date.now()}`, { cache: 'no-store' }).then((r) => r.json()),
+        fetch(`/api/admin/services?t=${Date.now()}`, { cache: 'no-store' }).then((r) => r.json()).catch(() => ({ data: [] })),
       ]);
 
       if (enqRes.status && Array.isArray(enqRes.data)) {

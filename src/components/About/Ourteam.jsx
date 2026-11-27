@@ -142,10 +142,11 @@ const TeamSection = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          "/api/getourteam",
+          `/api/getourteam?t=${Date.now()}`,
           {
             headers: {
               Accept: "application/json",
+              "Cache-Control": "no-cache, no-store, must-revalidate",
             },
             timeout: 7000,
           }
@@ -159,7 +160,7 @@ const TeamSection = () => {
         ) {
           const mapped = response.data.data.map((m) => ({
             id: m.id,
-            name: (m.name || "").replace(/test$/i, "").trim() || "Team Member",
+            name: m.name?.trim() || "Team Member",
             designation: m.designation || "Digital Strategist",
             image: resolveTeamImg(m.img),
             rawImg: m.img || "",

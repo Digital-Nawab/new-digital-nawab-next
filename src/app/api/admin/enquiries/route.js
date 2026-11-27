@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 import { NextResponse } from 'next/server';
 import { query, insert } from '@/../backend/database/db.js';
 import { getAuthUser } from '@/../backend/middleware/auth.js';
@@ -18,7 +21,14 @@ export async function GET(req) {
        ORDER BY e.created_at DESC`
     );
 
-    return NextResponse.json({ status: true, data: enquiries });
+    return NextResponse.json(
+      { status: true, data: enquiries },
+      {
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        },
+      }
+    );
   } catch (error) {
     console.error('admin enquiries error:', error);
     return NextResponse.json({ status: false, message: error.message }, { status: 500 });
